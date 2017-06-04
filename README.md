@@ -34,7 +34,7 @@ use "wasteful" languages. Of course, compiliers have become increasingly sophist
 
 ## Links To Works I Found Helpful
 [http://mnemstudio.org/path-finding-q-learning-tutorial.htm](http://mnemstudio.org/path-finding-q-learning-tutorial.htm)
-
 [https://en.wikipedia.org/wiki/Q-learning](https://en.wikipedia.org/wiki/Q-learning)
-
 [https://github.com/outlace/Gridworld](https://github.com/outlace/Gridworld)
+[https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml](https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml)
+
