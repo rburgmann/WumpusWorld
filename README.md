@@ -33,6 +33,6 @@ interpreted languages in high performance computing goes to show just how much c
 use "wasteful" languages. Of course, compiliers have become increasingly sophisticated which mitigates the performance hit somewhat also.
 
 # Links To Works I Found Helpful
-http://mnemstudio.org/path-finding-q-learning-tutorial.htm
-https://en.wikipedia.org/wiki/Q-learning
-https://github.com/outlace/Gridworld
+http://mnemstudio.org/path-finding-q-learning-tutorial.htm 
+https://en.wikipedia.org/wiki/Q-learning 
+https://github.com/outlace/Gridworld 
