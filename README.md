@@ -37,4 +37,4 @@ use "wasteful" languages. Of course, compiliers have become increasingly sophist
 - [https://en.wikipedia.org/wiki/Q-learning](https://en.wikipedia.org/wiki/Q-learning)
 - [https://github.com/outlace/Gridworld](https://github.com/outlace/Gridworld)
 - [https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml](https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml)
-
+- [More useful links](https://github.com/rburgmann/WumpusWorld/wiki/Scratch-Pad-Notes)
