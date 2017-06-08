@@ -32,9 +32,5 @@ I remember when high performance computing was done exclusively in C/C++ for per
 interpreted languages in high performance computing goes to show just how much compute performance we have available now that we can
 use "wasteful" languages. Of course, compiliers have become increasingly sophisticated which mitigates the performance hit somewhat also.
 
-## Links To Works I Found Helpful
-- [http://mnemstudio.org/path-finding-q-learning-tutorial.htm](http://mnemstudio.org/path-finding-q-learning-tutorial.htm)
-- [https://en.wikipedia.org/wiki/Q-learning](https://en.wikipedia.org/wiki/Q-learning)
-- [https://github.com/outlace/Gridworld](https://github.com/outlace/Gridworld)
-- [https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml](https://cis.temple.edu/~giorgio/cis587/readings/wumpus.shtml)
-- [More useful links](https://github.com/rburgmann/WumpusWorld/wiki/Useful-Links)
+
+[Links To Works I Found Helpful](https://github.com/rburgmann/WumpusWorld/wiki/Useful-Links)
