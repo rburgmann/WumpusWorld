@@ -29,7 +29,7 @@ public class WWSimulator {
         JFrame frame = new JFrame("Wumpus World Simulator");
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
-        GridPanel gridPanel = new GridPanel(frame);
+        GridPanel gridPanel = new GridPanel(4);
         frame.setVisible(true);
         frame.add(gridPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

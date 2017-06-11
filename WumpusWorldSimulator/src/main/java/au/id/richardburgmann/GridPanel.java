@@ -17,32 +17,25 @@ import java.awt.*;
 
 public class GridPanel extends JPanel {
     private static final Logger logger = LoggerFactory.getLogger(GridPanel.class);
-    private int noOfColumns = 4;
-    private int noOfRows = 4;
+    private int gridSize = 4; // gridSize by gridSize, n x n.
     private int defaultMargin = 20;
-    private JFrame myFrame;
+    private int cellHeight = 100;
+    private int cellWidth  = 100;
 
-    public GridPanel(int noOfColumns, int noOfRows, JFrame myFrame) {
-        this.noOfColumns = noOfColumns;
-        this.noOfRows = noOfRows;
-        this.myFrame = myFrame;
-    }
-    public GridPanel(JFrame myFrame) {
-
-        this.myFrame = myFrame;
+    public GridPanel(int gridSize) {
+        this.gridSize = gridSize;
     }
 
-    public static void main(String[] args) {
 
-    }
     @Override
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.setColor(Color.black);
+
         int h = this.getHeight();
         int w = this.getWidth();
-        int cellHeight = (h - (2 * defaultMargin)) / 4;
-        int cellWidth  = (w - (2 * defaultMargin)) / 4;
+        int cellHeight = (h - (2 * defaultMargin)) / this.gridSize;
+        int cellWidth  = (w - (2 * defaultMargin)) / this.gridSize;
 
         // Draw Rows
         // Row 0
