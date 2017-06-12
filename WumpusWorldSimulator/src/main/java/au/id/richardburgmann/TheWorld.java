@@ -79,6 +79,18 @@ public class TheWorld {
      */
     private static final int FAILED = 1;
     /**
+     * I want to be able to repeat experiments and so need the seed for the random number
+     * generator to be fixed.
+     */
+    private static final double RANDOM_SEED = 11235813;
+    /**
+     * Decides if the Adventurer will start in the fixed location 0,0 or in
+     * a random location around the outside edge of the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 0,0.
+     */
+    private int randomStartAdventurer = 0;
+    /**
      * worldState does what it says on the box, it holds the entire state of the world.
      * Contrary to recommended practice I'm making this a public variable. Not usually
      * regarded as the correct way to code variables. I may make it private and hide it
@@ -102,6 +114,14 @@ public class TheWorld {
      * worldState[WUMPUS][2][1] = +1 and so that is where the Wumpus is.
      */
     public int[][][] worldState = new int[9][4][4];
+    /**
+     * Constant representing EMPTY_LOCATION = -1
+     */
+    public static final int  EMPTY_LOCATION = -1;
+    /**
+     * Constant representing OCCUPIED_LOCATION = +1
+     */
+    public static final int  OCCUPIED_LOCATION = 1;
 
     /**
      * Used for testing.
@@ -142,6 +162,67 @@ public class TheWorld {
         returnValue = OK;
 
         return returnValue;
+
+    }
+
+    /**
+     * Has the Adventurer been initialized to start in a random location or the fixed
+     * starting position?
+     * @return 1 = Random start somewhere on the outside edges of the grid world.
+     *         0 = Fixed start at 0,0.
+     */
+    public int getRandomStartAdventurer() {
+        return randomStartAdventurer;
+    }
+
+    /**
+     * Sets the policy for how the Adventurer will be placed at the start of a run. Either randomly
+     * along the outside edge or at a fixed location (0,0).
+     * @param randomStartAdventurer 1 = Random position along edge or 0 start at the fixed location.
+     */
+    public void setRandomStartAdventurer(int randomStartAdventurer) {
+        this.randomStartAdventurer = randomStartAdventurer;
+    }
+    /**
+     * Initialises the data model to -1 representing an empty state. Should be called at objects
+     * creation and whenever you want to clear it of values. It will call the clear method for each of
+     * the entities in the world.
+     */
+    public void clearWorldState() {
+        this.clearEntity(WUMPUS);
+        this.clearEntity(STENCHES);
+        this.clearEntity(PITS);
+        this.clearEntity(BREEZES);
+        this.clearEntity(GOLD);
+        this.clearEntity(GLITTER);
+        this.clearEntity(ADVENTURER);
+        this.clearEntity(WALLS);
+        this.clearEntity(VISITED);
+
+    }
+    /**
+     * Clear Entity location.
+     */
+    public void clearEntity(int entity) {
+        /**
+         * Test that entity has a legal value, if it doesn't then just exit with no action.
+         */
+        if (entity == WUMPUS ||
+                entity == STENCHES ||
+                entity == PITS ||
+                entity == BREEZES ||
+                entity == GOLD ||
+                entity == GLITTER ||
+                entity == ADVENTURER ||
+                entity == WALLS ||
+                entity == VISITED) {
+            for (int row = 0 ; row < this.worldState[entity].length ; row++) {
+                for (int col = 0 ; col < this.worldState[entity][row].length ; col++) {
+                     this.worldState[entity][row][col] = EMPTY_LOCATION;
+                }
+            }
+
+        }
 
     }
 }
