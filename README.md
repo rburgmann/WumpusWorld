@@ -33,4 +33,5 @@ interpreted languages in high performance computing goes to show just how much c
 use "wasteful" languages. Of course, compiliers have become increasingly sophisticated which mitigates the performance hit somewhat also.
 
 
-[Links To Works I Found Helpful](https://github.com/rburgmann/WumpusWorld/wiki/Useful-Links)
+[Links To Works I Found Helpful](https://github.com/rburgmann/WumpusWorld/wiki/Useful-Links) 
+[Link to the javadoc for the project](https://rburgmann.github.io/WumpusWorld/)
