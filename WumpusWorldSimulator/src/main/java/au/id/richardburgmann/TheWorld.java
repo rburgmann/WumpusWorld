@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * <p></p>This class holds the state of the world within the simulator.
+ * <p>This class holds the state of the world within the simulator.
  * See https://github.com/rburgmann/WumpusWorld/wiki/W2101-Data-Model:-World-State
  * for further details.</p>
  */

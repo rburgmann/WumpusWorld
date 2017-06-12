@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * <p></p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
+ * <p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
  * representation of the world. A number of experiments are planned using reinforcement learning for
  * the Adventurer. </p>
  * <p>This is a learning project that I'm undertaking just for fun. You can follow my own adventure
