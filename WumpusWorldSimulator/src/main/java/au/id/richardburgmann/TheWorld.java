@@ -37,7 +37,6 @@ public class TheWorld {
     /**
      * Constant, Usage worldState[BREEZES][4][4]
      * Due to peculiar yet fortunate geology the deadly pits have a breeze near them.
-     *
      */
     public static final int BREEZES = 3;
     /**
@@ -68,6 +67,21 @@ public class TheWorld {
      * Never explore a cave without a map.
      */
     public static final int VISITED = 8;
+    public static final int RANDOM_START = 1;
+    public static final int FIXED_START = 0;
+    /**
+     * A lot of code will be referring to the n of the n x n grid.
+     * So create a constant to keep it.
+     */
+    public static final int GRID_SIZE = 4;
+    /**
+     * Constant representing EMPTY_LOCATION = -1
+     */
+    public static final int EMPTY_LOCATION = -1;
+    /**
+     * Constant representing OCCUPIED_LOCATION = +1
+     */
+    public static final int OCCUPIED_LOCATION = 1;
     /**
      * Used by the logging system.
      */
@@ -86,20 +100,7 @@ public class TheWorld {
      */
     private static final long RANDOM_SEED = 11235813;
     private static Random random;
-    /**
-     * Decides if the Adventurer will start in the fixed location 0,0 or in
-     * a random location around the outside edge of the grid.
-     * 1 = Random starting location.
-     * 0 = Fixed starting location at 0,0.
-     */
-    private int randomStartAdventurer = 0;
-    private static final int RANDOM_START = 1;
-    private static final int FIXED_START  = 0;
-    /**
-     * A lot of code will be referring to the n of the n x n grid.
-     * So create a constant to keep it.
-     */
-    private static final int GRID_SIZE = 4;
+    private static int lastRandomNumber = 0;
     /**
      * worldState does what it says on the box, it holds the entire state of the world.
      * Contrary to recommended practice I'm making this a public variable. Not usually
@@ -120,21 +121,25 @@ public class TheWorld {
      * -1,-1,-1,-1 <p>
      * -1,+1,-1,-1 <p>
      * -1,-1,-1,-1 <p>
-     *
+     * <p>
      * Assume the following worldState[ENTITY][ROW][COL]<p>
      * worldState[WUMPUS][2][1] = +1 and so that is where the Wumpus is.
      */
     public int[][][] worldState = new int[9][GRID_SIZE][GRID_SIZE];
-
     /**
-     * Constant representing EMPTY_LOCATION = -1
+     * Decides if the Adventurer will start in the fixed location 0,0 or in
+     * a random location around the outside edge of the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 0,0.
      */
-    public static final int  EMPTY_LOCATION = -1;
+    private int randomStartAdventurer = 0;
     /**
-     * Constant representing OCCUPIED_LOCATION = +1
+     * Decides if the Wumpus will start in the fixed location 2,2 or in
+     * a random location on the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 2,2.
      */
-    public static final int  OCCUPIED_LOCATION = 1;
-
+    private int randomStartWumpus = 0;
 
     /**
      * This method is used to load a previously defined world state from disk.
@@ -174,8 +179,9 @@ public class TheWorld {
     /**
      * Has the Adventurer been initialized to start in a random location or the fixed
      * starting position?
+     *
      * @return 1 = Random start somewhere on the outside edges of the grid world.
-     *         0 = Fixed start at 0,0.
+     * 0 = Fixed start at 0,0.
      */
     public int getRandomStartAdventurer() {
         return randomStartAdventurer;
@@ -184,11 +190,21 @@ public class TheWorld {
     /**
      * Sets the policy for how the Adventurer will be placed at the start of a run. Either randomly
      * along the outside edge or at a fixed location (0,0).
+     *
      * @param randomStartAdventurer 1 = Random position along edge or 0 start at the fixed location.
      */
     public void setRandomStartAdventurer(int randomStartAdventurer) {
         this.randomStartAdventurer = randomStartAdventurer;
     }
+
+    public int getRandomStartWumpus() {
+        return randomStartWumpus;
+    }
+
+    public void setRandomStartWumpus(int randomStartWumpus) {
+        this.randomStartWumpus = randomStartWumpus;
+    }
+
     /**
      * Initialises the data model to -1 representing an empty state. Should be called at objects
      * creation and whenever you want to clear it of values. It will call the clear method for each of
@@ -206,8 +222,10 @@ public class TheWorld {
         this.clearEntity(VISITED);
 
     }
+
     /**
      * Clear Entity location.
+     *
      * @param entity Set which entity (WUMPUS, ADVENTURER, etc you wish to clear the locations values for.
      */
     public void clearEntity(int entity) {
@@ -223,15 +241,16 @@ public class TheWorld {
                 entity == ADVENTURER ||
                 entity == WALLS ||
                 entity == VISITED) {
-            for (int row = 0 ; row < this.worldState[entity].length ; row++) {
-                for (int col = 0 ; col < this.worldState[entity][row].length ; col++) {
-                     this.worldState[entity][row][col] = EMPTY_LOCATION;
+            for (int row = 0; row < this.worldState[entity].length; row++) {
+                for (int col = 0; col < this.worldState[entity][row].length; col++) {
+                    this.worldState[entity][row][col] = EMPTY_LOCATION;
                 }
             }
 
         }
 
     }
+
     /**
      * Initialise the Adventurers starting position.
      * The randomStartAdventurer flag should be set prior to calling this method.
@@ -240,40 +259,112 @@ public class TheWorld {
         if (this.randomStartAdventurer == FIXED_START ||
                 this.randomStartAdventurer == RANDOM_START) {
             switch (this.randomStartAdventurer) {
-                case FIXED_START: this.worldState[ADVENTURER][0][0] = OCCUPIED_LOCATION;
-                     break;
+                case FIXED_START:
+                    this.worldState[ADVENTURER][0][0] = OCCUPIED_LOCATION;
+                    break;
                 case RANDOM_START: {
                     int startLoc = getRandom();
-
+                    int edgeLoc = getRandom();
                     if (startLoc == 0) {
                         // Adventurer will start somewhere on the left column.
-                        this.worldState[ADVENTURER][getRandom()][0] = OCCUPIED_LOCATION;
+                        this.worldState[ADVENTURER][edgeLoc][0] = OCCUPIED_LOCATION;
                     } else if (startLoc == 1) {
                         // Adventurer will start somewhere on the top row.
-                        this.worldState[ADVENTURER][0][getRandom()] = OCCUPIED_LOCATION;
+                        this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
                     } else if (startLoc == 2) {
                         // Adventurer will start somewhere on the back column.
-                        this.worldState[ADVENTURER][getRandom()][3] = OCCUPIED_LOCATION;
+                        this.worldState[ADVENTURER][edgeLoc][3] = OCCUPIED_LOCATION;
                     } else {
                         // Adventurer will start somewhere on the bottom row.
-                        this.worldState[ADVENTURER][0][getRandom()] = OCCUPIED_LOCATION;
+                        this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
                     }
                     // TODO: When spawning the rest of the entities make sure they don't spawn at Adventurers location.
                 }
-                    break;
+                break;
             }
         } else {
             // Should never happen !
             logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
-            this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
+                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
             this.setRandomStartAdventurer(FIXED_START);
             this.initAdventurer();
         }
     }
 
     /**
+     * Initialise the Adventurers starting position.
+     * The randomStartAdventurer flag should be set prior to calling this method.
+     */
+    public void initWumpus() {
+        this.clearEntity(WUMPUS);
+        if (this.randomStartWumpus == FIXED_START ||
+                this.randomStartWumpus == RANDOM_START) {
+            switch (this.randomStartWumpus) {
+                case FIXED_START:
+                    this.worldState[WUMPUS][2][2] = OCCUPIED_LOCATION;
+                    break;
+                case RANDOM_START: {
+                    int startX = getRandom();
+                    int startY = getRandom();
+                    boolean scanFlag = true;
+                    boolean foundEmptyCell = true;
+                    while (scanFlag) {
+                        for (int e = 0; e < this.worldState.length; e++) {
+                            if (this.worldState[e][startX][startY] == OCCUPIED_LOCATION) {
+                                foundEmptyCell = false;
+                            }
+                        }
+                        if (foundEmptyCell == true) {
+                            scanFlag = false;
+                        } else {
+                            // get new positions to try.
+                            startX = getRandom();
+                            startY = getRandom();
+                        }
+                    }
+                    this.setWumpusLocation(startX, startY);
+                    break;
+                }
+            }
+        } else {
+            // Should never happen !
+            logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
+                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
+            this.setRandomStartAdventurer(FIXED_START);
+            this.initAdventurer();
+        }
+    }
+
+    public void setWumpusLocation(int cellX, int cellY) {
+        this.clearEntity(WUMPUS);
+        this.worldState[WUMPUS][cellX][cellY] = OCCUPIED_LOCATION;
+        // Clear stenches.
+        this.clearEntity(STENCHES);
+        // set stenches.
+        this.worldState[STENCHES][cellX][cellY] = OCCUPIED_LOCATION;
+        // Cell to the left.
+        if ((cellX - 1) >= 0) {
+            this.worldState[STENCHES][cellX - 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell to the right.
+        if ((cellX + 1) < GRID_SIZE) {
+            this.worldState[STENCHES][cellX + 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell above.
+        if ((cellY - 1) >= 0) {
+            this.worldState[STENCHES][cellX][cellY - 1] = OCCUPIED_LOCATION;
+        }
+        // Cell below.
+        if ((cellY + 1) < GRID_SIZE) {
+            this.worldState[STENCHES][cellX][cellY + 1] = OCCUPIED_LOCATION;
+        }
+
+    }
+
+    /**
      * Private pseudo random number sequencer.
      * Set it up once on first access.
+     *
      * @return returns a pseudo random number between 0 and 3.
      */
     private int getRandom() {
@@ -281,6 +372,12 @@ public class TheWorld {
             random = new Random();
             random.setSeed(RANDOM_SEED);
         }
-        return random.nextInt(GRID_SIZE);
+        int newRandomNumber = random.nextInt(GRID_SIZE);
+        if (newRandomNumber == lastRandomNumber) {
+            getRandom();
+        } else {
+            lastRandomNumber = newRandomNumber;
+        }
+        return lastRandomNumber;
     }
 }

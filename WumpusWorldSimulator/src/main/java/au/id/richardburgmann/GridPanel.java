@@ -18,24 +18,39 @@ import java.awt.*;
 public class GridPanel extends JPanel {
     private static final Logger logger = LoggerFactory.getLogger(GridPanel.class);
     private int gridSize = 4; // gridSize by gridSize, n x n.
-    private int defaultMargin = 20;
-    private int cellHeight = 100;
-    private int cellWidth  = 100;
+    public int defaultMargin = 20;
+    public int cellHeight = 100;
+    public int cellWidth  = 100;
+    private Sprite adventurer;
+    private Sprite wumpus;
 
     public GridPanel(int gridSize) {
         this.gridSize = gridSize;
     }
-
+    public void setAdventurer(Sprite adventurer) {
+        this.adventurer = adventurer;
+    }
+    public void setWumpus(Sprite wumpus) {
+        this.wumpus = wumpus;
+    }
+    public void GridPanel() {    }
 
     @Override
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.setColor(Color.black);
+        this.paintGrid(graphics);
+        this.adventurer.paint(graphics);
+        this.wumpus.paint(graphics);
+
+    }
+    public void paintGrid(Graphics graphics) {
+        Graphics2D graphics2D = (Graphics2D) graphics;
 
         int h = this.getHeight();
         int w = this.getWidth();
-        int cellHeight = (h - (2 * defaultMargin)) / this.gridSize;
-        int cellWidth  = (w - (2 * defaultMargin)) / this.gridSize;
+        cellHeight = (h - (2 * defaultMargin)) / this.gridSize;
+        cellWidth  = (w - (2 * defaultMargin)) / this.gridSize;
 
         // Draw Rows
         // Row 0
@@ -126,7 +141,6 @@ public class GridPanel extends JPanel {
         y2 = defaultMargin + (4 * cellHeight);
         graphics2D.drawLine(x1,y1,x2,y2);
 
-
-
     }
+
 }

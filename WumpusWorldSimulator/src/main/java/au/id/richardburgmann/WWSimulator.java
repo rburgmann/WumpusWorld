@@ -24,6 +24,10 @@ public class WWSimulator {
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
     private Dimension minSize = new Dimension(440, 440);
+    /**
+     * gameState holds the state of the game. Events update it and it is used by the render engine.
+     */
+    private TheWorld gameState = new TheWorld();
 
     public static void main(String[] args) {
            WWSimulator wwSimulator = new WWSimulator();
@@ -37,8 +41,18 @@ public class WWSimulator {
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
+        this.gameState.clearWorldState();
+        this.gameState.setRandomStartAdventurer(TheWorld.RANDOM_START);
+        this.gameState.setRandomStartWumpus(TheWorld.RANDOM_START);
+        this.gameState.initAdventurer();
+        this.gameState.initWumpus();
+        Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
+        Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
+        gridPanel.setAdventurer(adventurer);
+        gridPanel.setWumpus(wumpus);
         frame.setVisible(true);
         frame.add(gridPanel);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addComponentListener(new GuiEventListener());
 
