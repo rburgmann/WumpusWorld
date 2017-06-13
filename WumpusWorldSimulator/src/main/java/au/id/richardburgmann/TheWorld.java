@@ -121,7 +121,7 @@ public class TheWorld {
      * -1,-1,-1,-1 <p>
      * -1,+1,-1,-1 <p>
      * -1,-1,-1,-1 <p>
-     * <p>
+     * </p>
      * Assume the following worldState[ENTITY][ROW][COL]<p>
      * worldState[WUMPUS][2][1] = +1 and so that is where the Wumpus is.
      */
@@ -140,6 +140,20 @@ public class TheWorld {
      * 0 = Fixed starting location at 2,2.
      */
     private int randomStartWumpus = 0;
+    /**
+     * Decides if the Entity will start in the fixed location 2,2 or in
+     * a random location on the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 2,2.
+     */
+    private int randomStartGold = 1;
+    private int randomStartWalls = 1;
+    private int randomStartPits = 1;
+
+    public void TheWorld() {
+        logger.debug("TheWorld default constructor.");
+        this.clearWorldState();
+    }
 
     /**
      * This method is used to load a previously defined world state from disk.
@@ -205,12 +219,37 @@ public class TheWorld {
         this.randomStartWumpus = randomStartWumpus;
     }
 
+    public int getRandomStartGold() {
+        return randomStartGold;
+    }
+
+    public void setRandomStartGold(int randomStartGold) {
+        this.randomStartGold = randomStartGold;
+    }
+
+    public int getRandomStartWalls() {
+        return randomStartWalls;
+    }
+
+    public void setRandomStartWalls(int randomStartWalls) {
+        this.randomStartWalls = randomStartWalls;
+    }
+
+    public int getRandomStartPits() {
+        return randomStartPits;
+    }
+
+    public void setRandomStartPits(int randomStartPits) {
+        this.randomStartPits = randomStartPits;
+    }
+
     /**
      * Initialises the data model to -1 representing an empty state. Should be called at objects
      * creation and whenever you want to clear it of values. It will call the clear method for each of
      * the entities in the world.
      */
     public void clearWorldState() {
+        logger.info("clearWorldState().");
         this.clearEntity(WUMPUS);
         this.clearEntity(STENCHES);
         this.clearEntity(PITS);
@@ -256,11 +295,14 @@ public class TheWorld {
      * The randomStartAdventurer flag should be set prior to calling this method.
      */
     public void initAdventurer() {
+        this.clearEntity(ADVENTURER);
+        this.clearEntity(VISITED);
         if (this.randomStartAdventurer == FIXED_START ||
                 this.randomStartAdventurer == RANDOM_START) {
             switch (this.randomStartAdventurer) {
                 case FIXED_START:
                     this.worldState[ADVENTURER][0][0] = OCCUPIED_LOCATION;
+                    this.worldState[VISITED][0][0] = OCCUPIED_LOCATION;
                     break;
                 case RANDOM_START: {
                     int startLoc = getRandom();
@@ -268,17 +310,20 @@ public class TheWorld {
                     if (startLoc == 0) {
                         // Adventurer will start somewhere on the left column.
                         this.worldState[ADVENTURER][edgeLoc][0] = OCCUPIED_LOCATION;
+                        this.worldState[VISITED][edgeLoc][0] = OCCUPIED_LOCATION;
                     } else if (startLoc == 1) {
                         // Adventurer will start somewhere on the top row.
                         this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
+                        this.worldState[VISITED][0][edgeLoc] = OCCUPIED_LOCATION;
                     } else if (startLoc == 2) {
                         // Adventurer will start somewhere on the back column.
                         this.worldState[ADVENTURER][edgeLoc][3] = OCCUPIED_LOCATION;
+                        this.worldState[VISITED][edgeLoc][3] = OCCUPIED_LOCATION;
                     } else {
                         // Adventurer will start somewhere on the bottom row.
                         this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
+                        this.worldState[VISITED][0][edgeLoc] = OCCUPIED_LOCATION;
                     }
-                    // TODO: When spawning the rest of the entities make sure they don't spawn at Adventurers location.
                 }
                 break;
             }
@@ -334,14 +379,90 @@ public class TheWorld {
             this.initAdventurer();
         }
     }
+    public void initEntity(int entity, int randomStart) {
+        this.initEntity(entity, randomStart,0,0);
+    }
+    /**
+     * Initialise the Entity starting position.
+     * The randomStart flag should be set prior to calling this method.
+     */
+    public void initEntity(int entity, int randomStart, int fixedX, int fixedY) {
+        logger.info("Init Entity: " + entity);
+        this.clearEntity(entity);
+        if (randomStart  == FIXED_START || randomStart == RANDOM_START) {
+            switch (randomStart) {
+                case FIXED_START:
+                    this.worldState[entity][fixedX][fixedY] = OCCUPIED_LOCATION;
+                    break;
+                case RANDOM_START: {
+                    int startX = getRandom();
+                    int startY = getRandom();
+                    boolean scanFlag = true;
+                    boolean foundEmptyCell = true;
+                    int attempts = 0;
+                    while (scanFlag) {
 
+                        for (int e = 0; e < this.worldState.length; e++) {
+                            if (this.worldState[e][startX][startY] == OCCUPIED_LOCATION) {
+                                foundEmptyCell = false;
+                            }
+                        }
+                        if (foundEmptyCell == true) {
+                            scanFlag = false;
+                        } else {
+
+                            if (attempts <16) {
+                                logger.info(entity + " Attempt " + attempts + ", try again.");
+                                // get new positions to try.
+                                foundEmptyCell = true; // Reset flag for next attempt.
+                                startX = getRandom();
+                                startY = getRandom();
+                                attempts++;
+                            } else {
+                                // search sequentially now.
+                                logger.info("Giving up and now searching sequentially.");
+                                for (int sx=0; sx < GRID_SIZE; sx++) {
+                                    for (int sy=0; sy < GRID_SIZE; sy++) {
+                                        if (this.worldState[ADVENTURER][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[WUMPUS][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[STENCHES][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[PITS][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[BREEZES][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[GOLD][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[GLITTER][sx][sy] == EMPTY_LOCATION &&
+                                                this.worldState[WALLS][sx][sy] == EMPTY_LOCATION) {
+                                            startX = sx;
+                                            startY = sy;
+                                            scanFlag = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (entity == ADVENTURER) this.initEntity(ADVENTURER,FIXED_START, startX, startY);
+                    if (entity == WUMPUS) this.setWumpusLocation(startX, startY);
+                    if (entity == PITS) this.setPitLocation(startX, startY);
+                    if (entity == GOLD) this.setGoldLocation(startX, startY);
+                    if (entity == WALLS) this.initEntity(WALLS,FIXED_START,startX,startY);
+                    break;
+                }
+            }
+        } else {
+            // Should never happen !
+            logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
+                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
+            this.setRandomStartAdventurer(FIXED_START);
+            this.initAdventurer();
+        }
+    }
     public void setWumpusLocation(int cellX, int cellY) {
         this.clearEntity(WUMPUS);
         this.worldState[WUMPUS][cellX][cellY] = OCCUPIED_LOCATION;
         // Clear stenches.
         this.clearEntity(STENCHES);
         // set stenches.
-        this.worldState[STENCHES][cellX][cellY] = OCCUPIED_LOCATION;
+
         // Cell to the left.
         if ((cellX - 1) >= 0) {
             this.worldState[STENCHES][cellX - 1][cellY] = OCCUPIED_LOCATION;
@@ -360,7 +481,56 @@ public class TheWorld {
         }
 
     }
+    public void setPitLocation(int cellX, int cellY) {
+        this.clearEntity(PITS);
+        this.worldState[PITS][cellX][cellY] = OCCUPIED_LOCATION;
+        // Clear breezes.
+        this.clearEntity(BREEZES);
+        // set breezes.
 
+        // Cell to the left.
+        if ((cellX - 1) >= 0) {
+            this.worldState[BREEZES][cellX - 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell to the right.
+        if ((cellX + 1) < GRID_SIZE) {
+            this.worldState[BREEZES][cellX + 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell above.
+        if ((cellY - 1) >= 0) {
+            this.worldState[BREEZES][cellX][cellY - 1] = OCCUPIED_LOCATION;
+        }
+        // Cell below.
+        if ((cellY + 1) < GRID_SIZE) {
+            this.worldState[BREEZES][cellX][cellY + 1] = OCCUPIED_LOCATION;
+        }
+
+    }
+    public void setGoldLocation(int cellX, int cellY) {
+        this.clearEntity(GOLD);
+        this.worldState[GOLD][cellX][cellY] = OCCUPIED_LOCATION;
+        // Clear breezes.
+        this.clearEntity(GLITTER);
+        // set breezes.
+
+        // Cell to the left.
+        if ((cellX - 1) >= 0) {
+            this.worldState[GLITTER][cellX - 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell to the right.
+        if ((cellX + 1) < GRID_SIZE) {
+            this.worldState[GLITTER][cellX + 1][cellY] = OCCUPIED_LOCATION;
+        }
+        // Cell above.
+        if ((cellY - 1) >= 0) {
+            this.worldState[GLITTER][cellX][cellY - 1] = OCCUPIED_LOCATION;
+        }
+        // Cell below.
+        if ((cellY + 1) < GRID_SIZE) {
+            this.worldState[GLITTER][cellX][cellY + 1] = OCCUPIED_LOCATION;
+        }
+
+    }
     /**
      * Private pseudo random number sequencer.
      * Set it up once on first access.
@@ -370,14 +540,16 @@ public class TheWorld {
     private int getRandom() {
         if (random == null) {
             random = new Random();
-            random.setSeed(RANDOM_SEED);
+            //random.setSeed(RANDOM_SEED);
         }
         int newRandomNumber = random.nextInt(GRID_SIZE);
-        if (newRandomNumber == lastRandomNumber) {
+        /*if (newRandomNumber == lastRandomNumber) {
             getRandom();
         } else {
             lastRandomNumber = newRandomNumber;
         }
         return lastRandomNumber;
+        */
+        return newRandomNumber;
     }
 }

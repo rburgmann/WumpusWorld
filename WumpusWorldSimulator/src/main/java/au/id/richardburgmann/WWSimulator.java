@@ -20,7 +20,7 @@ import java.awt.*;
  */
 public class WWSimulator {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
-    private int defaultWidth = 900;
+    private int defaultWidth = 1200;
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
     private Dimension minSize = new Dimension(440, 440);
@@ -42,14 +42,43 @@ public class WWSimulator {
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
         this.gameState.clearWorldState();
+
         this.gameState.setRandomStartAdventurer(TheWorld.RANDOM_START);
-        this.gameState.setRandomStartWumpus(TheWorld.RANDOM_START);
+
+        //this.gameState.initEntity(TheWorld.ADVENTURER,TheWorld.RANDOM_START);
         this.gameState.initAdventurer();
-        this.gameState.initWumpus();
         Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
-        Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
         gridPanel.setAdventurer(adventurer);
+
+        this.gameState.initEntity(TheWorld.WUMPUS,TheWorld.RANDOM_START);
+        Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
         gridPanel.setWumpus(wumpus);
+
+        this.gameState.initEntity(TheWorld.PITS,TheWorld.RANDOM_START);
+        Sprite pits = new Sprite(gameState.PITS, gameState, gridPanel);
+        gridPanel.setPits(pits);
+
+        this.gameState.initEntity(TheWorld.GOLD,TheWorld.RANDOM_START);
+        Sprite gold = new Sprite(gameState.GOLD, gameState, gridPanel);
+        gridPanel.setGold(gold);
+
+        this.gameState.initEntity(TheWorld.WALLS,TheWorld.RANDOM_START);
+        Sprite walls = new Sprite(gameState.WALLS, gameState, gridPanel);
+        gridPanel.setWalls(walls);
+
+        //this.gameState.setRandomStartWumpus(TheWorld.RANDOM_START);
+        //this.gameState.setRandomStartGold(TheWorld.RANDOM_START);
+        //this.gameState.setRandomStartPits(TheWorld.RANDOM_START);
+
+        //this.gameState.initWumpus();
+        //this.gameState.initEntity(TheWorld.GOLD,TheWorld.RANDOM_START);
+        //this.gameState.initEntity(TheWorld.PITS,TheWorld.RANDOM_START);
+
+        //Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
+        //Sprite pit = new Sprite(gameState.PITS, gameState, gridPanel);
+        //Sprite gold = new Sprite(gameState.GOLD, gameState, gridPanel);
+
+        //gridPanel.setWumpus(wumpus);
         frame.setVisible(true);
         frame.add(gridPanel);
 

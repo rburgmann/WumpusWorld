@@ -23,6 +23,9 @@ public class GridPanel extends JPanel {
     public int cellWidth  = 100;
     private Sprite adventurer;
     private Sprite wumpus;
+    private Sprite pits;
+    private Sprite gold;
+    private Sprite walls;
 
     public GridPanel(int gridSize) {
         this.gridSize = gridSize;
@@ -33,6 +36,12 @@ public class GridPanel extends JPanel {
     public void setWumpus(Sprite wumpus) {
         this.wumpus = wumpus;
     }
+    public void setPits(Sprite pits) {
+        this.pits = pits;
+    }
+    public void setGold(Sprite gold) { this.gold = gold;}
+    public void setWalls(Sprite walls) { this.walls = walls;}
+
     public void GridPanel() {    }
 
     @Override
@@ -42,6 +51,10 @@ public class GridPanel extends JPanel {
         this.paintGrid(graphics);
         this.adventurer.paint(graphics);
         this.wumpus.paint(graphics);
+
+       this.pits.paint(graphics);
+       this.gold.paint(graphics);
+       this.walls.paint(graphics);
 
     }
     public void paintGrid(Graphics graphics) {
