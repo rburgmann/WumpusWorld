@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * <p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
  * representation of the world. A number of experiments are planned using reinforcement learning for
@@ -28,12 +30,28 @@ public class WWSimulator {
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
     private TheWorld gameState = new TheWorld();
+    private Adventurer agent;
 
     public static void main(String[] args) {
-           WWSimulator wwSimulator = new WWSimulator();
-           logger.info("main: Started.");
-           wwSimulator.run();
-           logger.info("main: Finished.");
+        WWSimulator wwSimulator = new WWSimulator();
+
+           if (args.length > 0) {
+              int runNtimes = parseInt(args[0]) ;
+              wwSimulator.batchRun(runNtimes);
+           } else {
+
+               logger.info("main: Started.");
+               wwSimulator.run();
+               logger.info("main: Finished.");
+           }
+    }
+    private void batchRun(int runNtimes) {
+        while (runNtimes > 0) {
+            WWSimulator wwSimulator = new WWSimulator();
+            logger.info("Runs left in batch:" + runNtimes--);
+            wwSimulator.run();
+        }
+
     }
     public void run() {
 
@@ -48,7 +66,11 @@ public class WWSimulator {
         //this.gameState.initEntity(TheWorld.ADVENTURER,TheWorld.RANDOM_START);
         this.gameState.initAdventurer();
         Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
+        agent = new Adventurer();
+        agent.setSprite(adventurer);
+        agent.setTheWorld(gameState);
         gridPanel.setAdventurer(adventurer);
+
 
         this.gameState.initEntity(TheWorld.WUMPUS,TheWorld.RANDOM_START);
         Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
@@ -84,6 +106,67 @@ public class WWSimulator {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addComponentListener(new GuiEventListener());
+
+        // Simulation Loop
+        boolean runSim = true;
+        CoOrdinate wumpusXY = this.gameState.getEntityLocation(TheWorld.WUMPUS);
+        CoOrdinate pitXY = this.gameState.getEntityLocation(TheWorld.PITS);
+        CoOrdinate wallXY = this.gameState.getEntityLocation(TheWorld.WALLS);
+        CoOrdinate goldXY = this.gameState.getEntityLocation(TheWorld.GOLD);
+
+        while (runSim) {
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            CoOrdinate adventurersPrevXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
+            agent.thinkActdo();
+
+            frame.repaint();
+
+            agent.setHealth(agent.getHealth() - 1);
+
+
+            if(agent.myX == wallXY.x && agent.myY == wallXY.y) {
+                // Ouch !
+                logger.info("Ouch a wall !");
+                agent.setHealth(agent.getHealth() - 10);
+                // move them back to whence they came.
+                gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, adventurersPrevXY.x,
+                        adventurersPrevXY.y);
+
+            }
+            if(agent.myX == pitXY.x && agent.myY == pitXY.y) {
+                // Falling .... !
+                logger.info("Ahhhh falling !");
+                agent.setHealth(agent.getHealth() - 100);
+                runSim = false;
+            }
+            if(agent.myX == wumpusXY.x && agent.myY == wumpusXY.y) {
+                // Fighting .... !
+                logger.info("The Wumpus !");
+                agent.setHealth(agent.getHealth() - 100);
+                runSim = false;
+            }
+            if(agent.myX == goldXY.x && agent.myY == goldXY.y) {
+                // Rich !
+                logger.info("Gold ! I'm rich !");
+                agent.setHealth(agent.getHealth() + 100);
+                runSim = false;
+            }
+
+            if(agent.getHealth() <= 0) {
+                runSim = false;
+
+            }
+            if (!runSim) {
+                logger.info("Final score " + agent.getHealth());
+            }
+        }
+        frame.dispose();
+        System.gc();
 
     }
 

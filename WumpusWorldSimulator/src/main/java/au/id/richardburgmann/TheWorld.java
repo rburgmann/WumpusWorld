@@ -531,13 +531,27 @@ public class TheWorld {
         }
 
     }
+    public CoOrdinate getEntityLocation(int entity) {
+        CoOrdinate entityXY = new CoOrdinate();
+
+        for (int sx=0; sx < GRID_SIZE; sx++) {
+            for (int sy=0; sy < GRID_SIZE; sy++) {
+                if (this.worldState[entity][sx][sy] == OCCUPIED_LOCATION) {
+                    entityXY.x = sx;
+                    entityXY.y = sy;
+                    return  entityXY;
+                }
+            }
+        }
+        return entityXY;
+    }
     /**
      * Private pseudo random number sequencer.
      * Set it up once on first access.
      *
      * @return returns a pseudo random number between 0 and 3.
      */
-    private int getRandom() {
+    public int getRandom() {
         if (random == null) {
             random = new Random();
             //random.setSeed(RANDOM_SEED);
