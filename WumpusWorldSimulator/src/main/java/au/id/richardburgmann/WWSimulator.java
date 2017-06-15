@@ -10,6 +10,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import static java.lang.Integer.parseInt;
 
@@ -22,6 +27,7 @@ import static java.lang.Integer.parseInt;
  */
 public class WWSimulator {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
+    private static Properties applicationProps;
     private int defaultWidth = 1200;
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
@@ -29,11 +35,13 @@ public class WWSimulator {
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
-    private TheWorld gameState = new TheWorld();
+    private static TheWorld gameState;
     private Adventurer agent;
 
     public static void main(String[] args) {
         WWSimulator wwSimulator = new WWSimulator();
+        wwSimulator.loadProperties();
+        gameState = new TheWorld(applicationProps);
 
            if (args.length > 0) {
               int runNtimes = parseInt(args[0]) ;
@@ -44,6 +52,7 @@ public class WWSimulator {
                wwSimulator.run();
                logger.info("main: Finished.");
            }
+           wwSimulator.saveProperties();
     }
     private void batchRun(int runNtimes) {
         while (runNtimes > 0) {
@@ -61,7 +70,7 @@ public class WWSimulator {
         GridPanel gridPanel = new GridPanel(4);
         this.gameState.clearWorldState();
 
-        this.gameState.setRandomStartAdventurer(TheWorld.RANDOM_START);
+        this.gameState.setADVENTURER_PLACEMENT(TheWorld.RANDOM_START);
 
         //this.gameState.initEntity(TheWorld.ADVENTURER,TheWorld.RANDOM_START);
         this.gameState.initAdventurer();
@@ -88,9 +97,9 @@ public class WWSimulator {
         Sprite walls = new Sprite(gameState.WALLS, gameState, gridPanel);
         gridPanel.setWalls(walls);
 
-        //this.gameState.setRandomStartWumpus(TheWorld.RANDOM_START);
-        //this.gameState.setRandomStartGold(TheWorld.RANDOM_START);
-        //this.gameState.setRandomStartPits(TheWorld.RANDOM_START);
+        //this.gameState.setWUMPUS_PLACEMENT(TheWorld.RANDOM_START);
+        //this.gameState.setGOLD_PLACEMENT(TheWorld.RANDOM_START);
+        //this.gameState.setPITS_PLACEMENT(TheWorld.RANDOM_START);
 
         //this.gameState.initWumpus();
         //this.gameState.initEntity(TheWorld.GOLD,TheWorld.RANDOM_START);
@@ -165,9 +174,60 @@ public class WWSimulator {
                 logger.info("Final score " + agent.getHealth());
             }
         }
-        frame.dispose();
+        //frame.dispose();
         System.gc();
 
+    }
+
+    /**
+     * Save properties from last invocation.
+     */
+    private void saveProperties(){
+        try {
+            FileOutputStream out = new FileOutputStream(".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties");
+            applicationProps.store(out, "Wumpus World Simulator Last Invocation Properties.");
+            out.close();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Load default properties from local file into properties object.
+     */
+    private void loadProperties() {
+        //
+        // create and load default properties
+        //
+        Properties defaultProps = new Properties();
+        FileInputStream in;
+        try {
+            in = new FileInputStream(".\\WumpusWorldSimulator\\src\\resources\\default.Properties");
+            defaultProps.load(in);
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            logger.warn(ioe.toString());
+            ioe.printStackTrace();
+        }
+        //
+        // create application properties with default
+        //
+        applicationProps = new Properties(defaultProps);
+        //
+        // now load properties from last invocation
+        //
+        try {
+            in = new FileInputStream(".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties");
+            applicationProps.load(in);
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            logger.warn(ioe.toString());
+        }
     }
 
 }

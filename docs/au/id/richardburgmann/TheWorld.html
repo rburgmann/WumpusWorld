@@ -226,29 +226,29 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#randomStartAdventurer">randomStartAdventurer</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#ADVENTURER_PLACEMENT">ADVENTURER_PLACEMENT</a></span></code>
 <div class="block">Decides if the Adventurer will start in the fixed location 0,0 or in
  a random location around the outside edge of the grid.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#randomStartGold">randomStartGold</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#GOLD_PLACEMENT">GOLD_PLACEMENT</a></span></code>
 <div class="block">Decides if the Entity will start in the fixed location 2,2 or in
  a random location on the grid.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#randomStartPits">randomStartPits</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#PITS_PLACEMENT">PITS_PLACEMENT</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#randomStartWalls">randomStartWalls</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#WALLS_PLACEMENT">WALLS_PLACEMENT</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#randomStartWumpus">randomStartWumpus</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#WUMPUS_PLACEMENT">WUMPUS_PLACEMENT</a></span></code>
 <div class="block">Decides if the Wumpus will start in the fixed location 2,2 or in
  a random location on the grid.</div>
 </td>
@@ -410,25 +410,25 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartAdventurer-int-">setRandomStartAdventurer</a></span>(int&nbsp;randomStartAdventurer)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartAdventurer-int-">setRandomStartAdventurer</a></span>(int&nbsp;ADVENTURER_PLACEMENT)</code>
 <div class="block">Sets the policy for how the Adventurer will be placed at the start of a run.</div>
 </td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartGold-int-">setRandomStartGold</a></span>(int&nbsp;randomStartGold)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartGold-int-">setRandomStartGold</a></span>(int&nbsp;GOLD_PLACEMENT)</code>&nbsp;</td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartPits-int-">setRandomStartPits</a></span>(int&nbsp;randomStartPits)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartPits-int-">setRandomStartPits</a></span>(int&nbsp;PITS_PLACEMENT)</code>&nbsp;</td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartWalls-int-">setRandomStartWalls</a></span>(int&nbsp;randomStartWalls)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartWalls-int-">setRandomStartWalls</a></span>(int&nbsp;WALLS_PLACEMENT)</code>&nbsp;</td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartWumpus-int-">setRandomStartWumpus</a></span>(int&nbsp;randomStartWumpus)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../au/id/richardburgmann/TheWorld.html#setRandomStartWumpus-int-">setRandomStartWumpus</a></span>(int&nbsp;WUMPUS_PLACEMENT)</code>&nbsp;</td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -772,61 +772,61 @@ extends java.lang.Object</pre>
  worldState[WUMPUS][2][1] = +1 and so that is where the Wumpus is.</div>
 </li>
 </ul>
-<a name="randomStartAdventurer">
+<a name="ADVENTURER_PLACEMENT">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>randomStartAdventurer</h4>
-<pre>private&nbsp;int randomStartAdventurer</pre>
+<h4>ADVENTURER_PLACEMENT</h4>
+<pre>private&nbsp;int ADVENTURER_PLACEMENT</pre>
 <div class="block">Decides if the Adventurer will start in the fixed location 0,0 or in
  a random location around the outside edge of the grid.
  1 = Random starting location.
  0 = Fixed starting location at 0,0.</div>
 </li>
 </ul>
-<a name="randomStartWumpus">
+<a name="WUMPUS_PLACEMENT">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>randomStartWumpus</h4>
-<pre>private&nbsp;int randomStartWumpus</pre>
+<h4>WUMPUS_PLACEMENT</h4>
+<pre>private&nbsp;int WUMPUS_PLACEMENT</pre>
 <div class="block">Decides if the Wumpus will start in the fixed location 2,2 or in
  a random location on the grid.
  1 = Random starting location.
  0 = Fixed starting location at 2,2.</div>
 </li>
 </ul>
-<a name="randomStartGold">
+<a name="GOLD_PLACEMENT">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>randomStartGold</h4>
-<pre>private&nbsp;int randomStartGold</pre>
+<h4>GOLD_PLACEMENT</h4>
+<pre>private&nbsp;int GOLD_PLACEMENT</pre>
 <div class="block">Decides if the Entity will start in the fixed location 2,2 or in
  a random location on the grid.
  1 = Random starting location.
  0 = Fixed starting location at 2,2.</div>
 </li>
 </ul>
-<a name="randomStartWalls">
+<a name="WALLS_PLACEMENT">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>randomStartWalls</h4>
-<pre>private&nbsp;int randomStartWalls</pre>
+<h4>WALLS_PLACEMENT</h4>
+<pre>private&nbsp;int WALLS_PLACEMENT</pre>
 </li>
 </ul>
-<a name="randomStartPits">
+<a name="PITS_PLACEMENT">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>randomStartPits</h4>
-<pre>private&nbsp;int randomStartPits</pre>
+<h4>PITS_PLACEMENT</h4>
+<pre>private&nbsp;int PITS_PLACEMENT</pre>
 </li>
 </ul>
 </li>
@@ -917,12 +917,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomStartAdventurer</h4>
-<pre>public&nbsp;void&nbsp;setRandomStartAdventurer(int&nbsp;randomStartAdventurer)</pre>
+<pre>public&nbsp;void&nbsp;setRandomStartAdventurer(int&nbsp;ADVENTURER_PLACEMENT)</pre>
 <div class="block">Sets the policy for how the Adventurer will be placed at the start of a run. Either randomly
  along the outside edge or at a fixed location (0,0).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>randomStartAdventurer</code> - 1 = Random position along edge or 0 start at the fixed location.</dd>
+<dd><code>ADVENTURER_PLACEMENT</code> - 1 = Random position along edge or 0 start at the fixed location.</dd>
 </dl>
 </li>
 </ul>
@@ -941,7 +941,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomStartWumpus</h4>
-<pre>public&nbsp;void&nbsp;setRandomStartWumpus(int&nbsp;randomStartWumpus)</pre>
+<pre>public&nbsp;void&nbsp;setRandomStartWumpus(int&nbsp;WUMPUS_PLACEMENT)</pre>
 </li>
 </ul>
 <a name="getRandomStartGold--">
@@ -959,7 +959,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomStartGold</h4>
-<pre>public&nbsp;void&nbsp;setRandomStartGold(int&nbsp;randomStartGold)</pre>
+<pre>public&nbsp;void&nbsp;setRandomStartGold(int&nbsp;GOLD_PLACEMENT)</pre>
 </li>
 </ul>
 <a name="getRandomStartWalls--">
@@ -977,7 +977,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomStartWalls</h4>
-<pre>public&nbsp;void&nbsp;setRandomStartWalls(int&nbsp;randomStartWalls)</pre>
+<pre>public&nbsp;void&nbsp;setRandomStartWalls(int&nbsp;WALLS_PLACEMENT)</pre>
 </li>
 </ul>
 <a name="getRandomStartPits--">
@@ -995,7 +995,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomStartPits</h4>
-<pre>public&nbsp;void&nbsp;setRandomStartPits(int&nbsp;randomStartPits)</pre>
+<pre>public&nbsp;void&nbsp;setRandomStartPits(int&nbsp;PITS_PLACEMENT)</pre>
 </li>
 </ul>
 <a name="clearWorldState--">
@@ -1032,7 +1032,7 @@ extends java.lang.Object</pre>
 <h4>initAdventurer</h4>
 <pre>public&nbsp;void&nbsp;initAdventurer()</pre>
 <div class="block">Initialise the Adventurers starting position.
- The randomStartAdventurer flag should be set prior to calling this method.</div>
+ The ADVENTURER_PLACEMENT flag should be set prior to calling this method.</div>
 </li>
 </ul>
 <a name="initWumpus--">
@@ -1043,7 +1043,7 @@ extends java.lang.Object</pre>
 <h4>initWumpus</h4>
 <pre>public&nbsp;void&nbsp;initWumpus()</pre>
 <div class="block">Initialise the Adventurers starting position.
- The randomStartAdventurer flag should be set prior to calling this method.</div>
+ The ADVENTURER_PLACEMENT flag should be set prior to calling this method.</div>
 </li>
 </ul>
 <a name="initEntity-int-int-">

@@ -8,6 +8,7 @@ package au.id.richardburgmann;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
 import java.util.Random;
 
 /**
@@ -70,6 +71,14 @@ public class TheWorld {
     public static final int RANDOM_START = 1;
     public static final int FIXED_START = 0;
     /**
+     * Lables for constants, these are used to get related defaults from the application properties file and
+     * for display purposes.
+     *
+     */
+    public static final String[] ENTITY_CONSTANTS = {"WUMPUS","STENCHES","PITS","BREEZES","GOLD","GLITTER","ADVENTURER",
+                                "WALLS","VISITED"};
+
+    /**
      * A lot of code will be referring to the n of the n x n grid.
      * So create a constant to keep it.
      */
@@ -127,33 +136,123 @@ public class TheWorld {
      */
     public int[][][] worldState = new int[9][GRID_SIZE][GRID_SIZE];
     /**
-     * Decides if the Adventurer will start in the fixed location 0,0 or in
-     * a random location around the outside edge of the grid.
-     * 1 = Random starting location.
-     * 0 = Fixed starting location at 0,0.
+     * Hold the referance to the application properties object.
      */
-    private int randomStartAdventurer = 0;
+    private Properties myProperties;
+    /**
+     * Decides if the Adventurer will start in the fixed location or in
+     * a random location around the outside edge of the grid.
+     * Initial values are loaded from the properties file.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location.
+     */
+    private int ADVENTURER_PLACEMENT=0;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int ADVENTURER_X=0;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int ADVENTURER_Y=0;
+
     /**
      * Decides if the Wumpus will start in the fixed location 2,2 or in
      * a random location on the grid.
      * 1 = Random starting location.
      * 0 = Fixed starting location at 2,2.
      */
-    private int randomStartWumpus = 0;
+    private int WUMPUS_PLACEMENT = 0;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int WUMPUS_X=1;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int WUMPUS_Y=1;
     /**
      * Decides if the Entity will start in the fixed location 2,2 or in
      * a random location on the grid.
      * 1 = Random starting location.
      * 0 = Fixed starting location at 2,2.
      */
-    private int randomStartGold = 1;
-    private int randomStartWalls = 1;
-    private int randomStartPits = 1;
+    private int GOLD_PLACEMENT = 1;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int GOLD_X=3;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int GOLD_Y=3;
+    //public int GOLD_PLACEMENT=0;
+    /**
+     * Decides if the Entity will start in the fixed location 2,2 or in
+     * a random location on the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 2,2.
+     */
+    private int WALLS_PLACEMENT = 1;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int WALLS_X=2;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int WALLS_Y=3;
+    /**
+     * Decides if the Entity will start in the fixed location 2,2 or in
+     * a random location on the grid.
+     * 1 = Random starting location.
+     * 0 = Fixed starting location at 2,2.
+     */
+    private int PITS_PLACEMENT = 1;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int PITS_X=2;
+    /**
+     * Initial starting location loaded from properties file.
+     */
+    private int PITS_Y=2;
 
     public void TheWorld() {
         logger.debug("TheWorld default constructor.");
         this.clearWorldState();
     }
+    /**
+     * Load defaults from properties object.
+     */
+     public TheWorld(Properties properties){
+         logger.debug("Load defaults from properties object.");
+
+         this.clearWorldState();
+         if (properties != null) {
+             myProperties = properties;
+
+             this.setADVENTURER_X((Integer.parseInt(myProperties.getProperty("ADVENTURER_X"))));
+             this.setADVENTURER_Y((Integer.parseInt(myProperties.getProperty("ADVENTURER_Y"))));
+             this.setADVENTURER_PLACEMENT((Integer.parseInt(myProperties.getProperty("ADVENTURER_PLACEMENT"))));
+
+             this.setWUMPUS_X((Integer.parseInt(myProperties.getProperty("WUMPUS_X"))));
+             this.setWUMPUS_Y((Integer.parseInt(myProperties.getProperty("WUMPUS_Y"))));
+             this.setWUMPUS_PLACEMENT((Integer.parseInt(myProperties.getProperty("WUMPUS_PLACEMENT"))));
+
+             this.setPITS_X((Integer.parseInt(myProperties.getProperty("PITS_X"))));
+             this.setPITS_Y((Integer.parseInt(myProperties.getProperty("PITS_Y"))));
+             this.setPITS_PLACEMENT((Integer.parseInt(myProperties.getProperty("PITS_PLACEMENT"))));
+
+             this.setWALLS_X((Integer.parseInt(myProperties.getProperty("WALLS_X"))));
+             this.setWALLS_Y((Integer.parseInt(myProperties.getProperty("WALLS_Y"))));
+             this.setWALLS_PLACEMENT((Integer.parseInt(myProperties.getProperty("WALLS_PLACEMENT"))));
+
+             this.setGOLD_X((Integer.parseInt(myProperties.getProperty("GOLD_X"))));
+             this.setGOLD_Y((Integer.parseInt(myProperties.getProperty("GOLD_Y"))));
+             this.setGOLD_PLACEMENT((Integer.parseInt(myProperties.getProperty("GOLD_PLACEMENT"))));
+         }
+     }
 
     /**
      * This method is used to load a previously defined world state from disk.
@@ -197,50 +296,135 @@ public class TheWorld {
      * @return 1 = Random start somewhere on the outside edges of the grid world.
      * 0 = Fixed start at 0,0.
      */
-    public int getRandomStartAdventurer() {
-        return randomStartAdventurer;
+    public int getADVENTURER_PLACEMENT() {
+        return ADVENTURER_PLACEMENT;
     }
 
     /**
      * Sets the policy for how the Adventurer will be placed at the start of a run. Either randomly
      * along the outside edge or at a fixed location (0,0).
      *
-     * @param randomStartAdventurer 1 = Random position along edge or 0 start at the fixed location.
+     * @param ADVENTURER_PLACEMENT 1 = Random position along edge or 0 start at the fixed location.
      */
-    public void setRandomStartAdventurer(int randomStartAdventurer) {
-        this.randomStartAdventurer = randomStartAdventurer;
+    public void setADVENTURER_PLACEMENT(int ADVENTURER_PLACEMENT) {
+        this.ADVENTURER_PLACEMENT = ADVENTURER_PLACEMENT;
+        if (myProperties != null) {
+            myProperties.setProperty("ADVENTURER_PLACEMENT", Integer.toString((this.ADVENTURER_PLACEMENT)));
+        }
     }
 
-    public int getRandomStartWumpus() {
-        return randomStartWumpus;
+    public int getWUMPUS_PLACEMENT() {
+        return WUMPUS_PLACEMENT;
     }
 
-    public void setRandomStartWumpus(int randomStartWumpus) {
-        this.randomStartWumpus = randomStartWumpus;
+    public void setWUMPUS_PLACEMENT(int WUMPUS_PLACEMENT) {
+
+        this.WUMPUS_PLACEMENT = WUMPUS_PLACEMENT;
+
     }
 
-    public int getRandomStartGold() {
-        return randomStartGold;
+    public int getGOLD_PLACEMENT() {
+        return GOLD_PLACEMENT;
     }
 
-    public void setRandomStartGold(int randomStartGold) {
-        this.randomStartGold = randomStartGold;
+    public void setGOLD_PLACEMENT(int GOLD_PLACEMENT) {
+        this.GOLD_PLACEMENT = GOLD_PLACEMENT;
     }
 
-    public int getRandomStartWalls() {
-        return randomStartWalls;
+    public int getWALLS_PLACEMENT() {
+        return WALLS_PLACEMENT;
     }
 
-    public void setRandomStartWalls(int randomStartWalls) {
-        this.randomStartWalls = randomStartWalls;
+    public void setWALLS_PLACEMENT(int WALLS_PLACEMENT) {
+        this.WALLS_PLACEMENT = WALLS_PLACEMENT;
     }
 
-    public int getRandomStartPits() {
-        return randomStartPits;
+    public int getPITS_PLACEMENT() {
+        return PITS_PLACEMENT;
     }
 
-    public void setRandomStartPits(int randomStartPits) {
-        this.randomStartPits = randomStartPits;
+    public void setPITS_PLACEMENT(int PITS_PLACEMENT) {
+        this.PITS_PLACEMENT = PITS_PLACEMENT;
+    }
+
+    public int getADVENTURER_X() {
+        return ADVENTURER_X;
+    }
+
+    public void setADVENTURER_X(int ADVENTURER_X) {
+        this.ADVENTURER_X = ADVENTURER_X;
+    }
+
+    public int getADVENTURER_Y() {
+        return ADVENTURER_Y;
+    }
+
+    public void setADVENTURER_Y(int ADVENTURER_Y) {
+        this.ADVENTURER_Y = ADVENTURER_Y;
+    }
+
+    public int getGOLD_X() {
+        return GOLD_X;
+    }
+
+    public void setGOLD_X(int GOLD_X) {
+        this.GOLD_X = GOLD_X;
+    }
+
+    public int getGOLD_Y() {
+        return GOLD_Y;
+    }
+
+    public void setGOLD_Y(int GOLD_Y) {
+        this.GOLD_Y = GOLD_Y;
+    }
+
+    public int getWALLS_X() {
+        return WALLS_X;
+    }
+
+    public void setWALLS_X(int WALLS_X) {
+        this.WALLS_X = WALLS_X;
+    }
+
+    public int getPITS_X() {
+        return PITS_X;
+    }
+
+    public void setPITS_X(int PITS_X) {
+        this.PITS_X = PITS_X;
+    }
+
+    public int getPITS_Y() {
+        return PITS_Y;
+    }
+
+    public void setPITS_Y(int PITS_Y) {
+        this.PITS_Y = PITS_Y;
+    }
+
+    public int getWUMPUS_X() {
+        return WUMPUS_X;
+    }
+
+    public void setWUMPUS_X(int WUMPUS_X) {
+        this.WUMPUS_X = WUMPUS_X;
+    }
+
+    public int getWUMPUS_Y() {
+        return WUMPUS_Y;
+    }
+
+    public void setWUMPUS_Y(int WUMPUS_Y) {
+        this.WUMPUS_Y = WUMPUS_Y;
+    }
+
+    public int getWALLS_Y() {
+        return WALLS_Y;
+    }
+
+    public void setWALLS_Y(int WALLS_Y) {
+        this.WALLS_Y = WALLS_Y;
     }
 
     /**
@@ -292,14 +476,14 @@ public class TheWorld {
 
     /**
      * Initialise the Adventurers starting position.
-     * The randomStartAdventurer flag should be set prior to calling this method.
+     * The ADVENTURER_PLACEMENT flag should be set prior to calling this method.
      */
     public void initAdventurer() {
         this.clearEntity(ADVENTURER);
         this.clearEntity(VISITED);
-        if (this.randomStartAdventurer == FIXED_START ||
-                this.randomStartAdventurer == RANDOM_START) {
-            switch (this.randomStartAdventurer) {
+        if (this.ADVENTURER_PLACEMENT == FIXED_START ||
+                this.ADVENTURER_PLACEMENT == RANDOM_START) {
+            switch (this.ADVENTURER_PLACEMENT) {
                 case FIXED_START:
                     this.worldState[ADVENTURER][0][0] = OCCUPIED_LOCATION;
                     this.worldState[VISITED][0][0] = OCCUPIED_LOCATION;
@@ -329,22 +513,22 @@ public class TheWorld {
             }
         } else {
             // Should never happen !
-            logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
-                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
-            this.setRandomStartAdventurer(FIXED_START);
+            logger.warn("Incorrect State: ADVENTURER_PLACEMENT flag contains an unknown value of " +
+                    this.ADVENTURER_PLACEMENT + ", defaulting to a fixed starting position instead.");
+            this.setADVENTURER_PLACEMENT(FIXED_START);
             this.initAdventurer();
         }
     }
 
     /**
      * Initialise the Adventurers starting position.
-     * The randomStartAdventurer flag should be set prior to calling this method.
+     * The ADVENTURER_PLACEMENT flag should be set prior to calling this method.
      */
     public void initWumpus() {
         this.clearEntity(WUMPUS);
-        if (this.randomStartWumpus == FIXED_START ||
-                this.randomStartWumpus == RANDOM_START) {
-            switch (this.randomStartWumpus) {
+        if (this.WUMPUS_PLACEMENT == FIXED_START ||
+                this.WUMPUS_PLACEMENT == RANDOM_START) {
+            switch (this.WUMPUS_PLACEMENT) {
                 case FIXED_START:
                     this.worldState[WUMPUS][2][2] = OCCUPIED_LOCATION;
                     break;
@@ -373,9 +557,9 @@ public class TheWorld {
             }
         } else {
             // Should never happen !
-            logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
-                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
-            this.setRandomStartAdventurer(FIXED_START);
+            logger.warn("Incorrect State: ADVENTURER_PLACEMENT flag contains an unknown value of " +
+                    this.ADVENTURER_PLACEMENT + ", defaulting to a fixed starting position instead.");
+            this.setADVENTURER_PLACEMENT(FIXED_START);
             this.initAdventurer();
         }
     }
@@ -450,9 +634,9 @@ public class TheWorld {
             }
         } else {
             // Should never happen !
-            logger.warn("Incorrect State: randomStartAdventurer flag contains an unknown value of " +
-                    this.randomStartAdventurer + ", defaulting to a fixed starting position instead.");
-            this.setRandomStartAdventurer(FIXED_START);
+            logger.warn("Incorrect State: ADVENTURER_PLACEMENT flag contains an unknown value of " +
+                    this.ADVENTURER_PLACEMENT + ", defaulting to a fixed starting position instead.");
+            this.setADVENTURER_PLACEMENT(FIXED_START);
             this.initAdventurer();
         }
     }
