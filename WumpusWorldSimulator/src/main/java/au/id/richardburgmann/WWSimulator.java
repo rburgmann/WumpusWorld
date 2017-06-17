@@ -28,14 +28,16 @@ import static java.lang.Integer.parseInt;
 public class WWSimulator {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
     private static Properties applicationProps;
-    private int defaultWidth = 1200;
-    private int defaultHeight = 1200;
-    private int defaultMargin = 20;
-    private Dimension minSize = new Dimension(440, 440);
+    private static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
+    private static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
     private static TheWorld gameState;
+    private int defaultWidth = 1200;
+    private int defaultHeight = 1200;
+    private int defaultMargin = 20;
+    private Dimension minSize = new Dimension(440, 440);
     private Adventurer agent;
 
     public static void main(String[] args) {
@@ -43,17 +45,18 @@ public class WWSimulator {
         wwSimulator.loadProperties();
         gameState = new TheWorld(applicationProps);
 
-           if (args.length > 0) {
-              int runNtimes = parseInt(args[0]) ;
-              wwSimulator.batchRun(runNtimes);
-           } else {
+        if (args.length > 0) {
+            int runNtimes = parseInt(args[0]);
+            wwSimulator.batchRun(runNtimes);
+        } else {
 
-               logger.info("main: Started.");
-               wwSimulator.run();
-               logger.info("main: Finished.");
-           }
-           wwSimulator.saveProperties();
+            logger.info("main: Started.");
+            wwSimulator.run();
+            logger.info("main: Finished.");
+        }
+        wwSimulator.saveProperties();
     }
+
     private void batchRun(int runNtimes) {
         while (runNtimes > 0) {
             WWSimulator wwSimulator = new WWSimulator();
@@ -62,17 +65,15 @@ public class WWSimulator {
         }
 
     }
+
     public void run() {
 
         JFrame frame = new JFrame("Wumpus World Simulator");
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
+
         this.gameState.clearWorldState();
-
-        this.gameState.setADVENTURER_PLACEMENT(TheWorld.RANDOM_START);
-
-        //this.gameState.initEntity(TheWorld.ADVENTURER,TheWorld.RANDOM_START);
         this.gameState.initAdventurer();
         Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
         agent = new Adventurer();
@@ -80,36 +81,21 @@ public class WWSimulator {
         agent.setTheWorld(gameState);
         gridPanel.setAdventurer(adventurer);
 
-
-        this.gameState.initEntity(TheWorld.WUMPUS,TheWorld.RANDOM_START);
         Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
         gridPanel.setWumpus(wumpus);
 
-        this.gameState.initEntity(TheWorld.PITS,TheWorld.RANDOM_START);
+
         Sprite pits = new Sprite(gameState.PITS, gameState, gridPanel);
         gridPanel.setPits(pits);
 
-        this.gameState.initEntity(TheWorld.GOLD,TheWorld.RANDOM_START);
+
         Sprite gold = new Sprite(gameState.GOLD, gameState, gridPanel);
         gridPanel.setGold(gold);
 
-        this.gameState.initEntity(TheWorld.WALLS,TheWorld.RANDOM_START);
+
         Sprite walls = new Sprite(gameState.WALLS, gameState, gridPanel);
         gridPanel.setWalls(walls);
 
-        //this.gameState.setWUMPUS_PLACEMENT(TheWorld.RANDOM_START);
-        //this.gameState.setGOLD_PLACEMENT(TheWorld.RANDOM_START);
-        //this.gameState.setPITS_PLACEMENT(TheWorld.RANDOM_START);
-
-        //this.gameState.initWumpus();
-        //this.gameState.initEntity(TheWorld.GOLD,TheWorld.RANDOM_START);
-        //this.gameState.initEntity(TheWorld.PITS,TheWorld.RANDOM_START);
-
-        //Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
-        //Sprite pit = new Sprite(gameState.PITS, gameState, gridPanel);
-        //Sprite gold = new Sprite(gameState.GOLD, gameState, gridPanel);
-
-        //gridPanel.setWumpus(wumpus);
         frame.setVisible(true);
         frame.add(gridPanel);
 
@@ -122,6 +108,7 @@ public class WWSimulator {
         CoOrdinate pitXY = this.gameState.getEntityLocation(TheWorld.PITS);
         CoOrdinate wallXY = this.gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = this.gameState.getEntityLocation(TheWorld.GOLD);
+
 
         while (runSim) {
 
@@ -138,7 +125,7 @@ public class WWSimulator {
             agent.setHealth(agent.getHealth() - 1);
 
 
-            if(agent.myX == wallXY.x && agent.myY == wallXY.y) {
+            if (agent.myX == wallXY.x && agent.myY == wallXY.y) {
                 // Ouch !
                 logger.info("Ouch a wall !");
                 agent.setHealth(agent.getHealth() - 10);
@@ -147,26 +134,26 @@ public class WWSimulator {
                         adventurersPrevXY.y);
 
             }
-            if(agent.myX == pitXY.x && agent.myY == pitXY.y) {
+            if (agent.myX == pitXY.x && agent.myY == pitXY.y) {
                 // Falling .... !
                 logger.info("Ahhhh falling !");
                 agent.setHealth(agent.getHealth() - 100);
                 runSim = false;
             }
-            if(agent.myX == wumpusXY.x && agent.myY == wumpusXY.y) {
+            if (agent.myX == wumpusXY.x && agent.myY == wumpusXY.y) {
                 // Fighting .... !
                 logger.info("The Wumpus !");
                 agent.setHealth(agent.getHealth() - 100);
                 runSim = false;
             }
-            if(agent.myX == goldXY.x && agent.myY == goldXY.y) {
+            if (agent.myX == goldXY.x && agent.myY == goldXY.y) {
                 // Rich !
                 logger.info("Gold ! I'm rich !");
                 agent.setHealth(agent.getHealth() + 100);
                 runSim = false;
             }
 
-            if(agent.getHealth() <= 0) {
+            if (agent.getHealth() <= 0) {
                 runSim = false;
 
             }
@@ -182,10 +169,21 @@ public class WWSimulator {
     /**
      * Save properties from last invocation.
      */
-    private void saveProperties(){
+    private void saveProperties() {
         try {
-            FileOutputStream out = new FileOutputStream(".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties");
+            FileOutputStream out = new FileOutputStream(WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
             applicationProps.store(out, "Wumpus World Simulator Last Invocation Properties.");
+            out.close();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void saveDefaultProperties() {
+        try {
+            FileOutputStream out = new FileOutputStream(WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
+            applicationProps.store(out, "Wumpus World Simulator Default Properties.");
             out.close();
         } catch (IOException e) {
             logger.error(e.getMessage());
@@ -203,14 +201,11 @@ public class WWSimulator {
         Properties defaultProps = new Properties();
         FileInputStream in;
         try {
-            in = new FileInputStream(".\\WumpusWorldSimulator\\src\\resources\\default.Properties");
+            in = new FileInputStream(WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
             defaultProps.load(in);
             in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException ioe) {
-            logger.warn(ioe.toString());
-            ioe.printStackTrace();
+        } catch (Exception e) {
+            this.createDefaultProperties();
         }
         //
         // create application properties with default
@@ -220,7 +215,7 @@ public class WWSimulator {
         // now load properties from last invocation
         //
         try {
-            in = new FileInputStream(".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties");
+            in = new FileInputStream(WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
             applicationProps.load(in);
             in.close();
         } catch (FileNotFoundException e) {
@@ -230,4 +225,19 @@ public class WWSimulator {
         }
     }
 
+    /**
+     * In case there are no default properties this method will initialise the critical properties and create a
+     * default properties file.
+     */
+    private void createDefaultProperties() {
+
+        gameState.setADVENTURER_PLACEMENT(TheWorld.RANDOM_START);
+        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START);
+        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START);
+        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START);
+        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START);
+
+
+        this.saveDefaultProperties();
+    }
 }

@@ -172,7 +172,7 @@ public class TheWorld {
      */
     private int WUMPUS_Y=1;
     /**
-     * Decides if the Entity will start in the fixed location 2,2 or in
+     * Decides if the Gold will start in the fixed location or in
      * a random location on the grid.
      * 1 = Random starting location.
      * 0 = Fixed starting location at 2,2.
@@ -186,9 +186,8 @@ public class TheWorld {
      * Initial starting location loaded from properties file.
      */
     private int GOLD_Y=3;
-    //public int GOLD_PLACEMENT=0;
     /**
-     * Decides if the Entity will start in the fixed location 2,2 or in
+     * Decides if the Walls will start in the fixed location or in
      * a random location on the grid.
      * 1 = Random starting location.
      * 0 = Fixed starting location at 2,2.
@@ -203,7 +202,7 @@ public class TheWorld {
      */
     private int WALLS_Y=3;
     /**
-     * Decides if the Entity will start in the fixed location 2,2 or in
+     * Decides if the Pits will start in the fixed location or in
      * a random location on the grid.
      * 1 = Random starting location.
      * 0 = Fixed starting location at 2,2.
@@ -320,6 +319,9 @@ public class TheWorld {
     public void setWUMPUS_PLACEMENT(int WUMPUS_PLACEMENT) {
 
         this.WUMPUS_PLACEMENT = WUMPUS_PLACEMENT;
+        if (myProperties != null) {
+            myProperties.setProperty("WUMPUS_PLACEMENT", Integer.toString((this.WUMPUS_PLACEMENT)));
+        }
 
     }
 
@@ -328,31 +330,47 @@ public class TheWorld {
     }
 
     public void setGOLD_PLACEMENT(int GOLD_PLACEMENT) {
+
         this.GOLD_PLACEMENT = GOLD_PLACEMENT;
+        if (myProperties != null) {
+            myProperties.setProperty("GOLD_PLACEMENT", Integer.toString((this.GOLD_PLACEMENT)));
+        }
     }
 
     public int getWALLS_PLACEMENT() {
         return WALLS_PLACEMENT;
     }
 
-    public void setWALLS_PLACEMENT(int WALLS_PLACEMENT) {
+    public void setWALLS_PLACEMENT(int WALLS_PLACEMENT)
+    {
         this.WALLS_PLACEMENT = WALLS_PLACEMENT;
+        if (myProperties != null) {
+            myProperties.setProperty("WALLS_PLACEMENT", Integer.toString((this.WALLS_PLACEMENT)));
+        }
     }
 
     public int getPITS_PLACEMENT() {
         return PITS_PLACEMENT;
     }
 
-    public void setPITS_PLACEMENT(int PITS_PLACEMENT) {
+    public void setPITS_PLACEMENT(int PITS_PLACEMENT)
+    {
         this.PITS_PLACEMENT = PITS_PLACEMENT;
+        if (myProperties != null) {
+            myProperties.setProperty("PITS_PLACEMENT", Integer.toString((this.PITS_PLACEMENT)));
+        }
     }
 
     public int getADVENTURER_X() {
         return ADVENTURER_X;
     }
 
-    public void setADVENTURER_X(int ADVENTURER_X) {
+    public void setADVENTURER_X(int ADVENTURER_X)
+    {
         this.ADVENTURER_X = ADVENTURER_X;
+        if (myProperties != null) {
+            myProperties.setProperty("ADVENTURER_X", Integer.toString((this.ADVENTURER_X)));
+        }
     }
 
     public int getADVENTURER_Y() {
@@ -361,6 +379,9 @@ public class TheWorld {
 
     public void setADVENTURER_Y(int ADVENTURER_Y) {
         this.ADVENTURER_Y = ADVENTURER_Y;
+        if (myProperties != null) {
+            myProperties.setProperty("ADVENTURER_Y", Integer.toString((this.ADVENTURER_Y)));
+        }
     }
 
     public int getGOLD_X() {
@@ -368,7 +389,11 @@ public class TheWorld {
     }
 
     public void setGOLD_X(int GOLD_X) {
+
         this.GOLD_X = GOLD_X;
+        if (myProperties != null) {
+            myProperties.setProperty("GOLD_X", Integer.toString((this.GOLD_X)));
+        }
     }
 
     public int getGOLD_Y() {
@@ -376,7 +401,11 @@ public class TheWorld {
     }
 
     public void setGOLD_Y(int GOLD_Y) {
+
         this.GOLD_Y = GOLD_Y;
+        if (myProperties != null) {
+            myProperties.setProperty("GOLD_Y", Integer.toString((this.GOLD_Y)));
+        }
     }
 
     public int getWALLS_X() {
@@ -384,7 +413,11 @@ public class TheWorld {
     }
 
     public void setWALLS_X(int WALLS_X) {
+
         this.WALLS_X = WALLS_X;
+        if (myProperties != null) {
+            myProperties.setProperty("WALLS_X", Integer.toString((this.WALLS_X)));
+        }
     }
 
     public int getPITS_X() {
@@ -392,7 +425,11 @@ public class TheWorld {
     }
 
     public void setPITS_X(int PITS_X) {
+
         this.PITS_X = PITS_X;
+        if (myProperties != null) {
+            myProperties.setProperty("PITS_X", Integer.toString((this.PITS_X)));
+        }
     }
 
     public int getPITS_Y() {
@@ -400,15 +437,23 @@ public class TheWorld {
     }
 
     public void setPITS_Y(int PITS_Y) {
+
         this.PITS_Y = PITS_Y;
+        if (myProperties != null) {
+            myProperties.setProperty("PITS_Y", Integer.toString((this.PITS_Y)));
+        }
     }
 
     public int getWUMPUS_X() {
         return WUMPUS_X;
     }
 
-    public void setWUMPUS_X(int WUMPUS_X) {
+    public void setWUMPUS_X(int WUMPUS_X)
+    {
         this.WUMPUS_X = WUMPUS_X;
+        if (myProperties != null) {
+            myProperties.setProperty("WUMPUS_X", Integer.toString((this.WUMPUS_X)));
+        }
     }
 
     public int getWUMPUS_Y() {
@@ -416,7 +461,11 @@ public class TheWorld {
     }
 
     public void setWUMPUS_Y(int WUMPUS_Y) {
+
         this.WUMPUS_Y = WUMPUS_Y;
+        if (myProperties != null) {
+            myProperties.setProperty("WUMPUS_Y", Integer.toString((this.WUMPUS_Y)));
+        }
     }
 
     public int getWALLS_Y() {
@@ -424,7 +473,11 @@ public class TheWorld {
     }
 
     public void setWALLS_Y(int WALLS_Y) {
+
         this.WALLS_Y = WALLS_Y;
+        if (myProperties != null) {
+            myProperties.setProperty("WALLS_Y", Integer.toString((this.WALLS_Y)));
+        }
     }
 
     /**
@@ -485,29 +538,31 @@ public class TheWorld {
                 this.ADVENTURER_PLACEMENT == RANDOM_START) {
             switch (this.ADVENTURER_PLACEMENT) {
                 case FIXED_START:
-                    this.worldState[ADVENTURER][0][0] = OCCUPIED_LOCATION;
-                    this.worldState[VISITED][0][0] = OCCUPIED_LOCATION;
+                    this.worldState[ADVENTURER][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
+                    this.worldState[VISITED][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
                     break;
                 case RANDOM_START: {
                     int startLoc = getRandom();
                     int edgeLoc = getRandom();
                     if (startLoc == 0) {
                         // Adventurer will start somewhere on the left column.
-                        this.worldState[ADVENTURER][edgeLoc][0] = OCCUPIED_LOCATION;
-                        this.worldState[VISITED][edgeLoc][0] = OCCUPIED_LOCATION;
+                        this.setADVENTURER_X(edgeLoc);
+                        this.setADVENTURER_Y(0);
                     } else if (startLoc == 1) {
                         // Adventurer will start somewhere on the top row.
-                        this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
-                        this.worldState[VISITED][0][edgeLoc] = OCCUPIED_LOCATION;
+                        this.setADVENTURER_X(0);
+                        this.setADVENTURER_Y(edgeLoc);
                     } else if (startLoc == 2) {
                         // Adventurer will start somewhere on the back column.
-                        this.worldState[ADVENTURER][edgeLoc][3] = OCCUPIED_LOCATION;
-                        this.worldState[VISITED][edgeLoc][3] = OCCUPIED_LOCATION;
+                        this.setADVENTURER_X(3);
+                        this.setADVENTURER_Y(edgeLoc);
                     } else {
                         // Adventurer will start somewhere on the bottom row.
-                        this.worldState[ADVENTURER][0][edgeLoc] = OCCUPIED_LOCATION;
-                        this.worldState[VISITED][0][edgeLoc] = OCCUPIED_LOCATION;
+                        this.setADVENTURER_X(edgeLoc);
+                        this.setADVENTURER_Y(3);
                     }
+                    this.worldState[ADVENTURER][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
+                    this.worldState[VISITED][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
                 }
                 break;
             }
