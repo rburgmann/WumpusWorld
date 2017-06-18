@@ -16,8 +16,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static java.lang.Integer.parseInt;
-
 /**
  * <p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
  * representation of the world. A number of experiments are planned using reinforcement learning for
@@ -27,6 +25,7 @@ import static java.lang.Integer.parseInt;
  */
 public class WWSimulator {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
+    private static Properties defaultProps = new Properties();
     private static Properties applicationProps;
     private static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
     private static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
@@ -41,39 +40,27 @@ public class WWSimulator {
     private Adventurer agent;
 
     public static void main(String[] args) {
+        logger.info("main: Started.");
+
         WWSimulator wwSimulator = new WWSimulator();
         wwSimulator.loadProperties();
+        wwSimulator.initialiseWWSimulatorVariables();
         gameState = new TheWorld(applicationProps);
 
-        if (args.length > 0) {
-            int runNtimes = parseInt(args[0]);
-            wwSimulator.batchRun(runNtimes);
-        } else {
+        wwSimulator.run();
 
-            logger.info("main: Started.");
-            wwSimulator.run();
-            logger.info("main: Finished.");
-        }
         wwSimulator.saveProperties();
+        logger.info("main: Finished.");
     }
 
-    private void batchRun(int runNtimes) {
-        while (runNtimes > 0) {
-            WWSimulator wwSimulator = new WWSimulator();
-            logger.info("Runs left in batch:" + runNtimes--);
-            wwSimulator.run();
-        }
-
-    }
-
-    public void run() {
+    private void run() {
 
         JFrame frame = new JFrame("Wumpus World Simulator");
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
 
-        this.gameState.clearWorldState();
+
         this.gameState.initAdventurer();
         Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
         agent = new Adventurer();
@@ -113,7 +100,7 @@ public class WWSimulator {
         while (runSim) {
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -130,8 +117,7 @@ public class WWSimulator {
                 logger.info("Ouch a wall !");
                 agent.setHealth(agent.getHealth() - 10);
                 // move them back to whence they came.
-                gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, adventurersPrevXY.x,
-                        adventurersPrevXY.y);
+                gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.x, adventurersPrevXY.y);
 
             }
             if (agent.myX == pitXY.x && agent.myY == pitXY.y) {
@@ -198,13 +184,15 @@ public class WWSimulator {
         //
         // create and load default properties
         //
-        Properties defaultProps = new Properties();
         FileInputStream in;
         try {
             in = new FileInputStream(WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
             defaultProps.load(in);
             in.close();
         } catch (Exception e) {
+            logger.error("Default property file was not found at expected location");
+            logger.error("I expected to find it at: " + WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
+            logger.error("I will attempt to create a new file when I exit.");
             this.createDefaultProperties();
         }
         //
@@ -219,6 +207,9 @@ public class WWSimulator {
             applicationProps.load(in);
             in.close();
         } catch (FileNotFoundException e) {
+            logger.error("Application property file was not found at expected location");
+            logger.error("I expected to find it at: " + WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
+            logger.error("I will attempt to create a new file when I exit.");
             e.printStackTrace();
         } catch (IOException ioe) {
             logger.warn(ioe.toString());
@@ -226,18 +217,56 @@ public class WWSimulator {
     }
 
     /**
+     * Once the properties have been loaded into memory apply them to the various variables in the program.
+     */
+    private void initialiseWWSimulatorVariables() {
+        int temp;
+        /**
+         * Just in case there is no data in any of the property files, use the hardcoded
+         * default. The try case block is so we don't destroy the hard coded value if we
+         * have nothing in the property files.
+         */
+        try {
+            temp = Integer.parseInt((String) applicationProps.getProperty("defaultMargin"));
+            if (temp > 0) defaultMargin = temp;
+        } catch (Exception e) {
+            logger.warn("No defaultMargin defined in either properties file.");
+            logger.warn(e.getMessage());
+        }
+
+        try {
+            temp = 0; // reset temp as a precaution.
+            temp = Integer.parseInt((String) applicationProps.getProperty("defaultHeight"));
+            if (temp > 0) defaultHeight = temp;
+        } catch (Exception e) {
+            logger.warn("No defaultHeight defined in either properties file.");
+            logger.warn(e.getMessage());
+        }
+
+        defaultWidth = Integer.parseInt((String) applicationProps.getProperty("defaultWidth"));
+        try {
+            temp = 0; // reset temp as a precaution.
+            temp = Integer.parseInt((String) applicationProps.getProperty("defaultWidth"));
+            if (temp > 0) defaultWidth = temp;
+        } catch (Exception e) {
+            logger.warn("No defaultWidth defined in either properties file.");
+            logger.warn(e.getMessage());
+        }
+
+    }
+
+    /**
      * In case there are no default properties this method will initialise the critical properties and create a
      * default properties file.
      */
     private void createDefaultProperties() {
-
-        gameState.setADVENTURER_PLACEMENT(TheWorld.RANDOM_START);
-        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START);
-        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START);
-        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START);
-        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START);
-
+        gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, 0,0);
+        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START, 0,0);
+        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START, 0,0);
+        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START,0,0);
+        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START,0,0);
 
         this.saveDefaultProperties();
+        this.loadProperties();
     }
 }
