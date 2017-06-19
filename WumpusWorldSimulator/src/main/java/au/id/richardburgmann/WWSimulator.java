@@ -29,6 +29,7 @@ public class WWSimulator {
     private static Properties applicationProps;
     private static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
     private static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
+    private static LogExperiment experimentalData;
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
@@ -36,20 +37,33 @@ public class WWSimulator {
     private int defaultWidth = 1200;
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
+    private int timeSteps = 0;
+    private StringBuffer adventurerFinalState = new StringBuffer(1024);
+    private CoOrdinate adventurerStartingLocation;
+    private CoOrdinate goldStartingLocation;
+
     private Dimension minSize = new Dimension(440, 440);
     private Adventurer agent;
 
     public static void main(String[] args) {
         logger.info("main: Started.");
 
-        WWSimulator wwSimulator = new WWSimulator();
-        wwSimulator.loadProperties();
-        wwSimulator.initialiseWWSimulatorVariables();
-        gameState = new TheWorld(applicationProps);
 
-        wwSimulator.run();
+        WWSimulator wwSimulator = new WWSimulator();
+        for(int l=0; l<100; l++){
+            wwSimulator = new WWSimulator();
+            wwSimulator.loadProperties();
+            wwSimulator.initialiseWWSimulatorVariables();
+            gameState = new TheWorld(applicationProps);
+            experimentalData = new LogExperiment((applicationProps));
+            wwSimulator.run();
+            experimentalData.logData(wwSimulator);
+        }
+        //wwSimulator.run();
 
         wwSimulator.saveProperties();
+        experimentalData.logParams(applicationProps);
+        experimentalData.logData(wwSimulator);
         logger.info("main: Finished.");
     }
 
@@ -95,22 +109,20 @@ public class WWSimulator {
         CoOrdinate pitXY = this.gameState.getEntityLocation(TheWorld.PITS);
         CoOrdinate wallXY = this.gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = this.gameState.getEntityLocation(TheWorld.GOLD);
+        CoOrdinate adventurerXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
+        this.adventurerFinalState.append(adventurerXY.toCSV());
+        this.adventurerFinalState.append(goldXY.toCSV());
+        CoOrdinate adventurersPrevXY = adventurerXY;
 
 
         while (runSim) {
-
+            timeSteps = timeSteps+1;
+            logger.info("timestep " + timeSteps);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            CoOrdinate adventurersPrevXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
-            agent.thinkActdo();
-
-            frame.repaint();
-
-            agent.setHealth(agent.getHealth() - 1);
-
 
             if (agent.myX == wallXY.x && agent.myY == wallXY.y) {
                 // Ouch !
@@ -124,32 +136,61 @@ public class WWSimulator {
                 // Falling .... !
                 logger.info("Ahhhh falling !");
                 agent.setHealth(agent.getHealth() - 100);
+                this.adventurerFinalState.append("PIT,");
                 runSim = false;
+                break;
             }
             if (agent.myX == wumpusXY.x && agent.myY == wumpusXY.y) {
                 // Fighting .... !
                 logger.info("The Wumpus !");
                 agent.setHealth(agent.getHealth() - 100);
                 runSim = false;
+                this.adventurerFinalState.append("WUMPUS,");
+                break;
             }
             if (agent.myX == goldXY.x && agent.myY == goldXY.y) {
                 // Rich !
                 logger.info("Gold ! I'm rich !");
                 agent.setHealth(agent.getHealth() + 100);
                 runSim = false;
+                this.adventurerFinalState.append("GOLD,");
+                break;
             }
 
             if (agent.getHealth() <= 0) {
-                runSim = false;
+                runSim = false;this.adventurerFinalState.append("STARVATION,");
 
             }
             if (!runSim) {
                 logger.info("Final score " + agent.getHealth());
+
+
             }
+            //
+            // Moved the agent to end of loop to fix bug. If it is at the begining of the loop
+            // then it can respond faster than the environment which is nonesense.
+            //
+            adventurersPrevXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
+            agent.thinkActdo();
+
+            frame.repaint();
+
+            agent.setHealth(agent.getHealth() - 1);
         }
-        //frame.dispose();
+        this.adventurerFinalState.append(Integer.toString(agent.getHealth()));
+        this.adventurerFinalState.append(",");
+        this.adventurerFinalState.append(timeSteps);
+frame.dispose();
         System.gc();
 
+
+    }
+
+    /**
+     * logs the data from this experimental run.
+     */
+    public String getLogData() {
+        return this.adventurerFinalState.toString().trim();
     }
 
     /**
@@ -214,6 +255,8 @@ public class WWSimulator {
         } catch (IOException ioe) {
             logger.warn(ioe.toString());
         }
+
+
     }
 
     /**
@@ -253,6 +296,7 @@ public class WWSimulator {
             logger.warn(e.getMessage());
         }
 
+
     }
 
     /**
@@ -260,11 +304,11 @@ public class WWSimulator {
      * default properties file.
      */
     private void createDefaultProperties() {
-        gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, 0,0);
-        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START, 0,0);
-        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START, 0,0);
-        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START,0,0);
-        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START,0,0);
+        gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, 0, 0);
+        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START, 0, 0);
+        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START, 0, 0);
+        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START, 0, 0);
+        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START, 0, 0);
 
         this.saveDefaultProperties();
         this.loadProperties();

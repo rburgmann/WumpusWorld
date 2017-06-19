@@ -1,4 +1,4 @@
-#Wumpus World Simulator Last Invocation Properties.
+#Wumpus World Simulator Experiment Properties.
 #Tue Jun 20 07:59:30 AEST 2017
 WUMPUS_X=1
 ADVENTURER_Y=0
