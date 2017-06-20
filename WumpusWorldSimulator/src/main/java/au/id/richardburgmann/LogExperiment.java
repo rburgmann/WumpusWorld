@@ -18,7 +18,7 @@ public class LogExperiment {
 
     private static final Logger logger = LoggerFactory.getLogger(LogExperiment.class);
     private static String EXPERIMENT_LOG_DIR = ".";
-    private String logFileName = "WWS_run_1.";
+    private String logFileName = "WWS_run_2.";
     private String logFileDataSuffix = "csv";
     private String logFileParamSuffix = "txt";
 
@@ -59,7 +59,7 @@ public class LogExperiment {
         //
         try {
             StringBuffer fn = new StringBuffer();
-            fn.append(EXPERIMENT_LOG_DIR + logFileName + "Data." + logFileParamSuffix);
+            fn.append(EXPERIMENT_LOG_DIR + logFileName + "Data." + logFileDataSuffix);
             BufferedWriter bufferedWriter;
             FileWriter fileWriter;
             fileWriter = new FileWriter(fn.toString(),true); // append to eof.

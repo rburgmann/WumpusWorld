@@ -56,18 +56,18 @@ public class WWSimulator {
             wwSimulator.initialiseWWSimulatorVariables();
             gameState = new TheWorld(applicationProps);
             experimentalData = new LogExperiment((applicationProps));
-            wwSimulator.run();
+            wwSimulator.run(l);
             experimentalData.logData(wwSimulator);
         }
         //wwSimulator.run();
 
         wwSimulator.saveProperties();
         experimentalData.logParams(applicationProps);
-        experimentalData.logData(wwSimulator);
+       // experimentalData.logData(wwSimulator);
         logger.info("main: Finished.");
     }
 
-    private void run() {
+    private void run(int delayFactor) {
 
         JFrame frame = new JFrame("Wumpus World Simulator");
         frame.setMinimumSize(minSize);
@@ -110,7 +110,7 @@ public class WWSimulator {
         CoOrdinate wallXY = this.gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = this.gameState.getEntityLocation(TheWorld.GOLD);
         CoOrdinate adventurerXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
-        this.adventurerFinalState.append(adventurerXY.toCSV());
+        this.adventurerFinalState.append(agent.myX + "," +agent.myY+",");
         this.adventurerFinalState.append(goldXY.toCSV());
         CoOrdinate adventurersPrevXY = adventurerXY;
 
@@ -119,19 +119,12 @@ public class WWSimulator {
             timeSteps = timeSteps+1;
             logger.info("timestep " + timeSteps);
             try {
-                Thread.sleep(100);
+                Thread.sleep((1000/(delayFactor+timeSteps+1))+50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            if (agent.myX == wallXY.x && agent.myY == wallXY.y) {
-                // Ouch !
-                logger.info("Ouch a wall !");
-                agent.setHealth(agent.getHealth() - 10);
-                // move them back to whence they came.
-                gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.x, adventurersPrevXY.y);
 
-            }
             if (agent.myX == pitXY.x && agent.myY == pitXY.y) {
                 // Falling .... !
                 logger.info("Ahhhh falling !");
@@ -172,6 +165,17 @@ public class WWSimulator {
             //
             adventurersPrevXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
             agent.thinkActdo();
+            //
+            // Can't check for a wall impact until after the first move
+            //
+            if (agent.myX == wallXY.x && agent.myY == wallXY.y) {
+                // Ouch !
+                logger.info("Ouch a wall !");
+                agent.setHealth(agent.getHealth() - 10);
+                // move them back to whence they came.
+                gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.x, adventurersPrevXY.y);
+
+            }
 
             frame.repaint();
 
