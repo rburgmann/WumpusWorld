@@ -76,9 +76,12 @@ public class TheWorld {
      */
     public static final String[] ENTITY_CONSTANTS = {"WUMPUS", "STENCHES", "PITS", "BREEZES", "GOLD", "GLITTER", "ADVENTURER",
             "WALLS", "VISITED"};
+    public static final String[] ACTION_CONSTANTS = {"Move Left ", "Move Right ",
+            "Move Up ", "Move Down "};
+    public static final String[] LEGAL_MOVES = {"Can ", "Cannot "};
 
     /**
-     * A lot of code will be referring to the n of the n x n grid.
+     * A lot of code will be referring to the n of the n row n grid.
      * So create a constant to keep it.
      */
     public static final int GRID_SIZE = 4;
@@ -134,6 +137,43 @@ public class TheWorld {
      * worldState[WUMPUS][2][1] = +1 and so that is where the Wumpus is.
      */
     public int[][][] worldState = new int[9][GRID_SIZE][GRID_SIZE];
+    public int worldStateValue;
+
+    // 0 is move left
+    // 1 is move right
+    // 2 is move up
+    // 3 is move down.
+    /**
+     * <p>
+     * 1,2,3,4 <p>
+     * 5,6,7,8 <p>
+     * 9,10,11,12 <p>
+     * 13,14,15,16 <p>
+     * </p>
+     */
+    //     matrixR[row][col]
+    public int[][] matrixR = {
+            // top row states 1 - 4
+            {-1, 0, -1, 0},
+            {0, 0, -1, 0},
+            {0, 0, -1, 0},
+            {0, -1, -1, 0},
+            // 2nd row states 5 -8
+            {-1, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, -1, 0, 0},
+            // 3rd row states 9 -12
+            {-1, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, -1, 0, 0},
+            // 4th row states 13 -16
+            {-1, 0, 0, -1},
+            {0, 0, 0, -1},
+            {0, 0, 0, -1},
+            {0, -1, 0, -1},
+    };
     /**
      * Hold the referance to the application properties object.
      */
@@ -284,9 +324,25 @@ public class TheWorld {
         }
     }
 
-    public void TheWorld() {
-        logger.debug("TheWorld default constructor.");
+    public TheWorld() {
+        //logger.debug("TheWorld default constructor.");
         this.clearWorldState();
+    }
+
+    public static TheWorld cloneStateArray(TheWorld theWorld) {
+        // logger.debug("cloneStateArray()");
+
+        TheWorld temp = new TheWorld();
+        temp.worldStateValue = theWorld.worldStateValue;
+
+        for (int e = 0; e < theWorld.worldState.length; e++) {
+            for (int r = 0; r < TheWorld.GRID_SIZE; r++) {
+                for (int c = 0; c < TheWorld.GRID_SIZE; c++) {
+                    temp.worldState[e][r][c] = theWorld.worldState[e][r][c];
+                }
+            }
+        }
+        return temp;
     }
 
     /**
@@ -518,7 +574,7 @@ public class TheWorld {
      * the entities in the world.
      */
     public void clearWorldState() {
-        logger.info("clearWorldState().");
+        //logger.info("clearWorldState().");
         this.clearEntity(WUMPUS);
         this.clearEntity(STENCHES);
         this.clearEntity(PITS);
@@ -564,14 +620,17 @@ public class TheWorld {
      * The ADVENTURER_PLACEMENT flag should be set prior to calling this method.
      */
     public void initAdventurer() {
+        logger.debug("initAdventurer()");
         this.clearEntity(ADVENTURER);
         this.clearEntity(VISITED);
         if (this.ADVENTURER_PLACEMENT == FIXED_START ||
                 this.ADVENTURER_PLACEMENT == RANDOM_START) {
             switch (this.ADVENTURER_PLACEMENT) {
                 case FIXED_START:
+                    //logger.debug("Set Adventurer to " + ADVENTURER_X + "," + ADVENTURER_Y);
                     this.worldState[ADVENTURER][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
                     this.worldState[VISITED][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
+                    //logger.debug("Set Visted at " + ADVENTURER_X + "," + ADVENTURER_Y + " to " + OCCUPIED_LOCATION);
                     break;
                 case RANDOM_START: {
                     int startLoc = getRandom();
@@ -609,7 +668,7 @@ public class TheWorld {
 
     public void moveEntityTo(int entity, int xLoc, int yLoc) {
         logger.info("Moving " + ENTITY_CONSTANTS[entity] + " to " +
-        xLoc +","+yLoc);
+                xLoc + "," + yLoc);
         this.clearEntity(entity);
         this.worldState[entity][xLoc][yLoc] = OCCUPIED_LOCATION;
     }
@@ -626,7 +685,7 @@ public class TheWorld {
         switch (randomStart) {
             case FIXED_START:
                 logger.info(ENTITY_CONSTANTS[entity] + " will be placed in the fixed location of "
-                + fixedX + ","+fixedY);
+                        + fixedX + "," + fixedY);
                 this.worldState[entity][fixedX][fixedY] = OCCUPIED_LOCATION;
                 break;
             case RANDOM_START: {
@@ -676,7 +735,7 @@ public class TheWorld {
                     }
                 }
                 logger.info(ENTITY_CONSTANTS[entity] + " will be placed in the random location of "
-                        + startX + ","+startY);
+                        + startX + "," + startY);
                 this.worldState[entity][startX][startY] = OCCUPIED_LOCATION;
 
             }
@@ -692,33 +751,33 @@ public class TheWorld {
         logger.info("Wafting " + ENTITY_CONSTANTS[sensation] + " from " + ENTITY_CONSTANTS[source] + " around dungeon.");
         // Clear sensations.
         this.clearEntity(sensation);
-        // get the x and y locations of source of sensation.
+        // get the row and col locations of source of sensation.
         CoOrdinate sXY = this.getEntityLocation(source);
         //
         // Sensation is present in the sources location.
-        this.worldState[sensation][sXY.x][sXY.y] = OCCUPIED_LOCATION;
-             if (source == GOLD) {
-                 // Glittering is only in it's location.
-                 // I got this wrong before and had it in wafting.
-                 return;
-             }
+        this.worldState[sensation][sXY.row][sXY.col] = OCCUPIED_LOCATION;
+        if (source == GOLD) {
+            // Glittering is only in it's location.
+            // I got this wrong before and had it in wafting.
+            return;
+        }
         // set sensations.
 
         // Cell to the left.
-        if ((sXY.x - 1) >= 0) {
-            this.worldState[sensation][sXY.x - 1][sXY.y] = OCCUPIED_LOCATION;
+        if ((sXY.row - 1) >= 0) {
+            this.worldState[sensation][sXY.row - 1][sXY.col] = OCCUPIED_LOCATION;
         }
         // Cell to the right.
-        if ((sXY.x + 1) < GRID_SIZE) {
-            this.worldState[sensation][sXY.x + 1][sXY.y] = OCCUPIED_LOCATION;
+        if ((sXY.row + 1) < GRID_SIZE) {
+            this.worldState[sensation][sXY.row + 1][sXY.col] = OCCUPIED_LOCATION;
         }
         // Cell above.
-        if ((sXY.y - 1) >= 0) {
-            this.worldState[sensation][sXY.x][sXY.y - 1] = OCCUPIED_LOCATION;
+        if ((sXY.col - 1) >= 0) {
+            this.worldState[sensation][sXY.row][sXY.col - 1] = OCCUPIED_LOCATION;
         }
         // Cell below.
-        if ((sXY.y + 1) < GRID_SIZE) {
-            this.worldState[sensation][sXY.x][sXY.y + 1] = OCCUPIED_LOCATION;
+        if ((sXY.col + 1) < GRID_SIZE) {
+            this.worldState[sensation][sXY.row][sXY.col + 1] = OCCUPIED_LOCATION;
         }
 
     }
@@ -726,11 +785,11 @@ public class TheWorld {
     public CoOrdinate getEntityLocation(int entity) {
         CoOrdinate entityXY = new CoOrdinate();
 
-        for (int sx = 0; sx < GRID_SIZE; sx++) {
-            for (int sy = 0; sy < GRID_SIZE; sy++) {
-                if (this.worldState[entity][sx][sy] == OCCUPIED_LOCATION) {
-                    entityXY.x = sx;
-                    entityXY.y = sy;
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                if (this.worldState[entity][row][col] == OCCUPIED_LOCATION) {
+                    entityXY.row = row;
+                    entityXY.col = col;
                     return entityXY;
                 }
             }
@@ -752,5 +811,126 @@ public class TheWorld {
         int newRandomNumber = random.nextInt(GRID_SIZE);
 
         return newRandomNumber;
+    }
+
+    /**
+     * Random legal move generator. Uses matrixR to only return valid actions
+     * from the current state. Means you want go off grid, not that there is
+     * no hazard.
+     *
+     * @return int legal move from this grid location
+     */
+    public int getALegalRandomMove(CoOrdinate fromHereXY) {
+        // logger.debug("get A Legal Random Move from " + fromHereXY.toCSV());
+
+        int legalMove = -1;
+        int[] availableLegalMoves = this.getAllLegalMovesFromHere(fromHereXY);
+      /*  logger.debug("Available moves are " +
+                availableLegalMoves[0] + "," +
+                availableLegalMoves[1] + "," +
+                availableLegalMoves[2] + "," +
+                availableLegalMoves[3] + "."
+        );*/
+
+        while (legalMove < 0) {
+            int candidateMove = getRandom();
+            if (availableLegalMoves[candidateMove] >= 0) {
+                legalMove = candidateMove;
+            }
+        }
+
+        return legalMove;
+    }
+
+    public boolean isThisMoveLegal(int candidateMove, CoOrdinate fromHereXY) {
+        //logger.debug("isThisMoveLegal(" + candidateMove + " , (" + fromHereXY.toCSV() + ")");
+        boolean legalStatus = false;
+
+        int[] availableLegalMoves = this.getAllLegalMovesFromHere(fromHereXY);
+        // logger.debug("Available moves are " +
+        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[0] * availableLegalMoves[0])] + TheWorld.ACTION_CONSTANTS[0] + "," +
+        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[1] * availableLegalMoves[1])] + TheWorld.ACTION_CONSTANTS[1] + "," +
+        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[2] * availableLegalMoves[2])] + TheWorld.ACTION_CONSTANTS[2] + "," +
+        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[3] * availableLegalMoves[3])] + TheWorld.ACTION_CONSTANTS[3] + ".");
+
+        if (availableLegalMoves[candidateMove] >= 0) {
+            legalStatus = true;
+        }
+        //logger.debug(String.valueOf(legalStatus));
+        return legalStatus;
+    }
+
+    public int[] getAllLegalMovesFromHere(CoOrdinate fromHereXY) {
+        //logger.debug("getAllLegalMovesFromHere(" + fromHereXY.toCSV() + ")");
+
+        return matrixR[((fromHereXY.row * GRID_SIZE) + fromHereXY.col)];
+    }
+
+    public int getCountVisited() {
+        int count = 0;
+        for (int r = 0; r < this.GRID_SIZE; r++) {
+            for (int c = 0; c < this.GRID_SIZE; c++) {
+                if (this.worldState[VISITED][r][c] == OCCUPIED_LOCATION) {
+                    count = count + 1;
+                }
+
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        //logger.debug("TheWorld equals method.");
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+        TheWorld pstate = (TheWorld) o;
+        boolean result = false;
+        // Is the Adventurer in th same place?
+        CoOrdinate thisAdv = this.getEntityLocation(ADVENTURER);
+        CoOrdinate otherAdv = pstate.getEntityLocation(ADVENTURER);
+        if ((thisAdv.row == otherAdv.row) && (thisAdv.col == otherAdv.col)) {
+            // Keep looking.
+            result = true; // So far.
+        } else {
+            result = false;
+        }
+
+        // field comparison
+/*
+        for (int e = 0; e < this.worldState.length; e++) {
+            for (int r = 0; r < this.GRID_SIZE; r++) {
+                for (int c = 0; c < this.GRID_SIZE; c++) {
+                    // Only compare up to were both are visited.
+                    if ((this.worldState[VISITED][r][c] == this.worldState[VISITED][r][c]) &&
+                            (this.worldState[VISITED][r][c] == OCCUPIED_LOCATION)) {
+                        // where they have both had visit the grid, are they the same contents
+                        // at least once. Only look where they have both visited.
+                        if (this.worldState[e][r][c] == this.worldState[e][r][c]) {
+                            result = true; // has to be at least one place the same.
+                        } else {
+                            result = false; // ok there was a difference, we can break out now.
+                            break;
+                        }
+
+                    }
+
+                }
+            }
+        }*/
+        /*if(result) {
+            logger.debug("They are equal.");
+        } else {
+            logger.debug("They are NOT equal.");
+        }*/
+        return result;
     }
 }

@@ -1,9 +1,4 @@
 package au.id.richardburgmann;
-/**
- * Created by Richard Burgmann on 8/06/2017.
- * Copyright Richard Burgmann (2017)
- * All Rights Reserved.
- */
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +29,11 @@ public class WWSimulator {
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
     private static TheWorld gameState;
+    private TheWorld prevGameState;
     private int defaultWidth = 1200;
     private int defaultHeight = 1200;
-    private int defaultMargin = 20;
     private int timeSteps = 0;
     private StringBuffer adventurerFinalState = new StringBuffer(1024);
-    private CoOrdinate adventurerStartingLocation;
-    private CoOrdinate goldStartingLocation;
 
     private Dimension minSize = new Dimension(440, 440);
     private Adventurer agent;
@@ -48,53 +41,58 @@ public class WWSimulator {
     public static void main(String[] args) {
         logger.info("main: Started.");
 
+        Adventurer myImortalAdventurer = new Adventurer();
 
-        WWSimulator wwSimulator = new WWSimulator();
-        for(int l=0; l<100; l++){
-            wwSimulator = new WWSimulator();
+
+        //agent = new Adventurer();
+        for (int l = 0; l < 6; l++) {
+            WWSimulator wwSimulator = new WWSimulator();
+            wwSimulator.agent = myImortalAdventurer;
+            wwSimulator.agent.setHealth(100);
+
             wwSimulator.loadProperties();
             wwSimulator.initialiseWWSimulatorVariables();
             gameState = new TheWorld(applicationProps);
-            experimentalData = new LogExperiment((applicationProps));
-            wwSimulator.run(l);
+            gameState.initAdventurer();
+
+            experimentalData = new LogExperiment(applicationProps);
+            wwSimulator.run();
             experimentalData.logData(wwSimulator);
         }
-        //wwSimulator.run();
 
-        wwSimulator.saveProperties();
+
+        //wwSimulator.saveProperties();
         experimentalData.logParams(applicationProps);
-       // experimentalData.logData(wwSimulator);
+        // experimentalData.logData(wwSimulator);
         logger.info("main: Finished.");
     }
 
-    private void run(int delayFactor) {
+    private void run() {
 
         JFrame frame = new JFrame("Wumpus World Simulator");
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
 
+        Sprite adventurer = new Sprite(TheWorld.ADVENTURER, gameState, gridPanel);
 
-        this.gameState.initAdventurer();
-        Sprite adventurer = new Sprite(gameState.ADVENTURER, gameState, gridPanel);
-        agent = new Adventurer();
-        agent.setSprite(adventurer);
-        agent.setTheWorld(gameState);
+        this.agent.setSprite(adventurer);
+        this.agent.setTheWorld(gameState);
         gridPanel.setAdventurer(adventurer);
 
-        Sprite wumpus = new Sprite(gameState.WUMPUS, gameState, gridPanel);
+        Sprite wumpus = new Sprite(TheWorld.WUMPUS, gameState, gridPanel);
         gridPanel.setWumpus(wumpus);
 
 
-        Sprite pits = new Sprite(gameState.PITS, gameState, gridPanel);
+        Sprite pits = new Sprite(TheWorld.PITS, gameState, gridPanel);
         gridPanel.setPits(pits);
 
 
-        Sprite gold = new Sprite(gameState.GOLD, gameState, gridPanel);
+        Sprite gold = new Sprite(TheWorld.GOLD, gameState, gridPanel);
         gridPanel.setGold(gold);
 
 
-        Sprite walls = new Sprite(gameState.WALLS, gameState, gridPanel);
+        Sprite walls = new Sprite(TheWorld.WALLS, gameState, gridPanel);
         gridPanel.setWalls(walls);
 
         frame.setVisible(true);
@@ -105,86 +103,101 @@ public class WWSimulator {
 
         // Simulation Loop
         boolean runSim = true;
-        CoOrdinate wumpusXY = this.gameState.getEntityLocation(TheWorld.WUMPUS);
-        CoOrdinate pitXY = this.gameState.getEntityLocation(TheWorld.PITS);
-        CoOrdinate wallXY = this.gameState.getEntityLocation(TheWorld.WALLS);
-        CoOrdinate goldXY = this.gameState.getEntityLocation(TheWorld.GOLD);
-        CoOrdinate adventurerXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
-        this.adventurerFinalState.append(agent.myX + "," +agent.myY+",");
-        this.adventurerFinalState.append(goldXY.toCSV());
-        CoOrdinate adventurersPrevXY = adventurerXY;
+        CoOrdinate wumpusXY = gameState.getEntityLocation(TheWorld.WUMPUS);
+        CoOrdinate pitXY = gameState.getEntityLocation(TheWorld.PITS);
+        CoOrdinate wallXY = gameState.getEntityLocation(TheWorld.WALLS);
+        CoOrdinate goldXY = gameState.getEntityLocation(TheWorld.GOLD);
+        CoOrdinate adventurerXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+        this.adventurerFinalState.append(adventurerXY.toCSV() + ",");
+        this.adventurerFinalState.append(goldXY.toCSV() + ",");
+        //CoOrdinate adventurersPrevXY = new CoOrdinate();
+        //adventurersPrevXY.row = adventurerXY.row;
+        //adventurersPrevXY.col = adventurerXY.col;
 
+        int reward = -1;
 
         while (runSim) {
-            timeSteps = timeSteps+1;
+            logger.debug("Explored " + gameState.getCountVisited() + " grid(s)");
+            timeSteps = timeSteps + 1;
             logger.info("timestep " + timeSteps);
+            logger.debug("Agents health is " + agent.getHealth());
             try {
-                Thread.sleep((1000/(delayFactor+timeSteps+1))+50);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            // Store current game state so we can learn from the action we are taking next.
+
+            prevGameState = TheWorld.cloneStateArray(gameState);
+
+            // What action should we take ?
+            int action = agent.think(gameState);
 
 
-            if (agent.myX == pitXY.x && agent.myY == pitXY.y) {
+            gameState = agent.act(gameState, action);
+            CoOrdinate agentXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+            logger.debug("Agents location is "+ agentXY.toCSV());
+
+            reward = -1;
+            if (agentXY.collision(pitXY)) {
                 // Falling .... !
                 logger.info("Ahhhh falling !");
-                agent.setHealth(agent.getHealth() - 100);
+                reward = reward - 100;
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
-                break;
             }
-            if (agent.myX == wumpusXY.x && agent.myY == wumpusXY.y) {
+            if (agentXY.collision(wumpusXY)) {
                 // Fighting .... !
                 logger.info("The Wumpus !");
-                agent.setHealth(agent.getHealth() - 100);
-                runSim = false;
+                reward = reward - 100;
                 this.adventurerFinalState.append("WUMPUS,");
-                break;
+                runSim = false;
             }
-            if (agent.myX == goldXY.x && agent.myY == goldXY.y) {
+            if (agentXY.collision(goldXY)) {
                 // Rich !
                 logger.info("Gold ! I'm rich !");
-                agent.setHealth(agent.getHealth() + 100);
-                runSim = false;
+                reward = reward + 100;
                 this.adventurerFinalState.append("GOLD,");
-                break;
-            }
+                runSim = false;
 
+            }
             if (agent.getHealth() <= 0) {
-                runSim = false;this.adventurerFinalState.append("STARVATION,");
-
+                this.adventurerFinalState.append("STARVATION,");
+                reward = reward - 100;
+                runSim = false;
             }
-            if (!runSim) {
-                logger.info("Final score " + agent.getHealth());
-
-
-            }
-            //
-            // Moved the agent to end of loop to fix bug. If it is at the begining of the loop
-            // then it can respond faster than the environment which is nonesense.
-            //
-            adventurersPrevXY = this.gameState.getEntityLocation(TheWorld.ADVENTURER);
-            agent.thinkActdo();
-            //
-            // Can't check for a wall impact until after the first move
-            //
-            if (agent.myX == wallXY.x && agent.myY == wallXY.y) {
+            if (agentXY.collision(wallXY)) {
                 // Ouch !
                 logger.info("Ouch a wall !");
-                agent.setHealth(agent.getHealth() - 10);
-                // move them back to whence they came.
-                gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.x, adventurersPrevXY.y);
+                reward = reward - 10;
+                //move them back to whence they came.
+                //gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.row, adventurersPrevXY.col);
+                gameState = prevGameState;
 
             }
 
+            agent.setHealth(agent.getHealth() + reward);
+            this.agent.setTheWorld(gameState);
             frame.repaint();
 
-            agent.setHealth(agent.getHealth() - 1);
+
+            agent.learn(prevGameState, action, reward);
+
+           // agent.brain.brainDump();
+
+            if (!runSim) {
+                logger.info("Final score " + agent.getHealth());
+            } else {
+                action = agent.think(gameState);
+                //adventurersPrevXY.row = adventurerXY.row;
+                //adventurersPrevXY.col = adventurerXY.col;
+                //gameState = agent.act(gameState, action);
+            }
         }
         this.adventurerFinalState.append(Integer.toString(agent.getHealth()));
         this.adventurerFinalState.append(",");
         this.adventurerFinalState.append(timeSteps);
-frame.dispose();
+        frame.dispose();
         System.gc();
 
 
@@ -274,8 +287,8 @@ frame.dispose();
          * have nothing in the property files.
          */
         try {
-            temp = Integer.parseInt((String) applicationProps.getProperty("defaultMargin"));
-            if (temp > 0) defaultMargin = temp;
+            temp = Integer.parseInt(applicationProps.getProperty("defaultMargin"));
+            if (temp > 0) ;
         } catch (Exception e) {
             logger.warn("No defaultMargin defined in either properties file.");
             logger.warn(e.getMessage());
@@ -283,17 +296,17 @@ frame.dispose();
 
         try {
             temp = 0; // reset temp as a precaution.
-            temp = Integer.parseInt((String) applicationProps.getProperty("defaultHeight"));
+            temp = Integer.parseInt(applicationProps.getProperty("defaultHeight"));
             if (temp > 0) defaultHeight = temp;
         } catch (Exception e) {
             logger.warn("No defaultHeight defined in either properties file.");
             logger.warn(e.getMessage());
         }
 
-        defaultWidth = Integer.parseInt((String) applicationProps.getProperty("defaultWidth"));
+        defaultWidth = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
         try {
             temp = 0; // reset temp as a precaution.
-            temp = Integer.parseInt((String) applicationProps.getProperty("defaultWidth"));
+            temp = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
             if (temp > 0) defaultWidth = temp;
         } catch (Exception e) {
             logger.warn("No defaultWidth defined in either properties file.");

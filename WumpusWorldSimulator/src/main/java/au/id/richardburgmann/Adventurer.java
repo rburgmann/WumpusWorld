@@ -5,18 +5,18 @@ package au.id.richardburgmann;
  * All Rights Reserved.
  */
 
+import au.id.richardburgmann.brains.Brain;
+import au.id.richardburgmann.brains.QTableBrain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Adventurer {
+    private static final Logger logger = LoggerFactory.getLogger(Adventurer.class);
+    public Brain brain = new QTableBrain();
+    //public Brain brain = new Brain();
     private Sprite sprite;
     private TheWorld theWorld;
-    public int myX = 0;
-    public int myY = 0;
     private int health = 100;
-
-
-    private static final Logger logger = LoggerFactory.getLogger(Adventurer.class);
 
     public static void main(String[] args) {
 
@@ -37,73 +37,95 @@ public class Adventurer {
     public void setTheWorld(TheWorld theWorld) {
         this.theWorld = theWorld;
     }
-    public void thinkActdo() {
-        this.act(this.think());
+
+    public int think(TheWorld currState) {
+        return brain.think(currState);
     }
-    public int think() {
-        // Get my location.
-        for(int r=0; r<theWorld.GRID_SIZE; r++) {
-            for(int c=0; c<theWorld.GRID_SIZE; c++) {
-                if (theWorld.worldState[theWorld.ADVENTURER][r][c] == theWorld.OCCUPIED_LOCATION) {
-                    myX = r;
-                    myY = c;
-                }
+
+    public TheWorld act(TheWorld currState, int action) {
+        logger.debug("Adv location is ("+currState.getEntityLocation(TheWorld.ADVENTURER).toCSV()+
+                        ") action is " + TheWorld.ACTION_CONSTANTS[action]);
+        // Is the action legal ?
+        TheWorld newState = currState.cloneStateArray(currState);
+
+        CoOrdinate myXY = newState.getEntityLocation(TheWorld.ADVENTURER);
+        if (newState.isThisMoveLegal(action, myXY)) {
+
+
+            newState.worldState[TheWorld.ADVENTURER][myXY.row][myXY.col] = TheWorld.EMPTY_LOCATION;
+            newState.worldState[TheWorld.VISITED][myXY.row][myXY.col] = TheWorld.OCCUPIED_LOCATION;
+
+            switch (action) {
+                case 0:
+                    myXY.col = moveLeft(myXY.col);
+                    break;
+                case 1:
+                    myXY.col = moveRight(myXY.col);
+                    break;
+                case 2:
+                    myXY.row = moveUp(myXY.row);
+                    break;
+                case 3:
+                    myXY.row = moveDown(myXY.row);
+                    break;
             }
+
+            newState.worldState[TheWorld.ADVENTURER][myXY.row][myXY.col] = TheWorld.OCCUPIED_LOCATION;
+            newState.worldState[TheWorld.VISITED][myXY.row][myXY.col] = TheWorld.OCCUPIED_LOCATION;
         }
-        // Now decide where to move next.
-        return this.theWorld.getRandom();
+        return newState;
+
 
     }
-    private void act(int Action) {
 
-        theWorld.worldState[theWorld.ADVENTURER][myX][myY] = theWorld.EMPTY_LOCATION;
+    public TheWorld learn(TheWorld state, int action, int reward) {
+        logger.debug("learning...");
+        TheWorld newState = state.cloneStateArray(state);
+        int      newAction = action;
+        int      newReward = reward;
 
-        switch (Action) {
-            case 0: myX = moveLeft(myX); break;
-            case 1: myX = moveRight(myX); break;
-            case 2: myY = moveUp(myY); break;
-            case 3: myY = moveDown(myY); break;
-        }
-
-        theWorld.worldState[theWorld.ADVENTURER][myX][myY] = theWorld.OCCUPIED_LOCATION;
-
-        logger.info("Adventurers health: " + this.getHealth());
+        return this.brain.learn(newState, newAction, newReward);
 
     }
+
     private int moveLeft(int X_Loc) {
-        if(X_Loc - 1 >= 0) {
+        if (X_Loc - 1 >= 0) {
             logger.info("Just a step to the left.");
             return (X_Loc - 1);
 
         } else {
-            logger.info("I think I'll just stand here a moment.");
+            logger.info("Left grid wall. I think I'll just stand here a moment.");
             return X_Loc;
         }
     }
+
     private int moveRight(int X_Loc) {
-        if(X_Loc + 1 < theWorld.GRID_SIZE) {
+        if (X_Loc + 1 < TheWorld.GRID_SIZE) {
             logger.info("Just a step to the right.");
             return (X_Loc + 1);
         } else {
-            logger.info("I think I'll just stand here a moment.");
+            logger.info("Right grid wall. I think I'll just stand here a moment.");
             return X_Loc;
+
         }
     }
+
     private int moveUp(int Y_Loc) {
-        if(Y_Loc - 1 >= 0) {
-            logger.info("Heading north.");
+        if (Y_Loc - 1 >= 0) {
+            logger.info("Moving up.");
             return (Y_Loc - 1);
         } else {
-            logger.info("I think I'll just stand here a moment.");
+            logger.info("North grid limit. I think I'll just stand here a moment.");
             return Y_Loc;
         }
     }
+
     private int moveDown(int Y_Loc) {
-        if(Y_Loc + 1 < theWorld.GRID_SIZE) {
-            logger.info("Heading south.");
+        if (Y_Loc + 1 < TheWorld.GRID_SIZE) {
+            logger.info("Moving down.");
             return (Y_Loc + 1);
         } else {
-            logger.info("I think I'll just stand here a moment.");
+            logger.info("South grid limit. I think I'll just stand here a moment.");
             return Y_Loc;
         }
 
