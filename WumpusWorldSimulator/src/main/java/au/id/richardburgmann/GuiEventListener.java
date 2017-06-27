@@ -57,8 +57,8 @@ public class GuiEventListener implements MouseListener, WindowStateListener, Com
         JFrame w = (JFrame) e.getSource();
         int width = (int)  w.getBounds().getWidth();
         int height = (int)  w.getBounds().getHeight();
-        logger.info("Width: " + String.valueOf(width));
-        logger.info("Height: " + String.valueOf(height));
+        //logger.info("Width: " + String.valueOf(width));
+        //logger.info("Height: " + String.valueOf(height));
     }
 
     @Override

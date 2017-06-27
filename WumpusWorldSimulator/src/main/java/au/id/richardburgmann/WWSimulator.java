@@ -45,7 +45,7 @@ public class WWSimulator {
 
 
         //agent = new Adventurer();
-        for (int l = 0; l < 6; l++) {
+        for (int l = 0; l < 100; l++) {
             WWSimulator wwSimulator = new WWSimulator();
             wwSimulator.agent = myImortalAdventurer;
             wwSimulator.agent.setHealth(100);
@@ -115,8 +115,10 @@ public class WWSimulator {
         //adventurersPrevXY.col = adventurerXY.col;
 
         int reward = -1;
+        int extraDelayWhenGoalReached = 5000;
 
         while (runSim) {
+
             logger.debug("Explored " + gameState.getCountVisited() + " grid(s)");
             timeSteps = timeSteps + 1;
             logger.info("timestep " + timeSteps);
@@ -135,30 +137,41 @@ public class WWSimulator {
 
 
             gameState = agent.act(gameState, action);
+            adventurer.setGridState(gameState);
             CoOrdinate agentXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
             logger.debug("Agents location is "+ agentXY.toCSV());
 
             reward = -1;
             if (agentXY.collision(pitXY)) {
                 // Falling .... !
-                logger.info("Ahhhh falling !");
+                logger.info("*************************");
+                logger.info("***  Ahhhh falling !  ***");
+                logger.info("*************************");
                 reward = reward - 100;
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
+                extraDelayWhenGoalReached = 5000;
             }
             if (agentXY.collision(wumpusXY)) {
                 // Fighting .... !
-                logger.info("The Wumpus !");
+                logger.info("*************************");
+                logger.info("***  The Wumpus !     ***");
+                logger.info("*************************");
                 reward = reward - 100;
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
+                extraDelayWhenGoalReached = 5000;
+
             }
             if (agentXY.collision(goldXY)) {
                 // Rich !
-                logger.info("Gold ! I'm rich !");
+                logger.info("*************************");
+                logger.info("*** Gold ! I'm rich ! ***");
+                logger.info("*************************");
                 reward = reward + 100;
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
+                extraDelayWhenGoalReached = 5000;
 
             }
             if (agent.getHealth() <= 0) {
@@ -197,6 +210,11 @@ public class WWSimulator {
         this.adventurerFinalState.append(Integer.toString(agent.getHealth()));
         this.adventurerFinalState.append(",");
         this.adventurerFinalState.append(timeSteps);
+        try {
+            Thread.sleep(1000 + extraDelayWhenGoalReached);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         frame.dispose();
         System.gc();
 

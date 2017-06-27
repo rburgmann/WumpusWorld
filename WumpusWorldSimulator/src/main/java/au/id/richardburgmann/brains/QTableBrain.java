@@ -21,12 +21,12 @@ public class QTableBrain extends Brain {
     private ArrayList qState = new ArrayList(16);
     private ArrayList rAction = new ArrayList(16);
     private ArrayList qAction = new ArrayList(16);
-    //private double[] allActions = new double[4];
+
     /**
      * Setting gamma to 0.5 means we give equal weight to past and recent
      * experience.
      */
-    private double gamma = 0.5;
+    private double gamma = 0.1;
 
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
@@ -47,9 +47,9 @@ public class QTableBrain extends Brain {
 
     @Override
     public int think(TheWorld state) {
-        logger.debug("think("+state.getEntityLocation(TheWorld.ADVENTURER).toCSV()+") Using Q Matrix below:");
+        logger.debug("think("+state.getEntityLocation(TheWorld.ADVENTURER).toCSV()+") Using Q Matrix.");
 
-        this.brainDump();
+        //this.brainDump();
 
         TheWorld temp = state.cloneStateArray(state);
         CoOrdinate XY = state.getEntityLocation(TheWorld.ADVENTURER);
@@ -76,23 +76,11 @@ public class QTableBrain extends Brain {
                 }
             }
             action = maxAction;
-            logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] +" with a value of "+ maxActionReward);
-
-        } /*else {
-            double[] tempActions = new double[TheWorld.GRID_SIZE];
-            for (int i = 0; i < TheWorld.GRID_SIZE; i++) {
-                if (temp.isThisMoveLegal(i, XY)) {
-                    tempActions[i] = 0;
-                    action = i;
-                } else {
-                    tempActions[i] = -1000;
-                }
-            }
-            qState.add(temp);
-            qAction.add(tempActions);
-        }*/
+            logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+        }
 
         return action;
+
     }
 
     //@Override
@@ -166,8 +154,9 @@ public class QTableBrain extends Brain {
 
 
     public void brainDump() {
-        logger.debug("BRAIN DUMP (qState:qAction)");
-        logger.debug("Adv{Row,Col}(#Visited)[Left,Right,Up,Down]");
+        logger.debug("BRAIN DUMP (Q Matrix)");
+        logger.debug("=====================");
+        logger.debug("Adv{Row,Col}(#Visited)[Left, Right, Up, Down]");
 
         for (int i = 0; i < qState.size(); i++) {
             double[] allActions = (double[]) qAction.get(i);

@@ -901,7 +901,7 @@ public class TheWorld {
             // Keep looking.
             result = true; // So far.
         } else {
-            result = false;
+            return false;
         }
 
         // field comparison
@@ -926,7 +926,8 @@ public class TheWorld {
                 }
             }
         }*/
-        /*if(result) {
+/*
+        if(result) {
             logger.debug("They are equal.");
         } else {
             logger.debug("They are NOT equal.");

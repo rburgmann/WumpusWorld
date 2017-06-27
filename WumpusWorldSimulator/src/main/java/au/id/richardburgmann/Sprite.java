@@ -30,7 +30,7 @@ public class Sprite extends JPanel {
     public Sprite(int entity, TheWorld theWorld, GridPanel gridPanel) {
         /**
          * First ensure the constructor has all the information it needs. Terminate now if we have
-         * any null pointers or other fatal rubbish in the contstructor.
+         * any null pointers or other fatal rubbish in the constructor.
          */
         if (entity >= 0 && entity <= 9) {
             this.entity = entity;
@@ -38,21 +38,24 @@ public class Sprite extends JPanel {
             logger.error("Fatal Error: Unknown entity in method call, value " + entity);
             System.exit(1);
         }
-        if (theWorld != null) {
-            this.myWorld = theWorld;
-        } else {
-            logger.error("Fatal Error: World state object undefined, null pointer in method call");
-            System.exit(1);
-        }
+        this.setGridState(theWorld);
+
         if (gridPanel != null) {
             this.myPanel = gridPanel;
         } else {
             logger.error("Fatal Error: GridPanel object undefined, null pointer in method call");
             System.exit(1);
         }
-        logger.info("Sprite created for entity " + this.entity);
+        //logger.info("Sprite created for entity " + this.entity);
     }
-
+    public void setGridState(TheWorld currentState) {
+        if (currentState != null) {
+            this.myWorld = currentState;
+        } else {
+            logger.error("Fatal Error: World state object undefined, null pointer in method call");
+            System.exit(1);
+        }
+    }
     /**
      * Draw me in the correct location
      */
