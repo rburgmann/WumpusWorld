@@ -8,6 +8,8 @@ package au.id.richardburgmann;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
 public class CoOrdinate {
     private static final Logger logger = LoggerFactory.getLogger(CoOrdinate.class);
     public int row = 0;
@@ -25,5 +27,15 @@ public class CoOrdinate {
         } else {
             return false;
         }
+    }
+
+    public boolean collision(ArrayList<CoOrdinate> otherXY) {
+
+        for (int i = 0; i<otherXY.size(); i++ ) {
+            if ((this.row == otherXY.get(i).row) && (this.col == otherXY.get(i).col)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

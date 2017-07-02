@@ -4,11 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -19,6 +22,9 @@ import java.util.Properties;
  * during the project at https://github.com/rburgmann/WumpusWorld</p>
  */
 public class WWSimulator {
+    private Font myTitleFont = new Font(Font.SANS_SERIF, Font.BOLD, 48);
+    private Font myMenuFont = new Font(Font.SANS_SERIF, Font.PLAIN, 28);
+
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
     private static Properties defaultProps = new Properties();
     private static Properties applicationProps;
@@ -41,13 +47,14 @@ public class WWSimulator {
     public static void main(String[] args) {
         logger.info("main: Started.");
 
-        Adventurer myImortalAdventurer = new Adventurer();
+        Adventurer myImmortalAdventurer = new Adventurer();
 
 
         //agent = new Adventurer();
         for (int l = 0; l < 100; l++) {
+            logger.info("Loop " + l);
             WWSimulator wwSimulator = new WWSimulator();
-            wwSimulator.agent = myImortalAdventurer;
+            wwSimulator.agent = myImmortalAdventurer;
             wwSimulator.agent.setHealth(100);
 
             wwSimulator.loadProperties();
@@ -70,6 +77,10 @@ public class WWSimulator {
     private void run() {
 
         JFrame frame = new JFrame("Wumpus World Simulator");
+        frame.setFont(this.myTitleFont);
+
+        frame.setJMenuBar(this.createMyMenus());
+
         frame.setMinimumSize(minSize);
         frame.setSize(defaultWidth, defaultHeight);
         GridPanel gridPanel = new GridPanel(4);
@@ -108,6 +119,8 @@ public class WWSimulator {
         CoOrdinate wallXY = gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = gameState.getEntityLocation(TheWorld.GOLD);
         CoOrdinate adventurerXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+        ArrayList<CoOrdinate> stenchesXY = gameState.getPerceptions(TheWorld.STENCHES);
+        ArrayList<CoOrdinate> breezesXY = gameState.getPerceptions(TheWorld.BREEZES);
         this.adventurerFinalState.append(adventurerXY.toCSV() + ",");
         this.adventurerFinalState.append(goldXY.toCSV() + ",");
         //CoOrdinate adventurersPrevXY = new CoOrdinate();
@@ -118,10 +131,9 @@ public class WWSimulator {
         int extraDelayWhenGoalReached = 5000;
 
         while (runSim) {
-
-            logger.debug("Explored " + gameState.getCountVisited() + " grid(s)");
             timeSteps = timeSteps + 1;
-            logger.info("timestep " + timeSteps);
+            logger.debug("Explored " + gameState.getCountVisited() + " grid(s) " +
+                    " timestep " + timeSteps);
             logger.debug("Agents health is " + agent.getHealth());
             try {
                 Thread.sleep(1000);
@@ -139,9 +151,27 @@ public class WWSimulator {
             gameState = agent.act(gameState, action);
             adventurer.setGridState(gameState);
             CoOrdinate agentXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
-            logger.debug("Agents location is "+ agentXY.toCSV());
+            logger.debug("Agents location is " + agentXY.toCSV());
 
             reward = -1;
+
+            if (agentXY.collision(stenchesXY)) {
+                // This doesn't smell good.
+                logger.info("****************************");
+                logger.info("*** What a foul Stench ! ***");
+                logger.info("****************************");
+                reward = reward - 2;
+
+            }
+            if (agentXY.collision(breezesXY)) {
+                // This doesn't smell good.
+                logger.info("****************************");
+                logger.info("***  I feel a BREEZE !   ***");
+                logger.info("****************************");
+                reward = reward - 2;
+
+            }
+
             if (agentXY.collision(pitXY)) {
                 // Falling .... !
                 logger.info("*************************");
@@ -150,7 +180,6 @@ public class WWSimulator {
                 reward = reward - 100;
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
             }
             if (agentXY.collision(wumpusXY)) {
                 // Fighting .... !
@@ -160,7 +189,7 @@ public class WWSimulator {
                 reward = reward - 100;
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
+
 
             }
             if (agentXY.collision(goldXY)) {
@@ -168,12 +197,13 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info("*** Gold ! I'm rich ! ***");
                 logger.info("*************************");
-                reward = reward + 100;
+                reward = reward + 101;
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
+
 
             }
+
             if (agent.getHealth() <= 0) {
                 this.adventurerFinalState.append("STARVATION,");
                 reward = reward - 100;
@@ -184,7 +214,6 @@ public class WWSimulator {
                 logger.info("Ouch a wall !");
                 reward = reward - 10;
                 //move them back to whence they came.
-                //gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.row, adventurersPrevXY.col);
                 gameState = prevGameState;
 
             }
@@ -196,22 +225,20 @@ public class WWSimulator {
 
             agent.learn(prevGameState, action, reward);
 
-           // agent.brain.brainDump();
+            // agent.brain.brainDump();
 
             if (!runSim) {
                 logger.info("Final score " + agent.getHealth());
             } else {
                 action = agent.think(gameState);
-                //adventurersPrevXY.row = adventurerXY.row;
-                //adventurersPrevXY.col = adventurerXY.col;
-                //gameState = agent.act(gameState, action);
+
             }
         }
         this.adventurerFinalState.append(Integer.toString(agent.getHealth()));
         this.adventurerFinalState.append(",");
         this.adventurerFinalState.append(timeSteps);
         try {
-            Thread.sleep(1000 + extraDelayWhenGoalReached);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -348,4 +375,36 @@ public class WWSimulator {
         this.saveDefaultProperties();
         this.loadProperties();
     }
+
+
+    private JMenuBar createMyMenus() {
+            JMenuBar myMenuBar = new JMenuBar();
+            myMenuBar.setBorderPainted(true);
+            myMenuBar.setBorder(new BorderUIResource.LineBorderUIResource(Color.BLACK));
+            myMenuBar.setMargin(new Insets(20,20,20,20));
+
+            myMenuBar.setFont(myMenuFont);
+
+
+            JMenu fileMenu = new JMenu("File");
+            fileMenu.setMnemonic(KeyEvent.VK_F);
+            fileMenu.setFont(myMenuFont);
+
+            JMenu editMenu = new JMenu("Edit");
+            editMenu.setMnemonic(KeyEvent.VK_E);
+            editMenu.setFont(myMenuFont);
+
+            JMenu runMenu = new JMenu("Run");
+            runMenu.setMnemonic(KeyEvent.VK_R);
+            runMenu.setFont(myMenuFont);
+
+            myMenuBar.add(fileMenu);
+            myMenuBar.add(editMenu);
+            myMenuBar.add(runMenu);
+
+            return  myMenuBar;
+    }
+
+
+
 }

@@ -26,7 +26,9 @@ public class LogExperiment {
     public LogExperiment(Properties myProperties) {
 
         EXPERIMENT_LOG_DIR = myProperties.getProperty("experimentLogDir");
+        logFileName = myProperties.getProperty("experimentLogFileName");
         logger.debug("experimentLogDir=" + EXPERIMENT_LOG_DIR);
+        logger.debug("experimentLogFileName=" + logFileName);
 
 
     }

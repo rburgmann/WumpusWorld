@@ -26,7 +26,7 @@ public class QTableBrain extends Brain {
      * Setting gamma to 0.5 means we give equal weight to past and recent
      * experience.
      */
-    private double gamma = 0.1;
+    private double gamma = 0.9;
 
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
@@ -57,13 +57,13 @@ public class QTableBrain extends Brain {
         int action = temp.getALegalRandomMove(XY); // Default value.
 
         if (this.qState.contains(temp)) {
-            logger.debug("...Been here before, whats the best move I know?");
+            //logger.debug("...Been here before, whats the best move I know?");
 
             int ix = qState.indexOf(temp);
-            logger.debug("Found state at location " + ix);
+            //logger.debug("Found state at location " + ix);
 
             double[] allActions = (double[]) qAction.get(ix);
-            logger.debug("Q values are [" + allActions[0] + "," + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
+           // logger.debug("Q values are [" + allActions[0] + "," + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
 
             double maxActionReward = -1000;
 
@@ -76,7 +76,7 @@ public class QTableBrain extends Brain {
                 }
             }
             action = maxAction;
-            logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+           // logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
         }
 
         return action;
@@ -104,7 +104,7 @@ public class QTableBrain extends Brain {
             currentStateActions = (double[]) rAction.get(qState.indexOf(gridState));
             currentStateActions[action] = reward;
             rAction.set(ix, currentStateActions);
-            logger.debug("Found state within qState at index " + ix);
+            //logger.debug("Found state within qState at index " + ix);
         } else {
             qState.add(gridState);
             rMatrix = new double[TheWorld.GRID_SIZE];
@@ -114,7 +114,7 @@ public class QTableBrain extends Brain {
             for (int i=0; i<state.GRID_SIZE; i++){
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
-                    qMatrix[i] = 0;
+                    qMatrix[i] = 1; // reward novelty  /  exploration.
 
                 } else {
                     rMatrix[i] = -1000;

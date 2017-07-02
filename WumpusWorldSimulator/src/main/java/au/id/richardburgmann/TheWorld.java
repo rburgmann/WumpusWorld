@@ -8,6 +8,7 @@ package au.id.richardburgmann;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
@@ -796,7 +797,21 @@ public class TheWorld {
         }
         return entityXY;
     }
+    public ArrayList<CoOrdinate> getPerceptions(int entity) {
+        ArrayList<CoOrdinate> entityXY = new ArrayList<>(TheWorld.GRID_SIZE);
 
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                if (this.worldState[entity][row][col] == OCCUPIED_LOCATION) {
+                    CoOrdinate percept = new CoOrdinate();
+                    percept.row = row;
+                    percept.col = col;
+                    entityXY.add(percept);
+                }
+            }
+        }
+        return entityXY;
+    }
     /**
      * Private pseudo random number sequencer.
      * Set it up once on first access.
