@@ -1,8 +1,18 @@
 package au.id.richardburgmann.brains;
-/**
- * Created by Richard Burgmann on 22/06/2017.
- * Copyright Richard Burgmann (2017)
- * All Rights Reserved.
+/*
+   Copyright 2017 Richard Burgmann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 
 import au.id.richardburgmann.Adventurer;
@@ -114,7 +124,7 @@ public class QTableBrain extends Brain {
             for (int i=0; i<state.GRID_SIZE; i++){
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
-                    qMatrix[i] = 1; // reward novelty  /  exploration.
+                    qMatrix[i] = gridState.getRandom(); // reward novelty  /  exploration.
 
                 } else {
                     rMatrix[i] = -1000;
@@ -156,7 +166,7 @@ public class QTableBrain extends Brain {
     public void brainDump() {
         logger.debug("BRAIN DUMP (Q Matrix)");
         logger.debug("=====================");
-        logger.debug("Adv{Row,Col}(#Visited)[Left, Right, Up, Down]");
+        logger.debug("Adv{Row,Col} (#Visited) [Left, Right, Up, Down]");
 
         for (int i = 0; i < qState.size(); i++) {
             double[] allActions = (double[]) qAction.get(i);
@@ -164,8 +174,8 @@ public class QTableBrain extends Brain {
             CoOrdinate coOrdinate = theWorld.getEntityLocation(TheWorld.ADVENTURER);
             int v = theWorld.getCountVisited();
             logger.debug("{" + coOrdinate.row + "," + coOrdinate.col + "}" +
-                    "(" + v + ")[" + allActions[0] + ","
-                    + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
+                    " (" + v + ") [" + allActions[0] + ", "
+                    + allActions[1] + ", " + allActions[2] + ", " + allActions[3] + "]");
         }
 
 
