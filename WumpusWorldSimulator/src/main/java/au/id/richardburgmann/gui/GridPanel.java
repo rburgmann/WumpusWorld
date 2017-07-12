@@ -13,8 +13,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static au.id.richardburgmann.TheWorld.GRID_SIZE;
+
 /**
- * GridPanel is the canvas that draws the 4 row 4 grid that Wumpus World is played on.
+ * GridPanel is the canvas that Wumpus World is played on.
+ * It dynamically adjusts the size of the grid to the available space
+ * and draws the entities of Wumpus world on the grid.
  */
 
 public class GridPanel extends JPanel {
@@ -22,8 +26,17 @@ public class GridPanel extends JPanel {
     public int defaultMargin = 20;
     public int cellHeight = 100;
     public int cellWidth = 100;
+<<<<<<< HEAD:WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/GridPanel.java
     private int gridSize = 4; // gridSize by gridSize, n row n.
     private ArrayList<Sprite> mySprites = new ArrayList<Sprite>(5);
+=======
+    private int gridSize = GRID_SIZE; // gridSize by gridSize, n row n.
+    private Sprite adventurer;
+    private Sprite wumpus;
+    private Sprite pits;
+    private Sprite gold;
+    private Sprite walls;
+>>>>>>> origin/master:WumpusWorldSimulator/src/main/java/au/id/richardburgmann/GridPanel.java
 
     public GridPanel() {
         this.gridSize = TheWorld.GRID_SIZE;
@@ -43,6 +56,15 @@ public class GridPanel extends JPanel {
         graphics2D.setColor(Color.black);
 
         this.paintGrid(graphics);
+<<<<<<< HEAD:WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/GridPanel.java
+=======
+        this.walls.paint(graphics);
+        this.gold.paint(graphics);
+        this.wumpus.paint(graphics);
+        this.pits.paint(graphics);
+        this.adventurer.paint(graphics);
+
+>>>>>>> origin/master:WumpusWorldSimulator/src/main/java/au/id/richardburgmann/GridPanel.java
 
         for (Sprite aSprite : mySprites){
             aSprite.paint(graphics);

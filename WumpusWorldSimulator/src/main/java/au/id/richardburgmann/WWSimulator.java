@@ -1,4 +1,19 @@
 package au.id.richardburgmann;
+/*
+   Copyright 2017 Richard Burgmann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
 
 import au.id.richardburgmann.gui.GridPanel;
 import au.id.richardburgmann.gui.GuiEventListener;
@@ -8,13 +23,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+<<<<<<< HEAD
 import java.awt.event.WindowAdapter;
+=======
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+import javax.swing.plaf.BorderUIResource;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+>>>>>>> origin/master
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+
+
 
 /**
  * <p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
@@ -33,10 +60,17 @@ public class WWSimulator {
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
+<<<<<<< HEAD
     private TheWorld gameState;
     private static WWSimulator wwSimulator;
+=======
+    private static TheWorld gameState;
+    private Font myTitleFont = new Font(Font.SANS_SERIF, Font.BOLD, 48);
+    private Font myMenuFont = new Font(Font.SANS_SERIF, Font.PLAIN, 28);
+>>>>>>> origin/master
     private TheWorld prevGameState;
     private int timeSteps = 0;
+<<<<<<< HEAD
     private MainWindow mainWindow;
     private GridPanel  gridPanel;
     private StringBuffer adventurerFinalState = new StringBuffer(1024);
@@ -51,6 +85,32 @@ public class WWSimulator {
     Sprite wallsSprite;
 
     public static void main(String[] args) {
+=======
+    private boolean startRun = false;
+    WWSimulator wwSimulator;
+    JFrame frame;
+    private StringBuffer adventurerFinalState = new StringBuffer(1024);
+
+    private Dimension minSize = new Dimension(440, 440);
+    private Adventurer agent;
+
+    public static void main(String[] args) {
+        logger.info("main: Started.");
+
+        WWSimulator wwSimulator = new WWSimulator();
+        wwSimulator.runBatch(16);
+
+        experimentalData.logParams(applicationProps);
+        logger.info("main: Finished.");
+    }
+    private void runBatch(int batchSize) {
+        Adventurer myImmortalAdventurer = new Adventurer();
+        for (int l = 0; l < batchSize; l++) {
+            logger.info("Loop " + l);
+            wwSimulator = new WWSimulator();
+            wwSimulator.agent = myImmortalAdventurer;
+            wwSimulator.agent.setHealth(100);
+>>>>>>> origin/master
 
         int batchSize = 1;
         if (args.length > 0) {
@@ -68,6 +128,7 @@ public class WWSimulator {
             wwSimulator.run();
             wwSimulator.logRunResults();
         }
+<<<<<<< HEAD
         wwSimulator.shutdown();
     }
 
@@ -75,6 +136,28 @@ public class WWSimulator {
         loadProperties();
         createExperimentLog();
     }
+=======
+    }
+    private void run() {
+
+        frame = new JFrame("Wumpus World Simulator");
+        frame.setFont(this.myTitleFont);
+
+        frame.setJMenuBar(this.createMyMenus());
+
+        frame.setMinimumSize(minSize);
+        frame.setSize(defaultWidth, defaultHeight);
+        GridPanel gridPanel = new GridPanel(4);
+
+        Sprite adventurer = new Sprite(TheWorld.ADVENTURER, gameState, gridPanel);
+
+        this.agent.setSprite(adventurer);
+        this.agent.setTheWorld(gameState);
+        gridPanel.setAdventurer(adventurer);
+
+        Sprite wumpus = new Sprite(TheWorld.WUMPUS, gameState, gridPanel);
+        gridPanel.setWumpus(wumpus);
+>>>>>>> origin/master
 
     private void shutdown() {
         logger.info("Shutdown.");
@@ -147,24 +230,36 @@ public class WWSimulator {
 
     }
 
+<<<<<<< HEAD
     private void initGameState() {
         gameState = new TheWorld(applicationProps);
     }
     private void run() {
+=======
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.isDoubleBuffered();
+        frame.addComponentListener(new GuiEventListener());
+>>>>>>> origin/master
 
         CoOrdinate wumpusXY = gameState.getEntityLocation(TheWorld.WUMPUS);
         CoOrdinate pitXY = gameState.getEntityLocation(TheWorld.PITS);
         CoOrdinate wallXY = gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = gameState.getEntityLocation(TheWorld.GOLD);
         CoOrdinate adventurerXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+<<<<<<< HEAD
 
         ArrayList<CoOrdinate> stenchesXY = gameState.getPerceptions(TheWorld.STENCHES);
         ArrayList<CoOrdinate> breezesXY = gameState.getPerceptions(TheWorld.BREEZES);
 
         this.adventurerFinalState = new StringBuffer();
+=======
+        ArrayList<CoOrdinate> stenchesXY = gameState.getPerceptions(TheWorld.STENCHES);
+        ArrayList<CoOrdinate> breezesXY = gameState.getPerceptions(TheWorld.BREEZES);
+>>>>>>> origin/master
         this.adventurerFinalState.append(adventurerXY.toCSV() + ",");
         this.adventurerFinalState.append(goldXY.toCSV() + ",");
 
+<<<<<<< HEAD
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -180,6 +275,28 @@ public class WWSimulator {
             timeSteps = timeSteps + 1;
             logger.info("timestep " + timeSteps + " Adventurers health is " + this.adventurer.getHealth());
 
+=======
+        int reward = -1;
+        int extraDelayWhenGoalReached = 5000;
+        while (!startRun) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        while (runSim ) {
+            timeSteps = timeSteps + 1;
+            logger.debug("Explored " + gameState.getCountVisited() + " grid(s) " +
+                    " timestep " + timeSteps);
+            logger.debug("Agents health is " + agent.getHealth());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // Store current game state so we can learn from the action we are taking next.
+>>>>>>> origin/master
 
             // Store current game state so we can learn from the action we are taking next.
             prevGameState = TheWorld.cloneStateArray(gameState);
@@ -193,11 +310,16 @@ public class WWSimulator {
             updateMainWindow(gameState);
 
             CoOrdinate agentXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+<<<<<<< HEAD
+=======
+            logger.debug("Agents location is " + agentXY.toCSV());
+>>>>>>> origin/master
 
             reward = -1;
 
             if (agentXY.collision(stenchesXY)) {
                 // This doesn't smell good.
+<<<<<<< HEAD
                 logger.info(" ");
                 logger.info("****************************");
                 logger.info("*** What a foul Stench ! ***");
@@ -213,6 +335,23 @@ public class WWSimulator {
                 logger.info(" ");
                 reward = reward - 1;
             }
+=======
+                logger.info("****************************");
+                logger.info("*** What a foul Stench ! ***");
+                logger.info("****************************");
+                reward = reward - 2;
+
+            }
+            if (agentXY.collision(breezesXY)) {
+                // This doesn't smell good.
+                logger.info("****************************");
+                logger.info("***  I feel a BREEZE !   ***");
+                logger.info("****************************");
+                reward = reward - 2;
+
+            }
+
+>>>>>>> origin/master
             if (agentXY.collision(pitXY)) {
                 // Falling .... !
                 logger.info("*************************");
@@ -232,6 +371,11 @@ public class WWSimulator {
                 reward = reward - 100;
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
             }
             if (agentXY.collision(goldXY)) {
                 // Rich !
@@ -239,12 +383,23 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info("*** Gold ! I'm rich ! ***");
                 logger.info("*************************");
+<<<<<<< HEAD
                 logger.info(" ");
                 reward = reward + 101;
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
             }
             if (this.adventurer.getHealth() <= 0) {
+=======
+                reward = reward + 101;
+                this.adventurerFinalState.append("GOLD,");
+                runSim = false;
+
+
+            }
+
+            if (agent.getHealth() <= 0) {
+>>>>>>> origin/master
                 this.adventurerFinalState.append("STARVATION,");
                 reward = reward - 100;
                 runSim = false;
@@ -257,24 +412,41 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward - 10;
+<<<<<<< HEAD
                 gameState = prevGameState; //move them back to whence they came.
+=======
+                //move them back to whence they came.
+                gameState = prevGameState;
+>>>>>>> origin/master
 
             }
             this.adventurer.setHealth(this.adventurer.getHealth() + reward);
 
             updateMainWindow(gameState);
 
+<<<<<<< HEAD
             this.adventurer.learn(prevGameState, action, reward);
+=======
+
+            agent.learn(prevGameState, action, reward);
+
+            // agent.brain.brainDump();
+>>>>>>> origin/master
 
             if (!runSim) {
                 logger.info("Final score " + this.adventurer.getHealth());
             } else {
+<<<<<<< HEAD
                 action = this.adventurer.think(gameState);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+=======
+                action = agent.think(gameState);
+
+>>>>>>> origin/master
             }
         }
         this.adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
@@ -282,7 +454,11 @@ public class WWSimulator {
         this.adventurerFinalState.append(timeSteps);
 
         try {
+<<<<<<< HEAD
             Thread.sleep(2000);
+=======
+            Thread.sleep(5000);
+>>>>>>> origin/master
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -356,4 +532,156 @@ public class WWSimulator {
 
         }
     }
+
+
+    private JMenuBar createMyMenus() {
+        JMenuBar myMenuBar = new JMenuBar();
+        myMenuBar.setBorderPainted(true);
+        myMenuBar.setBorder(new BorderUIResource.LineBorderUIResource(Color.BLACK));
+        myMenuBar.setMargin(new Insets(20, 20, 20, 20));
+
+        myMenuBar.setFont(myMenuFont);
+
+
+        JMenu fileMenu = new JMenu("File");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        fileMenu.setFont(myMenuFont);
+        JMenuItem openMenuItem = new JMenuItem("Open");
+        openMenuItem.setFont(myMenuFont);
+        openMenuItem.addActionListener(new openMenuItemListener());
+
+        JMenuItem saveMenuItem = new JMenuItem("Save");
+        saveMenuItem.setFont(myMenuFont);
+        saveMenuItem.addActionListener(new saveMenuItemListener());
+
+        JMenuItem saveAsMenuItem = new JMenuItem("Save As");
+        saveAsMenuItem.setFont(myMenuFont);
+        saveAsMenuItem.addActionListener(new saveAsMenuItemListener());
+
+        JMenuItem closeMenuItem = new JMenuItem("Close");
+        closeMenuItem.setFont(myMenuFont);
+        closeMenuItem.addActionListener(new closeMenuItemListener());
+
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.setFont(myMenuFont);
+        exitMenuItem.addActionListener(new exitMenuItemListener());
+
+        fileMenu.add(openMenuItem);
+        fileMenu.add(saveMenuItem);
+        fileMenu.add(saveAsMenuItem);
+        fileMenu.add(closeMenuItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitMenuItem);
+
+        JMenuItem editMenuItem = new JMenu("Edit");
+        editMenuItem.setMnemonic(KeyEvent.VK_E);
+        editMenuItem.setFont(myMenuFont);
+        editMenuItem.addActionListener(new editMenuItemListener());
+
+        JMenu runMenu = new JMenu("Run");
+        runMenu.setMnemonic(KeyEvent.VK_R);
+        runMenu.setFont(myMenuFont);
+        runMenu.addMenuListener((MenuListener) new runMenuItemListener());
+
+        myMenuBar.add(fileMenu);
+        myMenuBar.add(runMenu);
+
+        return myMenuBar;
+    }
+
+    /*
+        Action Listener inner classes.
+     */
+    public class openMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("openMenuItem ActionEvent " + e.getActionCommand().toString());
+
+        }
+    }
+
+    public class saveMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("saveMenuItem ActionEvent " + e.getActionCommand().toString());
+
+        }
+    }
+
+    public class saveAsMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("saveAsMenuItem ActionEvent " + e.getActionCommand().toString());
+
+        }
+    }
+    public class closeMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("closeMenuItem ActionEvent " + e.getActionCommand().toString());
+
+
+
+        }
+    }
+    public class exitMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("exitMenuItem ActionEvent " + e.getActionCommand().toString());
+            try {
+                frame.dispose();
+                wwSimulator = null;
+                System.gc();
+                System.exit(0);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+
+
+        }
+    }
+    public class editMenuItemListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            logger.debug("editMenuItem ActionEvent " + e.getActionCommand().toString());
+            startRun = true;
+
+        }
+    }
+    public class runMenuItemListener implements MenuListener {
+
+        public void actionPerformed() {
+
+        }
+
+        @Override
+        public void menuSelected(MenuEvent e) {
+            logger.debug("runMenu MenuEvent Selected");
+            if (startRun) {
+                startRun = false;
+            } else {
+                startRun = true;
+            }
+
+        }
+
+        @Override
+        public void menuDeselected(MenuEvent e) {
+            logger.debug("runMenu MenuEvent Deselected");
+
+        }
+
+        @Override
+        public void menuCanceled(MenuEvent e) {
+            logger.debug("runMenu MenuEvent Canceled");
+
+        }
+    }
+
 }

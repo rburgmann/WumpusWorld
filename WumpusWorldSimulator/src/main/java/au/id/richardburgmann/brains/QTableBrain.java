@@ -1,8 +1,18 @@
 package au.id.richardburgmann.brains;
-/**
- * Created by Richard Burgmann on 22/06/2017.
- * Copyright Richard Burgmann (2017)
- * All Rights Reserved.
+/*
+   Copyright 2017 Richard Burgmann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 
 import au.id.richardburgmann.Adventurer;
@@ -28,12 +38,16 @@ public class QTableBrain extends Brain {
      * Setting gamma to 0.5 means we give equal weight to past and recent
      * experience. 0 means only immeadiate rewards are considered while 0.9 means longer term rewards are considered.
      */
+<<<<<<< HEAD
     private double gamma = 0.95;
     private boolean adaptiveGamma = true;
     private double numberOfStepsToAdaptGamma = 200;
     private double gammaStartingValue = 0.1;
     private double gammaFinishingValue = 0.99;
     private double gammaCurrentStep = 0;
+=======
+    private double gamma = 0.9;
+>>>>>>> origin/master
 
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
@@ -65,14 +79,22 @@ public class QTableBrain extends Brain {
 
         int action = state.getALegalRandomMove(XY); // Default value.
 
+<<<<<<< HEAD
         if (this.qState.contains(state)) {
             logger.debug("...Been here before, whats the best move I know?");
 
             int ix = qState.indexOf(state);
             logger.debug("Found state at location " + ix);
+=======
+        if (this.qState.contains(temp)) {
+            //logger.debug("...Been here before, whats the best move I know?");
+
+            int ix = qState.indexOf(temp);
+            //logger.debug("Found state at location " + ix);
+>>>>>>> origin/master
 
             double[] allActions = (double[]) qAction.get(ix);
-            logger.debug("Q values are [" + allActions[0] + "," + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
+           // logger.debug("Q values are [" + allActions[0] + "," + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
 
             double maxActionReward = -1000;
 
@@ -85,7 +107,11 @@ public class QTableBrain extends Brain {
                 }
             }
             action = maxAction;
+<<<<<<< HEAD
             logger.debug("Best action is " + state.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+=======
+           // logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+>>>>>>> origin/master
         }
 
         return action;
@@ -114,7 +140,7 @@ public class QTableBrain extends Brain {
             currentStateActions = (double[]) rAction.get(qState.indexOf(gridState));
             currentStateActions[action] = reward;
             rAction.set(ix, currentStateActions);
-            logger.debug("Found state within qState at index " + ix);
+            //logger.debug("Found state within qState at index " + ix);
         } else {
             qState.add(gridState);
             rMatrix = new double[TheWorld.GRID_SIZE];
@@ -124,7 +150,11 @@ public class QTableBrain extends Brain {
             for (int i=0; i<state.GRID_SIZE; i++){
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
+<<<<<<< HEAD
                     qMatrix[i] = 5; // Reward curiosity
+=======
+                    qMatrix[i] = gridState.getRandom(); // reward novelty  /  exploration.
+>>>>>>> origin/master
 
                 } else {
                     rMatrix[i] = -1000;
@@ -167,17 +197,28 @@ public class QTableBrain extends Brain {
     public void brainDump() {
         logger.debug("BRAIN DUMP (Q Matrix)");
         logger.debug("=====================");
+<<<<<<< HEAD
         logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
 
         ArrayList brainDump = new ArrayList<BrainCell>(16);
+=======
+        logger.debug("Adv{Row,Col} (#Visited) [Left, Right, Up, Down]");
+>>>>>>> origin/master
 
         for (int i = 0; i < qState.size(); i++) {
             TheWorld theWorld = (TheWorld) qState.get(i);
             CoOrdinate coOrdinate = theWorld.getEntityLocation(TheWorld.ADVENTURER);
+<<<<<<< HEAD
             double[] weights = (double[]) qAction.get(i);
             BrainCell brainCell;
             brainCell = new BrainCell(coOrdinate, weights);
             brainDump.add(brainCell);
+=======
+            int v = theWorld.getCountVisited();
+            logger.debug("{" + coOrdinate.row + "," + coOrdinate.col + "}" +
+                    " (" + v + ") [" + allActions[0] + ", "
+                    + allActions[1] + ", " + allActions[2] + ", " + allActions[3] + "]");
+>>>>>>> origin/master
         }
         Collections.sort(brainDump);
         for (Object n: brainDump) {

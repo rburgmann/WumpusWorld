@@ -1,15 +1,28 @@
 package au.id.richardburgmann;
-/**
- * Created by Richard Burgmann on 11/06/2017.
- * Copyright Richard Burgmann (2017)
- * All Rights Reserved.
+/*
+   Copyright 2017 Richard Burgmann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Comparator;
+=======
+>>>>>>> origin/master
 import java.util.Properties;
 import java.util.Random;
 
@@ -797,7 +810,21 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         }
         return entityXY;
     }
+    public ArrayList<CoOrdinate> getPerceptions(int entity) {
+        ArrayList<CoOrdinate> entityXY = new ArrayList<>(TheWorld.GRID_SIZE);
 
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                if (this.worldState[entity][row][col] == OCCUPIED_LOCATION) {
+                    CoOrdinate percept = new CoOrdinate();
+                    percept.row = row;
+                    percept.col = col;
+                    entityXY.add(percept);
+                }
+            }
+        }
+        return entityXY;
+    }
     /**
      * Private pseudo random number sequencer.
      * Set it up once on first access.
