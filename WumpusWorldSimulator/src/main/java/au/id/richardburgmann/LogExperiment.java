@@ -38,11 +38,8 @@ public class LogExperiment {
     public LogExperiment(Properties myProperties) {
 
         EXPERIMENT_LOG_DIR = myProperties.getProperty("experimentLogDir");
-<<<<<<< HEAD
         deleteLogDataIfExists();
-=======
         logFileName = myProperties.getProperty("experimentLogFileName");
->>>>>>> origin/master
         logger.debug("experimentLogDir=" + EXPERIMENT_LOG_DIR);
         logger.debug("experimentLogFileName=" + logFileName);
 

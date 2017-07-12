@@ -9,14 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
+
 import java.util.Comparator;
 
 public class CoOrdinate implements Comparator<CoOrdinate>, Comparable<CoOrdinate> {
-=======
-
-public class CoOrdinate {
->>>>>>> origin/master
     private static final Logger logger = LoggerFactory.getLogger(CoOrdinate.class);
     public int row = 0;
     public int col = 0;
@@ -37,19 +33,13 @@ public class CoOrdinate {
 
     public boolean collision(ArrayList<CoOrdinate> otherXY) {
 
-<<<<<<< HEAD
         for (int i = 0; i < otherXY.size(); i++) {
-=======
-        for (int i = 0; i<otherXY.size(); i++ ) {
->>>>>>> origin/master
             if ((this.row == otherXY.get(i).row) && (this.col == otherXY.get(i).col)) {
                 return true;
             }
         }
         return false;
     }
-<<<<<<< HEAD
-
     public boolean equals(Object o) {
 
         // self check
@@ -77,6 +67,5 @@ public class CoOrdinate {
     public int compareTo(CoOrdinate o) {
         return ((this.row - o.row) * TheWorld.GRID_SIZE) + (this.col - o.col);
     }
-=======
->>>>>>> origin/master
+
 }

@@ -17,12 +17,8 @@ package au.id.richardburgmann;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Comparator;
-=======
->>>>>>> origin/master
 import java.util.Properties;
 import java.util.Random;
 
@@ -875,12 +871,6 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         boolean legalStatus = false;
 
         int[] availableLegalMoves = this.getAllLegalMovesFromHere(fromHereXY);
-        // logger.debug("Available moves are " +
-        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[0] * availableLegalMoves[0])] + TheWorld.ACTION_CONSTANTS[0] + "," +
-        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[1] * availableLegalMoves[1])] + TheWorld.ACTION_CONSTANTS[1] + "," +
-        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[2] * availableLegalMoves[2])] + TheWorld.ACTION_CONSTANTS[2] + "," +
-        //         TheWorld.LEGAL_MOVES[(availableLegalMoves[3] * availableLegalMoves[3])] + TheWorld.ACTION_CONSTANTS[3] + ".");
-
         if (availableLegalMoves[candidateMove] >= 0) {
             legalStatus = true;
         }
@@ -906,7 +896,7 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         }
         return count;
     }
-    public ArrayList<CoOrdinate> getPerceptions(int entity) {
+    /*public ArrayList<CoOrdinate> getPerceptions(int entity) {
         ArrayList<CoOrdinate> entityXY = new ArrayList<>(TheWorld.ENTITY_CONSTANTS.length);
 
         for (int row = 0; row < GRID_SIZE; row++) {
@@ -921,7 +911,7 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         }
         entityXY.trimToSize();
         return entityXY;
-    }
+    }*/
 
     @Override
     public int compare(TheWorld o1, TheWorld o2) {
