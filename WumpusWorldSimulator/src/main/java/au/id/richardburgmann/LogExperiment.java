@@ -12,6 +12,8 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class LogExperiment {
@@ -26,6 +28,7 @@ public class LogExperiment {
     public LogExperiment(Properties myProperties) {
 
         EXPERIMENT_LOG_DIR = myProperties.getProperty("experimentLogDir");
+        deleteLogDataIfExists();
         logger.debug("experimentLogDir=" + EXPERIMENT_LOG_DIR);
 
 
@@ -53,7 +56,7 @@ public class LogExperiment {
 
     }
 
-    public void logData(WWSimulator wwSimulator) {
+    public void logData(String logEntry) {
         //
         // Create log files.
         //
@@ -62,9 +65,9 @@ public class LogExperiment {
             fn.append(EXPERIMENT_LOG_DIR + logFileName + "Data." + logFileDataSuffix);
             BufferedWriter bufferedWriter;
             FileWriter fileWriter;
-            fileWriter = new FileWriter(fn.toString(),true); // append to eof.
+            fileWriter = new FileWriter(fn.toString(), true); // append to eof.
             bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(wwSimulator.getLogData());
+            bufferedWriter.write(logEntry);
             bufferedWriter.newLine();
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -73,8 +76,16 @@ public class LogExperiment {
             logger.error("Failed to log data.");
             logger.error(e.getMessage());
         }
+    }
 
+    public void deleteLogDataIfExists() {
 
+        String pathname = new String(EXPERIMENT_LOG_DIR + logFileName + "Data." + logFileDataSuffix);
+        try {
+            boolean ok = Files.deleteIfExists(Paths.get(pathname));
+        } catch (IOException x) {
+            System.err.println(x);
+        }
     }
 
 }

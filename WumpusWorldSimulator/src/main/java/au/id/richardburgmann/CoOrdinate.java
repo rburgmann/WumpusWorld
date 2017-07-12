@@ -8,7 +8,10 @@ package au.id.richardburgmann;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CoOrdinate {
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class CoOrdinate implements Comparator<CoOrdinate>, Comparable<CoOrdinate> {
     private static final Logger logger = LoggerFactory.getLogger(CoOrdinate.class);
     public int row = 0;
     public int col = 0;
@@ -25,5 +28,43 @@ public class CoOrdinate {
         } else {
             return false;
         }
+    }
+
+    public boolean collision(ArrayList<CoOrdinate> otherXY) {
+
+        for (int i = 0; i < otherXY.size(); i++) {
+            if ((this.row == otherXY.get(i).row) && (this.col == otherXY.get(i).col)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean equals(Object o) {
+
+        // self check
+        if (this == o)
+            return true;
+        // null check
+        if (o == null)
+            return false;
+        // type check and cast
+        if (getClass() != o.getClass())
+            return false;
+
+        CoOrdinate oXY = (CoOrdinate) o;
+
+        if ((this.row == oXY.row) && (this.col == oXY.col)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public int compare(CoOrdinate o1, CoOrdinate o2) {
+        System.out.println(o1.row + " " + o2.row);
+        return ((o1.row - o2.row) * TheWorld.GRID_SIZE) + (o1.col - o2.col);
+    }
+    public int compareTo(CoOrdinate o) {
+        return ((this.row - o.row) * TheWorld.GRID_SIZE) + (this.col - o.col);
     }
 }

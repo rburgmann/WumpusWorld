@@ -1,14 +1,19 @@
 package au.id.richardburgmann;
 
+import au.id.richardburgmann.gui.GridPanel;
+import au.id.richardburgmann.gui.GuiEventListener;
+import au.id.richardburgmann.gui.MainWindow;
+import au.id.richardburgmann.gui.Sprite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.WindowAdapter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -28,120 +33,186 @@ public class WWSimulator {
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
-    private static TheWorld gameState;
+    private TheWorld gameState;
+    private static WWSimulator wwSimulator;
     private TheWorld prevGameState;
-    private int defaultWidth = 1200;
-    private int defaultHeight = 1200;
     private int timeSteps = 0;
+    private MainWindow mainWindow;
+    private GridPanel  gridPanel;
     private StringBuffer adventurerFinalState = new StringBuffer(1024);
 
-    private Dimension minSize = new Dimension(440, 440);
-    private Adventurer agent;
+    private Adventurer adventurer = new Adventurer();
+
+    // Sprites are the guis of the things in the world.
+    Sprite adventurerSprite;
+    Sprite wumpusSprite;
+    Sprite pitsSprite;
+    Sprite goldSprite;
+    Sprite wallsSprite;
 
     public static void main(String[] args) {
-        logger.info("main: Started.");
 
-        Adventurer myImortalAdventurer = new Adventurer();
-
-
-        //agent = new Adventurer();
-        for (int l = 0; l < 100; l++) {
-            WWSimulator wwSimulator = new WWSimulator();
-            wwSimulator.agent = myImortalAdventurer;
-            wwSimulator.agent.setHealth(100);
-
-            wwSimulator.loadProperties();
-            wwSimulator.initialiseWWSimulatorVariables();
-            gameState = new TheWorld(applicationProps);
-            gameState.initAdventurer();
-
-            experimentalData = new LogExperiment(applicationProps);
-            wwSimulator.run();
-            experimentalData.logData(wwSimulator);
+        int batchSize = 1;
+        if (args.length > 0) {
+            batchSize = Integer.parseInt(args[0]);
         }
+        wwSimulator = new WWSimulator();
+        wwSimulator.runSimulations(batchSize);
+    }
+    public void runSimulations(int numberOfTimes) {
+        logger.info("Run simulation "+ numberOfTimes + " time(s)." );
+        wwSimulator.startup();
+        for (int l = 0; l < numberOfTimes; l++) {
 
-
-        //wwSimulator.saveProperties();
-        experimentalData.logParams(applicationProps);
-        // experimentalData.logData(wwSimulator);
-        logger.info("main: Finished.");
+            wwSimulator.initSimulator();
+            wwSimulator.run();
+            wwSimulator.logRunResults();
+        }
+        wwSimulator.shutdown();
     }
 
+    private void startup() {
+        loadProperties();
+        createExperimentLog();
+    }
+
+    private void shutdown() {
+        logger.info("Shutdown.");
+        saveProperties();
+        logRunProperties();
+        mainWindow.dispose();
+        System.exit(0);
+    }
+    private void initSimulator() {
+        createMainWindow();
+        initGameState();
+        updateMainWindow(gameState);
+
+    }
+
+    private void updateMainWindow(TheWorld gameState) {
+
+        gridPanel = createSpritesAndGridPanel(gameState);
+        mainWindow.setContentPane(gridPanel);
+        mainWindow.setVisible(true);
+        mainWindow.repaint();
+    }
+
+    private void loadProperties() {
+        //
+        // create and load default properties
+        //
+        FileInputStream in;
+        try {
+            in = new FileInputStream(WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
+            defaultProps.load(in);
+            in.close();
+        } catch (Exception e) {
+            logger.error("Default property file was not found at expected location");
+            logger.error("I expected to find it at: " + WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
+        }
+        //
+        // create application properties with default
+        //
+        applicationProps = new Properties(defaultProps);
+        //
+        // now load properties from last invocation
+        //
+        try {
+            in = new FileInputStream(WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
+            applicationProps.load(in);
+            in.close();
+        } catch (FileNotFoundException e) {
+            logger.error("Application property file was not found at expected location");
+            logger.error("I expected to find it at: " + WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            logger.warn(ioe.toString());
+        }
+    }
+    private void createExperimentLog() {
+        experimentalData = new LogExperiment(applicationProps);
+    }
+    /**
+     * Load default properties from local file into properties object.
+     */
+
+    private void createMainWindow() {
+        mainWindow = new MainWindow(this);
+        mainWindow.assignProperties(applicationProps);
+        mainWindow.addWindowListener(new windowCloseListener());
+        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainWindow.addComponentListener(new GuiEventListener());
+        mainWindow.createBufferStrategy(1);
+
+    }
+
+    private void initGameState() {
+        gameState = new TheWorld(applicationProps);
+    }
     private void run() {
 
-        JFrame frame = new JFrame("Wumpus World Simulator");
-        frame.setMinimumSize(minSize);
-        frame.setSize(defaultWidth, defaultHeight);
-        GridPanel gridPanel = new GridPanel(4);
-
-        Sprite adventurer = new Sprite(TheWorld.ADVENTURER, gameState, gridPanel);
-
-        this.agent.setSprite(adventurer);
-        this.agent.setTheWorld(gameState);
-        gridPanel.setAdventurer(adventurer);
-
-        Sprite wumpus = new Sprite(TheWorld.WUMPUS, gameState, gridPanel);
-        gridPanel.setWumpus(wumpus);
-
-
-        Sprite pits = new Sprite(TheWorld.PITS, gameState, gridPanel);
-        gridPanel.setPits(pits);
-
-
-        Sprite gold = new Sprite(TheWorld.GOLD, gameState, gridPanel);
-        gridPanel.setGold(gold);
-
-
-        Sprite walls = new Sprite(TheWorld.WALLS, gameState, gridPanel);
-        gridPanel.setWalls(walls);
-
-        frame.setVisible(true);
-        frame.add(gridPanel);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addComponentListener(new GuiEventListener());
-
-        // Simulation Loop
-        boolean runSim = true;
         CoOrdinate wumpusXY = gameState.getEntityLocation(TheWorld.WUMPUS);
         CoOrdinate pitXY = gameState.getEntityLocation(TheWorld.PITS);
         CoOrdinate wallXY = gameState.getEntityLocation(TheWorld.WALLS);
         CoOrdinate goldXY = gameState.getEntityLocation(TheWorld.GOLD);
         CoOrdinate adventurerXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
+
+        ArrayList<CoOrdinate> stenchesXY = gameState.getPerceptions(TheWorld.STENCHES);
+        ArrayList<CoOrdinate> breezesXY = gameState.getPerceptions(TheWorld.BREEZES);
+
+        this.adventurerFinalState = new StringBuffer();
         this.adventurerFinalState.append(adventurerXY.toCSV() + ",");
         this.adventurerFinalState.append(goldXY.toCSV() + ",");
-        //CoOrdinate adventurersPrevXY = new CoOrdinate();
-        //adventurersPrevXY.row = adventurerXY.row;
-        //adventurersPrevXY.col = adventurerXY.col;
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         int reward = -1;
-        int extraDelayWhenGoalReached = 5000;
-
+        timeSteps = 0;
+        adventurer.setHealth(100);
+        boolean runSim = true;
         while (runSim) {
 
-            logger.debug("Explored " + gameState.getCountVisited() + " grid(s)");
             timeSteps = timeSteps + 1;
-            logger.info("timestep " + timeSteps);
-            logger.debug("Agents health is " + agent.getHealth());
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // Store current game state so we can learn from the action we are taking next.
+            logger.info("timestep " + timeSteps + " Adventurers health is " + this.adventurer.getHealth());
 
+
+            // Store current game state so we can learn from the action we are taking next.
             prevGameState = TheWorld.cloneStateArray(gameState);
 
             // What action should we take ?
-            int action = agent.think(gameState);
+            int action = this.adventurer.think(gameState);
 
+            // Take the action we chose.
+            gameState = this.adventurer.act(gameState, action);
 
-            gameState = agent.act(gameState, action);
-            adventurer.setGridState(gameState);
+            updateMainWindow(gameState);
+
             CoOrdinate agentXY = gameState.getEntityLocation(TheWorld.ADVENTURER);
-            logger.debug("Agents location is "+ agentXY.toCSV());
 
             reward = -1;
+
+            if (agentXY.collision(stenchesXY)) {
+                // This doesn't smell good.
+                logger.info(" ");
+                logger.info("****************************");
+                logger.info("*** What a foul Stench ! ***");
+                logger.info("****************************");
+                logger.info(" ");
+                reward = reward - 1;
+            }
+            if (agentXY.collision(breezesXY)) {
+                logger.info(" ");
+                logger.info("****************************");
+                logger.info("***  I feel a BREEZE !   ***");
+                logger.info("****************************");
+                logger.info(" ");
+                reward = reward - 1;
+            }
             if (agentXY.collision(pitXY)) {
                 // Falling .... !
                 logger.info("*************************");
@@ -150,84 +221,110 @@ public class WWSimulator {
                 reward = reward - 100;
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
             }
             if (agentXY.collision(wumpusXY)) {
+                logger.info(" ");
                 // Fighting .... !
                 logger.info("*************************");
                 logger.info("***  The Wumpus !     ***");
                 logger.info("*************************");
+                logger.info(" ");
                 reward = reward - 100;
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
-
             }
             if (agentXY.collision(goldXY)) {
                 // Rich !
+                logger.info(" ");
                 logger.info("*************************");
                 logger.info("*** Gold ! I'm rich ! ***");
                 logger.info("*************************");
-                reward = reward + 100;
+                logger.info(" ");
+                reward = reward + 101;
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
-                extraDelayWhenGoalReached = 5000;
-
             }
-            if (agent.getHealth() <= 0) {
+            if (this.adventurer.getHealth() <= 0) {
                 this.adventurerFinalState.append("STARVATION,");
                 reward = reward - 100;
                 runSim = false;
             }
             if (agentXY.collision(wallXY)) {
                 // Ouch !
-                logger.info("Ouch a wall !");
+                logger.info(" ");
+                logger.info("*************************");
+                logger.info("***   Ouch a wall  !  ***");
+                logger.info("*************************");
+                logger.info(" ");
                 reward = reward - 10;
-                //move them back to whence they came.
-                //gameState.moveEntityTo(TheWorld.ADVENTURER, adventurersPrevXY.row, adventurersPrevXY.col);
-                gameState = prevGameState;
+                gameState = prevGameState; //move them back to whence they came.
 
             }
+            this.adventurer.setHealth(this.adventurer.getHealth() + reward);
 
-            agent.setHealth(agent.getHealth() + reward);
-            this.agent.setTheWorld(gameState);
-            frame.repaint();
+            updateMainWindow(gameState);
 
-
-            agent.learn(prevGameState, action, reward);
-
-           // agent.brain.brainDump();
+            this.adventurer.learn(prevGameState, action, reward);
 
             if (!runSim) {
-                logger.info("Final score " + agent.getHealth());
+                logger.info("Final score " + this.adventurer.getHealth());
             } else {
-                action = agent.think(gameState);
-                //adventurersPrevXY.row = adventurerXY.row;
-                //adventurersPrevXY.col = adventurerXY.col;
-                //gameState = agent.act(gameState, action);
+                action = this.adventurer.think(gameState);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        this.adventurerFinalState.append(Integer.toString(agent.getHealth()));
+        this.adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
         this.adventurerFinalState.append(",");
         this.adventurerFinalState.append(timeSteps);
+
         try {
-            Thread.sleep(1000 + extraDelayWhenGoalReached);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        frame.dispose();
+        mainWindow.dispose();
         System.gc();
+    }
+    private GridPanel createSpritesAndGridPanel(TheWorld gameState) {
+        gridPanel = new GridPanel(TheWorld.GRID_SIZE);
+        createSprites(gameState, gridPanel);
+        gridPanel = setSprites(gridPanel);
+        return gridPanel;
 
+    }
+    private void createSprites(TheWorld gameState, GridPanel gridPanel) {
+
+        adventurerSprite = new Sprite(TheWorld.ADVENTURER, gameState, gridPanel);
+        wumpusSprite = new Sprite(TheWorld.WUMPUS, gameState, gridPanel);
+        pitsSprite = new Sprite(TheWorld.PITS, gameState, gridPanel);
+        goldSprite = new Sprite(TheWorld.GOLD, gameState, gridPanel);
+        wallsSprite = new Sprite(TheWorld.WALLS, gameState, gridPanel);
+
+    }
+    private GridPanel setSprites(GridPanel gridPanel) {
+
+        gridPanel.addSprite(wallsSprite);
+        gridPanel.addSprite(goldSprite);
+        gridPanel.addSprite(adventurerSprite);
+        gridPanel.addSprite(wumpusSprite);
+        gridPanel.addSprite(pitsSprite);
+
+        this.gridPanel = gridPanel;
+
+        return this.gridPanel;
 
     }
 
-    /**
-     * logs the data from this experimental run.
-     */
-    public String getLogData() {
-        return this.adventurerFinalState.toString().trim();
+    private void logRunResults() {
+        experimentalData.logData(adventurerFinalState.toString().trim());
     }
-
+    private void logRunProperties() {
+        experimentalData.logParams(applicationProps);
+    }
     /**
      * Save properties from last invocation.
      */
@@ -252,100 +349,11 @@ public class WWSimulator {
             e.printStackTrace();
         }
     }
+    public class windowCloseListener extends WindowAdapter {
 
-    /**
-     * Load default properties from local file into properties object.
-     */
-    private void loadProperties() {
-        //
-        // create and load default properties
-        //
-        FileInputStream in;
-        try {
-            in = new FileInputStream(WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
-            defaultProps.load(in);
-            in.close();
-        } catch (Exception e) {
-            logger.error("Default property file was not found at expected location");
-            logger.error("I expected to find it at: " + WWSimulator.DEFAULT_PROPERTIES_FILE_LOCATION);
-            logger.error("I will attempt to create a new file when I exit.");
-            this.createDefaultProperties();
+        public void windowClosingEvent() {
+            wwSimulator.shutdown();
+
         }
-        //
-        // create application properties with default
-        //
-        applicationProps = new Properties(defaultProps);
-        //
-        // now load properties from last invocation
-        //
-        try {
-            in = new FileInputStream(WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
-            applicationProps.load(in);
-            in.close();
-        } catch (FileNotFoundException e) {
-            logger.error("Application property file was not found at expected location");
-            logger.error("I expected to find it at: " + WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
-            logger.error("I will attempt to create a new file when I exit.");
-            e.printStackTrace();
-        } catch (IOException ioe) {
-            logger.warn(ioe.toString());
-        }
-
-
-    }
-
-    /**
-     * Once the properties have been loaded into memory apply them to the various variables in the program.
-     */
-    private void initialiseWWSimulatorVariables() {
-        int temp;
-        /**
-         * Just in case there is no data in any of the property files, use the hardcoded
-         * default. The try case block is so we don't destroy the hard coded value if we
-         * have nothing in the property files.
-         */
-        try {
-            temp = Integer.parseInt(applicationProps.getProperty("defaultMargin"));
-            if (temp > 0) ;
-        } catch (Exception e) {
-            logger.warn("No defaultMargin defined in either properties file.");
-            logger.warn(e.getMessage());
-        }
-
-        try {
-            temp = 0; // reset temp as a precaution.
-            temp = Integer.parseInt(applicationProps.getProperty("defaultHeight"));
-            if (temp > 0) defaultHeight = temp;
-        } catch (Exception e) {
-            logger.warn("No defaultHeight defined in either properties file.");
-            logger.warn(e.getMessage());
-        }
-
-        defaultWidth = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
-        try {
-            temp = 0; // reset temp as a precaution.
-            temp = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
-            if (temp > 0) defaultWidth = temp;
-        } catch (Exception e) {
-            logger.warn("No defaultWidth defined in either properties file.");
-            logger.warn(e.getMessage());
-        }
-
-
-    }
-
-    /**
-     * In case there are no default properties this method will initialise the critical properties and create a
-     * default properties file.
-     */
-    private void createDefaultProperties() {
-        gameState.initEntity(TheWorld.ADVENTURER, TheWorld.FIXED_START, 0, 0);
-        gameState.initEntity(TheWorld.WUMPUS, TheWorld.RANDOM_START, 0, 0);
-        gameState.initEntity(TheWorld.PITS, TheWorld.RANDOM_START, 0, 0);
-        gameState.initEntity(TheWorld.GOLD, TheWorld.RANDOM_START, 0, 0);
-        gameState.initEntity(TheWorld.WALLS, TheWorld.RANDOM_START, 0, 0);
-
-        this.saveDefaultProperties();
-        this.loadProperties();
     }
 }

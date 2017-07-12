@@ -13,32 +13,25 @@ import org.slf4j.LoggerFactory;
 public class Adventurer {
     private static final Logger logger = LoggerFactory.getLogger(Adventurer.class);
     public Brain brain = new QTableBrain();
-    //public Brain brain = new Brain();
-    private Sprite sprite;
-    private TheWorld theWorld;
-    private int health = 100;
+    private int health = 1;
+    private int maxHealth = 1;
 
     public static void main(String[] args) {
 
     }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public int getHealth() {
         return health;
     }
 
     public void setHealth(int health) {
         this.health = health;
+        if (health > maxHealth) {
+            maxHealth = health;
+        }
     }
+    public int getMaxHealth() {return this.maxHealth;}
 
-    public void setTheWorld(TheWorld theWorld) {
-        this.theWorld = theWorld;
-    }
-
-    public int think(TheWorld currState) {
+   public int think(TheWorld currState) {
         return brain.think(currState);
     }
 

@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class QTableBrain extends Brain {
     private static final Logger logger = LoggerFactory.getLogger(QTableBrain.class);
@@ -24,15 +26,25 @@ public class QTableBrain extends Brain {
 
     /**
      * Setting gamma to 0.5 means we give equal weight to past and recent
-     * experience.
+     * experience. 0 means only immeadiate rewards are considered while 0.9 means longer term rewards are considered.
      */
-    private double gamma = 0.1;
+    private double gamma = 0.95;
+    private boolean adaptiveGamma = true;
+    private double numberOfStepsToAdaptGamma = 200;
+    private double gammaStartingValue = 0.1;
+    private double gammaFinishingValue = 0.99;
+    private double gammaCurrentStep = 0;
 
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
         qTableBrain.listR(new TheWorld());
     }
-
+    public void setAdaptiveGamma(boolean OnOff) {
+        adaptiveGamma = OnOff;
+    }
+    public void resetGammaCurrentStep(){
+        gammaCurrentStep = 0;
+    }
     public void listR(TheWorld state) {
         logger.debug(String.valueOf(state.matrixR.length));
 
@@ -49,17 +61,14 @@ public class QTableBrain extends Brain {
     public int think(TheWorld state) {
         logger.debug("think("+state.getEntityLocation(TheWorld.ADVENTURER).toCSV()+") Using Q Matrix.");
 
-        //this.brainDump();
-
-        TheWorld temp = state.cloneStateArray(state);
         CoOrdinate XY = state.getEntityLocation(TheWorld.ADVENTURER);
 
-        int action = temp.getALegalRandomMove(XY); // Default value.
+        int action = state.getALegalRandomMove(XY); // Default value.
 
-        if (this.qState.contains(temp)) {
+        if (this.qState.contains(state)) {
             logger.debug("...Been here before, whats the best move I know?");
 
-            int ix = qState.indexOf(temp);
+            int ix = qState.indexOf(state);
             logger.debug("Found state at location " + ix);
 
             double[] allActions = (double[]) qAction.get(ix);
@@ -76,7 +85,7 @@ public class QTableBrain extends Brain {
                 }
             }
             action = maxAction;
-            logger.debug("Best action is " + temp.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+            logger.debug("Best action is " + state.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
         }
 
         return action;
@@ -85,19 +94,20 @@ public class QTableBrain extends Brain {
 
     //@Override
     public TheWorld learn(TheWorld state, int action, int reward) {
-        logger.debug("learn( Adv(" + state.getEntityLocation(TheWorld.ADVENTURER).toCSV() + ") Action is " +
-                state.ACTION_CONSTANTS[action] + "(" + action + ") Reward is " + reward);
-        /*
-         Store the current state and the reward value. This represents where we are now, not how we got here.
-         in once sense storing the reward against the action is wrong, because it is the action that got us to this
-         state, not the reward for moving to the next state, so it should really be stored in the state that got us
-         here. To work that out I need to know the inverse of each action.
-         */
+
         TheWorld gridState = state.cloneStateArray(state);
         double[] currentStateActions = new double[TheWorld.GRID_SIZE];
         double[] futureStateActions = new double[TheWorld.GRID_SIZE];
         double[] rMatrix = new double[TheWorld.GRID_SIZE];
         double[] qMatrix = new double[TheWorld.GRID_SIZE];
+
+        if (adaptiveGamma) {
+            if (gammaCurrentStep < numberOfStepsToAdaptGamma) {
+                gammaCurrentStep = gammaCurrentStep + 1;
+                gamma = gammaStartingValue + (gammaCurrentStep * ((gammaFinishingValue - gammaStartingValue) / numberOfStepsToAdaptGamma));
+
+            }
+        }
 
         if (qState.contains(gridState)) {
             int ix = qState.indexOf(gridState);
@@ -114,7 +124,7 @@ public class QTableBrain extends Brain {
             for (int i=0; i<state.GRID_SIZE; i++){
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
-                    qMatrix[i] = 0;
+                    qMatrix[i] = 5; // Reward curiosity
 
                 } else {
                     rMatrix[i] = -1000;
@@ -137,7 +147,7 @@ public class QTableBrain extends Brain {
 
         double maxFutureReward = -1000;
         for (int i=0; i<TheWorld.GRID_SIZE; i++) {
-            //logger.debug("maxFutureReward " + maxFutureReward + " futureActions["+i+"]"+futureStateActions[i]);
+
             if (futureStateActions[i] > maxFutureReward) {
                 maxFutureReward = futureStateActions[i];
             }
@@ -149,6 +159,7 @@ public class QTableBrain extends Brain {
         qAction.set(qState.indexOf(state), qMatrix);
 
         brainDump();
+
         return state;
     }
 
@@ -156,18 +167,44 @@ public class QTableBrain extends Brain {
     public void brainDump() {
         logger.debug("BRAIN DUMP (Q Matrix)");
         logger.debug("=====================");
-        logger.debug("Adv{Row,Col}(#Visited)[Left, Right, Up, Down]");
+        logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
+
+        ArrayList brainDump = new ArrayList<BrainCell>(16);
 
         for (int i = 0; i < qState.size(); i++) {
-            double[] allActions = (double[]) qAction.get(i);
             TheWorld theWorld = (TheWorld) qState.get(i);
             CoOrdinate coOrdinate = theWorld.getEntityLocation(TheWorld.ADVENTURER);
-            int v = theWorld.getCountVisited();
-            logger.debug("{" + coOrdinate.row + "," + coOrdinate.col + "}" +
-                    "(" + v + ")[" + allActions[0] + ","
-                    + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
+            double[] weights = (double[]) qAction.get(i);
+            BrainCell brainCell;
+            brainCell = new BrainCell(coOrdinate, weights);
+            brainDump.add(brainCell);
         }
+        Collections.sort(brainDump);
+        for (Object n: brainDump) {
+            BrainCell brainCell = (BrainCell) n;
+            logger.debug("(" + brainCell.cell.row + "," + brainCell.cell.col + ")" +
+                    " [" +
+                    String.format( "%1$07.3f", brainCell.weights[0] ) + "," +
+                    String.format( "%1$07.3f", brainCell.weights[1] ) + "," +
+                    String.format( "%1$07.3f", brainCell.weights[2] ) + "," +
+                    String.format( "%1$07.3f", brainCell.weights[3] ) + "]");
+        }
+    }
+    public class BrainCell implements Comparable<BrainCell>, Comparator<BrainCell> {
+        public CoOrdinate cell;
+        public double[] weights;
 
+        public BrainCell(CoOrdinate where, double[] actionWeights) {
+            cell = where;
+            weights = actionWeights;
+        }
+        public int compare(BrainCell b1, BrainCell b2) {
+            return ((b1.cell.row - b2.cell.row) * TheWorld.GRID_SIZE ) +  (b1.cell.col - b2.cell.col);
 
+        }
+        public int compareTo(BrainCell b) {
+            return ((this.cell.row - b.cell.row) * TheWorld.GRID_SIZE ) + (this.cell.col - b.cell.col);
+
+        }
     }
 }

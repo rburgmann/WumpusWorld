@@ -1,15 +1,17 @@
-package au.id.richardburgmann;
+package au.id.richardburgmann.gui;
 /**
  * Created by Richard Burgmann on 10/06/2017.
  * Copyright Richard Burgmann (2017)
  * All Rights Reserved.
  */
 
+import au.id.richardburgmann.TheWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * GridPanel is the canvas that draws the 4 row 4 grid that Wumpus World is played on.
@@ -21,50 +23,30 @@ public class GridPanel extends JPanel {
     public int cellHeight = 100;
     public int cellWidth = 100;
     private int gridSize = 4; // gridSize by gridSize, n row n.
-    private Sprite adventurer;
-    private Sprite wumpus;
-    private Sprite pits;
-    private Sprite gold;
-    private Sprite walls;
+    private ArrayList<Sprite> mySprites = new ArrayList<Sprite>(5);
+
+    public GridPanel() {
+        this.gridSize = TheWorld.GRID_SIZE;
+    }
 
     public GridPanel(int gridSize) {
         this.gridSize = gridSize;
     }
 
-    public void setAdventurer(Sprite adventurer) {
-        this.adventurer = adventurer;
-    }
-
-    public void setWumpus(Sprite wumpus) {
-        this.wumpus = wumpus;
-    }
-
-    public void setPits(Sprite pits) {
-        this.pits = pits;
-    }
-
-    public void setGold(Sprite gold) {
-        this.gold = gold;
-    }
-
-    public void setWalls(Sprite walls) {
-        this.walls = walls;
-    }
-
-    public void GridPanel() {
+    public void addSprite(Sprite sprite) {
+        mySprites.add(sprite);
     }
 
     @Override
     public void paint(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.setColor(Color.black);
-        this.paintGrid(graphics);
-        this.gold.paint(graphics);
-        this.adventurer.paint(graphics);
-        this.wumpus.paint(graphics);
-        this.pits.paint(graphics);
-        this.walls.paint(graphics);
 
+        this.paintGrid(graphics);
+
+        for (Sprite aSprite : mySprites){
+            aSprite.paint(graphics);
+        }
     }
 
     public void paintGrid(Graphics graphics) {

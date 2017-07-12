@@ -1,4 +1,4 @@
-package au.id.richardburgmann;
+package au.id.richardburgmann.gui;
 /**
  * Created by Richard Burgmann on 10/06/2017.
  * Copyright Richard Burgmann (2017)

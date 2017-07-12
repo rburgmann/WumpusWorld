@@ -8,6 +8,8 @@ package au.id.richardburgmann;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Properties;
 import java.util.Random;
 
@@ -17,7 +19,7 @@ import java.util.Random;
  * for further details.</p>
  */
 
-public class TheWorld {
+public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
     /**
      * Constant, usage is worldState[WUMPUS][4][4]
      * There can only be one Wumpus in the world at a time.
@@ -260,11 +262,10 @@ public class TheWorld {
      * Load defaults from properties object.
      */
     public TheWorld(Properties properties) {
-        super();
-
         logger.debug("Load defaults from properties object.");
 
         this.clearWorldState();
+
         if (properties != null) {
             myProperties = properties;
             try {
@@ -320,7 +321,7 @@ public class TheWorld {
             this.setGOLD_PLACEMENT((Integer.parseInt(myProperties.getProperty("GOLD_PLACEMENT"))));
             this.initEntity(GOLD, this.getGOLD_PLACEMENT(), this.getGOLD_X(), this.getGOLD_Y());
 
-
+            this.initAdventurer();
         }
     }
 
@@ -878,7 +879,39 @@ public class TheWorld {
         }
         return count;
     }
+    public ArrayList<CoOrdinate> getPerceptions(int entity) {
+        ArrayList<CoOrdinate> entityXY = new ArrayList<>(TheWorld.ENTITY_CONSTANTS.length);
 
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                if (this.worldState[entity][row][col] == OCCUPIED_LOCATION) {
+                    CoOrdinate percept = new CoOrdinate();
+                    percept.row = row;
+                    percept.col = col;
+                    entityXY.add(percept);
+                }
+            }
+        }
+        entityXY.trimToSize();
+        return entityXY;
+    }
+
+    @Override
+    public int compare(TheWorld o1, TheWorld o2) {
+        CoOrdinate o1XY = o1.getEntityLocation(TheWorld.ADVENTURER);
+        CoOrdinate o2XY = o2.getEntityLocation(TheWorld.ADVENTURER);
+        int result = o1XY.row - o2XY.row;
+        result = result + (o1XY.col - o2XY.col);
+        return result;
+    }
+    @Override
+    public int compareTo(TheWorld o) {
+        CoOrdinate o1XY = this.getEntityLocation(TheWorld.ADVENTURER);
+        CoOrdinate o2XY = o.getEntityLocation(TheWorld.ADVENTURER);
+        int result = o1XY.row - o2XY.row;
+        result = result + (o1XY.col - o2XY.col);
+        return result;
+    }
     @Override
     public boolean equals(Object o) {
 
@@ -903,35 +936,8 @@ public class TheWorld {
         } else {
             return false;
         }
-
-        // field comparison
-/*
-        for (int e = 0; e < this.worldState.length; e++) {
-            for (int r = 0; r < this.GRID_SIZE; r++) {
-                for (int c = 0; c < this.GRID_SIZE; c++) {
-                    // Only compare up to were both are visited.
-                    if ((this.worldState[VISITED][r][c] == this.worldState[VISITED][r][c]) &&
-                            (this.worldState[VISITED][r][c] == OCCUPIED_LOCATION)) {
-                        // where they have both had visit the grid, are they the same contents
-                        // at least once. Only look where they have both visited.
-                        if (this.worldState[e][r][c] == this.worldState[e][r][c]) {
-                            result = true; // has to be at least one place the same.
-                        } else {
-                            result = false; // ok there was a difference, we can break out now.
-                            break;
-                        }
-
-                    }
-
-                }
-            }
-        }*/
-/*
-        if(result) {
-            logger.debug("They are equal.");
-        } else {
-            logger.debug("They are NOT equal.");
-        }*/
         return result;
     }
+
+
 }
