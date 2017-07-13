@@ -53,9 +53,6 @@ public class MainWindow extends JFrame {
         GridPanel myPanel = new GridPanel();
         myWindow.add(myPanel);
         myWindow.setVisible(true);
-
-
-
     }
 
     public void initMainWindow() {
@@ -65,8 +62,6 @@ public class MainWindow extends JFrame {
         setJMenuBar(createMyMenus());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addComponentListener(new GuiEventListener());
-
-
     }
 
     private JMenuBar createMyMenus() {

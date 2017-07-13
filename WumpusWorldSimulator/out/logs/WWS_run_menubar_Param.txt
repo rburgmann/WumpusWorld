@@ -1,5 +1,5 @@
 #Wumpus World Simulator Experiment Properties.
-#Thu Jul 06 08:19:41 AEST 2017
+#Thu Jul 13 07:49:48 AEST 2017
 WUMPUS_X=1
 ADVENTURER_Y=3
 ADVENTURER_PLACEMENT=0

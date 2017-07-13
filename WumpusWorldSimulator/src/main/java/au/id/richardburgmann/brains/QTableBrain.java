@@ -45,7 +45,7 @@ public class QTableBrain extends Brain {
     private double gammaFinishingValue = 0.99;
     private double gammaCurrentStep = 0;
 
-
+    private double onceOffRewardForExploring = 5.0;
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
         qTableBrain.listR(new TheWorld());
@@ -62,8 +62,6 @@ public class QTableBrain extends Brain {
         for (int r = 0; r < 4; r++) {
             for (int c = 0; c < 4; c++) {
                 logger.debug("(" + r + "," + c + ")  " + "[" + state.matrixR[(r * 4) + c][0] + "," + state.matrixR[(r * 4) + c][1] + "," + state.matrixR[(r * 4) + c][2] + "," + state.matrixR[(r * 4) + c][3] + "]");
-
-
             }
         }
     }
@@ -77,15 +75,8 @@ public class QTableBrain extends Brain {
         int action = state.getALegalRandomMove(XY); // Default value.
 
         if (this.qState.contains(state)) {
-            logger.debug("...Been here before, whats the best move I know?");
-
             int ix = qState.indexOf(state);
-            logger.debug("Found state at location " + ix);
-
-
             double[] allActions = (double[]) qAction.get(ix);
-           // logger.debug("Q values are [" + allActions[0] + "," + allActions[1] + "," + allActions[2] + "," + allActions[3] + "]");
-
             double maxActionReward = -1000;
 
             int maxAction = 0;
@@ -97,9 +88,8 @@ public class QTableBrain extends Brain {
                 }
             }
             action = maxAction;
-            logger.debug("Best action is " + state.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
+            //logger.debug("Best action is " + state.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
         }
-
         return action;
 
     }
@@ -117,16 +107,13 @@ public class QTableBrain extends Brain {
             if (gammaCurrentStep < numberOfStepsToAdaptGamma) {
                 gammaCurrentStep = gammaCurrentStep + 1;
                 gamma = gammaStartingValue + (gammaCurrentStep * ((gammaFinishingValue - gammaStartingValue) / numberOfStepsToAdaptGamma));
-
             }
         }
-
         if (qState.contains(gridState)) {
             int ix = qState.indexOf(gridState);
             currentStateActions = (double[]) rAction.get(qState.indexOf(gridState));
             currentStateActions[action] = reward;
             rAction.set(ix, currentStateActions);
-            //logger.debug("Found state within qState at index " + ix);
         } else {
             qState.add(gridState);
             rMatrix = new double[TheWorld.GRID_SIZE];
@@ -136,7 +123,7 @@ public class QTableBrain extends Brain {
             for (int i=0; i<state.GRID_SIZE; i++){
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
-                    qMatrix[i] = gridState.getRandom(); // reward novelty  /  exploration.
+                    qMatrix[i] = onceOffRewardForExploring;
                 } else {
                     rMatrix[i] = -1000;
                     qMatrix[i] = -1000;
@@ -191,14 +178,10 @@ public class QTableBrain extends Brain {
             brainDump.add(brainCell);
         }
         Collections.sort(brainDump);
+
         for (Object n: brainDump) {
             BrainCell brainCell = (BrainCell) n;
-            logger.debug("(" + brainCell.cell.row + "," + brainCell.cell.col + ")" +
-                    " [" +
-                    String.format( "%1$07.3f", brainCell.weights[0] ) + "," +
-                    String.format( "%1$07.3f", brainCell.weights[1] ) + "," +
-                    String.format( "%1$07.3f", brainCell.weights[2] ) + "," +
-                    String.format( "%1$07.3f", brainCell.weights[3] ) + "]");
+            logger.info(brainCell.toString());
         }
     }
     public class BrainCell implements Comparable<BrainCell>, Comparator<BrainCell> {
@@ -208,6 +191,17 @@ public class QTableBrain extends Brain {
         public BrainCell(CoOrdinate where, double[] actionWeights) {
             cell = where;
             weights = actionWeights;
+        }
+        public String toString() {
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("(" + cell.row + "," + cell.col + ")");
+            stringBuffer.append(" [");
+            for(double d: weights ) {
+                stringBuffer.append(String.format( "%1$07.3f", d ));
+                stringBuffer.append(",");
+            }
+            stringBuffer.trimToSize();
+            return stringBuffer.replace(stringBuffer.length()-1,stringBuffer.length(),"]" ).toString();
         }
         public int compare(BrainCell b1, BrainCell b2) {
             return ((b1.cell.row - b2.cell.row) * TheWorld.GRID_SIZE ) +  (b1.cell.col - b2.cell.col);
