@@ -18,6 +18,7 @@ package au.id.richardburgmann.brains;
 import au.id.richardburgmann.Adventurer;
 import au.id.richardburgmann.CoOrdinate;
 import au.id.richardburgmann.TheWorld;
+import au.id.richardburgmann.gui.QStateViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,14 +39,17 @@ public class QTableBrain extends Brain {
      * Setting gamma to 0.5 means we give equal weight to past and recent
      * experience. 0 means only immeadiate rewards are considered while 0.9 means longer term rewards are considered.
      */
-    private double gamma = 0.95;
-    private boolean adaptiveGamma = true;
-    private double numberOfStepsToAdaptGamma = 200;
+    private double gamma = 0.99;
+    private boolean adaptiveGamma = false;
+    private double numberOfStepsToAdaptGamma = 50;
     private double gammaStartingValue = 0.1;
     private double gammaFinishingValue = 0.99;
     private double gammaCurrentStep = 0;
 
     private double onceOffRewardForExploring = 5.0;
+
+    private static QStateViewer qStateViewer = new QStateViewer();
+
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
         qTableBrain.listR(new TheWorld());
@@ -90,6 +94,7 @@ public class QTableBrain extends Brain {
             action = maxAction;
             //logger.debug("Best action is " + state.ACTION_CONSTANTS[action] + " with a value of " + maxActionReward);
         }
+        brainDump();
         return action;
 
     }
@@ -163,9 +168,6 @@ public class QTableBrain extends Brain {
 
 
     public void brainDump() {
-        logger.debug("BRAIN DUMP (Q Matrix)");
-        logger.debug("=====================");
-        logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
 
         ArrayList brainDump = new ArrayList<BrainCell>(16);
 
@@ -178,11 +180,24 @@ public class QTableBrain extends Brain {
             brainDump.add(brainCell);
         }
         Collections.sort(brainDump);
-
-        for (Object n: brainDump) {
-            BrainCell brainCell = (BrainCell) n;
-            logger.info(brainCell.toString());
+        if (brainDump == null || qStateViewer == null) {
+            logger.debug("BRAIN DUMP (Q Matrix)");
+            logger.debug("=====================");
+            logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
+            for (Object n: brainDump) {
+                BrainCell brainCell = (BrainCell) n;
+                logger.debug("(" + brainCell.cell.row + "," + brainCell.cell.col + ")" +
+                        " [" +
+                        String.format( "%1$07.3f", brainCell.weights[0] ) + "," +
+                        String.format( "%1$07.3f", brainCell.weights[1] ) + "," +
+                        String.format( "%1$07.3f", brainCell.weights[2] ) + "," +
+                        String.format( "%1$07.3f", brainCell.weights[3] ) + "]");
+            }
+        } else {
+            qStateViewer.setBrainState(brainDump);
         }
+
+        System.gc();
     }
     public class BrainCell implements Comparable<BrainCell>, Comparator<BrainCell> {
         public CoOrdinate cell;

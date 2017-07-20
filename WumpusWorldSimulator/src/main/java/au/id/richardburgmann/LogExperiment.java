@@ -30,7 +30,7 @@ public class LogExperiment {
 
     private static final Logger logger = LoggerFactory.getLogger(LogExperiment.class);
     private static String EXPERIMENT_LOG_DIR = ".";
-    private String logFileName = "WWS_run_QRuleV2.Gamma.p9.";
+    private String logFileName = "WWS_logfile.";
     private String logFileDataSuffix = "csv";
     private String logFileParamSuffix = "txt";
 

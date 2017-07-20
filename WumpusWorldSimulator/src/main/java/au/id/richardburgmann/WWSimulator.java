@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,7 +40,7 @@ import java.util.Properties;
  * <p>This is a learning project that I'm undertaking just for fun. You can follow my own adventure
  * during the project at https://github.com/rburgmann/WumpusWorld</p>
  */
-public class WWSimulator {
+public class WWSimulator implements WindowListener {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
     private static Properties defaultProps = new Properties();
     private static Properties applicationProps;
@@ -85,7 +87,7 @@ public class WWSimulator {
             wwSimulator.logRunResults();
         }
 
-        wwSimulator.shutdown();
+        //wwSimulator.shutdown();
     }
 
     private void startup() {
@@ -93,7 +95,7 @@ public class WWSimulator {
         createExperimentLog();
     }
 
-    private void shutdown() {
+    public void shutdown() {
         logger.info("Shutdown.");
         saveProperties();
         logRunProperties();
@@ -155,9 +157,14 @@ public class WWSimulator {
      */
 
     private void createMainWindow() {
+        // In case there are any old windows left from previous iteration.
+        if (mainWindow!=null) {
+            mainWindow.dispose();
+        }
         mainWindow = new MainWindow(this);
         mainWindow.assignProperties(applicationProps);
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainWindow.addWindowListener(this);
         mainWindow.createBufferStrategy(1);
 
     }
@@ -187,7 +194,7 @@ public class WWSimulator {
 
         int reward = -1;
         timeSteps = 0;
-        adventurer.setHealth(100);
+        adventurer.setHealth(75);
         boolean runSim = true;
         while (runSim) {
 
@@ -216,6 +223,7 @@ public class WWSimulator {
                 logger.info("*** What a foul Stench ! ***");
                 logger.info("****************************");
                 logger.info(" ");
+                wait(500);
                 reward = reward - 1;
             }
             if (agentXY.collision(breezesXY)) {
@@ -224,6 +232,7 @@ public class WWSimulator {
                 logger.info("***  I feel a BREEZE !   ***");
                 logger.info("****************************");
                 logger.info(" ");
+                wait(500);
                 reward = reward - 1;
             }
             if (agentXY.collision(pitXY)) {
@@ -232,6 +241,7 @@ public class WWSimulator {
                 logger.info("***  Ahhhh falling !  ***");
                 logger.info("*************************");
                 reward = reward - 100;
+                wait(3000);
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
             }
@@ -243,6 +253,7 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward - 100;
+                wait(3000);
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
             }
@@ -254,10 +265,17 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward + 101;
+                wait(3000);
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
             }
             if (this.adventurer.getHealth() <= 0) {
+                logger.info(" ");
+                logger.info("*************************");
+                logger.info("***  I'm Starving !   ***");
+                logger.info("*************************");
+                logger.info(" ");
+                wait(3000);
                 this.adventurerFinalState.append("STARVATION,");
                 reward = reward - 100;
                 runSim = false;
@@ -270,6 +288,7 @@ public class WWSimulator {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward - 10;
+                wait(1000);
                 gameState = prevGameState; //move them back to whence they came.
             }
             adventurer.setHealth(adventurer.getHealth() + reward);
@@ -282,23 +301,21 @@ public class WWSimulator {
                 logger.info("Final score " + this.adventurer.getHealth());
             } else {
                 action = this.adventurer.think(gameState);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                wait(1000);
             }
         }
         adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
         adventurerFinalState.append(",");
         adventurerFinalState.append(timeSteps);
+        wait(1000);
+        System.gc();
+    }
+    public void wait(int ms) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        mainWindow.dispose();
-        System.gc();
     }
     private GridPanel createSpritesAndGridPanel(TheWorld gameState) {
         gridPanel = new GridPanel(TheWorld.GRID_SIZE);
@@ -359,5 +376,41 @@ public class WWSimulator {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        logger.debug("windowClosing Event.");
+        shutdown();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }

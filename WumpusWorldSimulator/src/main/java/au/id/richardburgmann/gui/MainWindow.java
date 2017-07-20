@@ -36,6 +36,7 @@ public class MainWindow extends JFrame {
     private int defaultWidth = 1200;
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
+    private WWSimulator simulator;
 
 
     public MainWindow() {
@@ -43,6 +44,7 @@ public class MainWindow extends JFrame {
     }
 
     public MainWindow(WWSimulator simulator) {
+        this.simulator = simulator;
         initMainWindow();
     }
 
@@ -60,8 +62,9 @@ public class MainWindow extends JFrame {
         setSize(defaultWidth, defaultHeight);
         setTitle("Wumpus World Simulator");
         setJMenuBar(createMyMenus());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addComponentListener(new GuiEventListener());
+
     }
 
     private JMenuBar createMyMenus() {
@@ -232,8 +235,11 @@ public class MainWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             logger.debug("closeMenuItem ActionEvent " + e.getActionCommand().toString());
-
-
+            try {
+                simulator.shutdown();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
         }
     }
 
@@ -243,9 +249,7 @@ public class MainWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             logger.debug("exitMenuItem ActionEvent " + e.getActionCommand().toString());
             try {
-                //cleanUpAndShutDown();
-                //frame.dispose();
-                System.exit(0);
+                simulator.shutdown();
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
@@ -257,7 +261,6 @@ public class MainWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             logger.debug("editMenuItem ActionEvent " + e.getActionCommand().toString());
-            //startRun = true;
 
         }
     }
@@ -271,12 +274,6 @@ public class MainWindow extends JFrame {
         @Override
         public void menuSelected(MenuEvent e) {
             logger.debug("runMenu MenuEvent Selected");
-            // if (startRun) {
-            //   startRun = false;
-            //  } else {
-            //startRun = true;
-            // }
-
         }
 
         @Override
