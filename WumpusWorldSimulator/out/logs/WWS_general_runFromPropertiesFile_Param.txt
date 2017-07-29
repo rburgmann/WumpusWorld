@@ -1,5 +1,5 @@
-#Wumpus World Simulator Last Invocation Properties.
-#Sun Jul 30 01:22:20 AEST 2017
+#Wumpus World Simulator Experiment Properties.
+#Sun Jul 30 01:26:09 AEST 2017
 SET_ADVENTURERS_BRAIN=au.id.richardburgmann.brains.QTableBrain
 ADVENTURER_Y=3
 WALLS_PLACEMENT=0
