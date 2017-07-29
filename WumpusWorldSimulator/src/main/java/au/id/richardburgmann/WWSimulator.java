@@ -1,19 +1,23 @@
-package au.id.richardburgmann;
 /*
-   Copyright 2017 Richard Burgmann
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann;
 
 import au.id.richardburgmann.gui.GridPanel;
 import au.id.richardburgmann.gui.MainWindow;
@@ -32,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 
-
 /**
  * <p>The Wumpus World Simulator enables you to explore the world of the Wumpus and Adventurer with a GUI
  * representation of the world. A number of experiments are planned using reinforcement learning for
@@ -45,7 +48,7 @@ public class WWSimulator implements WindowListener {
     private static Properties defaultProps = new Properties();
     private static Properties applicationProps;
     private static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
-    private static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
+    public static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
     private static LogExperiment experimentalData;
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
@@ -60,7 +63,7 @@ public class WWSimulator implements WindowListener {
     private GridPanel  gridPanel;
     private StringBuffer adventurerFinalState = new StringBuffer(1024);
 
-    private Adventurer adventurer = new Adventurer();
+    private Adventurer adventurer;
 
     // Sprites are the guis of the things in the world.
     Sprite adventurerSprite;
@@ -70,29 +73,34 @@ public class WWSimulator implements WindowListener {
     Sprite wallsSprite;
 
     public static void main(String[] args) {
-        int batchSize = 1;
+
+        wwSimulator = new WWSimulator();
+        wwSimulator.startup();
+
+        int batchSize = 0;
         if (args.length > 0) {
             batchSize = Integer.parseInt(args[0]);
+            wwSimulator.runSimulations(batchSize);
+        } else {
+            wwSimulator.initSimulator();
         }
-        wwSimulator = new WWSimulator();
-        wwSimulator.runSimulations(batchSize);
     }
+
     public void runSimulations(int numberOfTimes) {
         logger.info("Run simulation "+ numberOfTimes + " time(s)." );
-        wwSimulator.startup();
+
         for (int l = 0; l < numberOfTimes; l++) {
 
             wwSimulator.initSimulator();
             wwSimulator.run();
             wwSimulator.logRunResults();
         }
-
-        //wwSimulator.shutdown();
     }
 
     private void startup() {
         loadProperties();
         createExperimentLog();
+        adventurer = new Adventurer(applicationProps);
     }
 
     public void shutdown() {
@@ -102,11 +110,11 @@ public class WWSimulator implements WindowListener {
         mainWindow.dispose();
         System.exit(0);
     }
+
     private void initSimulator() {
         createMainWindow();
         initGameState();
         updateMainWindow(gameState);
-
     }
 
     private void updateMainWindow(TheWorld gameState) {
@@ -149,9 +157,11 @@ public class WWSimulator implements WindowListener {
             logger.warn(ioe.toString());
         }
     }
+
     private void createExperimentLog() {
         experimentalData = new LogExperiment(applicationProps);
     }
+
     /**
      * Load default properties from local file into properties object.
      */
@@ -168,9 +178,11 @@ public class WWSimulator implements WindowListener {
         mainWindow.createBufferStrategy(1);
 
     }
+
     private void initGameState() {
         gameState = new TheWorld(applicationProps);
     }
+
     private void run() {
 
         CoOrdinate wumpusXY = gameState.getEntityLocation(TheWorld.WUMPUS);
@@ -300,8 +312,7 @@ public class WWSimulator implements WindowListener {
             if (!runSim) {
                 logger.info("Final score " + this.adventurer.getHealth());
             } else {
-                action = this.adventurer.think(gameState);
-                wait(1000);
+                wait(100);
             }
         }
         adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
@@ -310,6 +321,7 @@ public class WWSimulator implements WindowListener {
         wait(1000);
         System.gc();
     }
+
     public void wait(int ms) {
         try {
             Thread.sleep(ms);
@@ -317,6 +329,7 @@ public class WWSimulator implements WindowListener {
             e.printStackTrace();
         }
     }
+
     private GridPanel createSpritesAndGridPanel(TheWorld gameState) {
         gridPanel = new GridPanel(TheWorld.GRID_SIZE);
         createSprites(gameState, gridPanel);
@@ -324,6 +337,7 @@ public class WWSimulator implements WindowListener {
         return gridPanel;
 
     }
+
     private void createSprites(TheWorld gameState, GridPanel gridPanel) {
 
         adventurerSprite = new Sprite(TheWorld.ADVENTURER, gameState, gridPanel);
@@ -333,6 +347,7 @@ public class WWSimulator implements WindowListener {
         wallsSprite = new Sprite(TheWorld.WALLS, gameState, gridPanel);
 
     }
+
     private GridPanel setSprites(GridPanel gridPanel) {
 
         gridPanel.addSprite(wallsSprite);
@@ -350,9 +365,11 @@ public class WWSimulator implements WindowListener {
     private void logRunResults() {
         experimentalData.logData(adventurerFinalState.toString().trim());
     }
+
     private void logRunProperties() {
         experimentalData.logParams(applicationProps);
     }
+
     /**
      * Save properties from last invocation.
      */

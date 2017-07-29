@@ -19,33 +19,25 @@
 
 package au.id.richardburgmann.brains;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import au.id.richardburgmann.TheWorld;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class BrainTest {
-    @Before
-    public void setUp() throws Exception {
+public class RandomChoice implements Brain {
+    private static final Logger logger = LoggerFactory.getLogger(RandomChoice.class);
+
+    @Override
+    public int think(TheWorld state) {
+        logger.debug("think() Getting a legal random move for now.");
+        return state.getALegalRandomMove(state.getEntityLocation(TheWorld.ADVENTURER));
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @Override
+    public TheWorld learn(TheWorld state, int action, int reward) {
+        return state;
     }
 
-    @Test
-    public void whereAmI() throws Exception {
+    @Override
+    public void brainDump() {
     }
-
-    @Test
-    public void think() throws Exception {
-    }
-
-    @Test
-    public void learn() throws Exception {
-    }
-
-    @Test
-    public void brainDump() throws Exception {
-    }
-
 }

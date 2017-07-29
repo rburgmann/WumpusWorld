@@ -1,19 +1,23 @@
-package au.id.richardburgmann.gui;
 /*
-   Copyright 2017 Richard Burgmann
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann.gui;
 
 
 import au.id.richardburgmann.TheWorld;
@@ -37,8 +41,6 @@ public class QStateViewer {
     private JFrame myWindow;
     private ArrayList<QTableBrain.BrainCell> brainState;
 
-    //private double[] actionQValues = new double[4];
-    //private JTextField[] actionQValueTextField = new JTextField[4];
     private Font myFont = new Font(Font.SANS_SERIF, Font.PLAIN, 28);
     private BorderLayout borderLayout = new BorderLayout(1, 1);
     private GridLayout gridLayout = new GridLayout(4, 4, 1, 1);
@@ -109,7 +111,7 @@ public class QStateViewer {
             myWindow.validate();
             myWindow.setVisible(true);
         }
-        for (int i=0; i<NUMBER_OF_PANES; i++) {
+        for (int i = 0; i < NUMBER_OF_PANES; i++) {
             panes[i].repaint();
         }
         myWindow.setVisible(true);
@@ -124,7 +126,7 @@ public class QStateViewer {
             if (useDefaults) {
                 actionQValueTextField[i].setText("???.???");
             } else {
-                actionQValueTextField[i].setText(String.format("%1$07.3f", weights[i]));
+                actionQValueTextField[i].setText(String.format("%1$06.3f", weights[i]));
             }
         }
         return actionQValueTextField;
@@ -142,55 +144,63 @@ public class QStateViewer {
 
     public void adjustBackgroundColourDependingOnQValues(JTextField[] actionQValueTextField, double[] weights) {
 
-        int IxOfMaxQValue = getIxOfMaxQValue(weights);
-        int IxOfMinQValue = getIxOfMinQValue(weights);
+        double[] w = rescale(weights);
 
-        for (int i = 0; i < weights.length; i++) {
-            if (i == IxOfMaxQValue) {
+        double MaxQValue = getMaxQValue(w);
+        double MinQValue = getMinQValue(w);
+
+
+        for (int i = 0; i < w.length; i++) {
+            actionQValueTextField[i].setVisible(false);
+            actionQValueTextField[i].setBackground(Color.ORANGE);
+
+
+            if (w[i] >= MaxQValue) {
+
                 actionQValueTextField[i].setBackground(Color.GREEN);
-            } else if (i == IxOfMinQValue) {
-                actionQValueTextField[i].setBackground(Color.PINK);
-            } else if (weights[i] == weights[IxOfMaxQValue]) {
 
-                actionQValueTextField[i].setBackground(Color.GREEN);
-
-            } else if (weights[i] == weights[IxOfMinQValue]) {
+            } else if (w[i] <= MinQValue) {
 
                 actionQValueTextField[i].setBackground(Color.PINK);
 
-            } else {
-
-                actionQValueTextField[i].setBackground(Color.ORANGE);
             }
-            if (weights[i] <= -100.00) {
-                actionQValueTextField[i].setBackground(Color.PINK);
-            }
+            if (weights[i] == -1000) actionQValueTextField[i].setBackground(Color.LIGHT_GRAY);
+            if (weights[i] == -102) actionQValueTextField[i].setBackground(Color.PINK);
+            actionQValueTextField[i].setVisible(true);
         }
 
     }
 
-    private int getIxOfMaxQValue(double[] weights) {
-        int ixOfMaxQValue = 0;
+    private double[] rescale(double[] weights) {
+
+        double adjustScale = ((getMaxQValue(weights) - getMinQValue(weights)) / 2);
+        double[] rw = new double[weights.length];
+
+        for (int i = 0; i < weights.length; i++) {
+            rw[i] = weights[i] + adjustScale;
+        }
+        return rw;
+    }
+
+
+    private double getMaxQValue(double[] weights) {
         double maxSoFar = Double.MIN_VALUE;
         for (int i = 0; i < weights.length; i++) {
             if (weights[i] > maxSoFar) {
                 maxSoFar = weights[i];
-                ixOfMaxQValue = i;
             }
         }
-        return ixOfMaxQValue;
+        return maxSoFar;
     }
 
-    private int getIxOfMinQValue(double[] weights) {
-        int ixOfMinQValue = 0;
+    private double getMinQValue(double[] weights) {
         double minSoFar = Double.MAX_VALUE;
         for (int i = 0; i < weights.length; i++) {
             if (weights[i] < minSoFar) {
                 minSoFar = weights[i];
-                ixOfMinQValue = i;
             }
         }
-        return ixOfMinQValue;
+        return minSoFar;
     }
 
     public double[] getRandomDoubleArray() {

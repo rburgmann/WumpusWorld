@@ -1,19 +1,23 @@
-package au.id.richardburgmann;
 /*
-   Copyright 2017 Richard Burgmann
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -896,22 +900,6 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         }
         return count;
     }
-    /*public ArrayList<CoOrdinate> getPerceptions(int entity) {
-        ArrayList<CoOrdinate> entityXY = new ArrayList<>(TheWorld.ENTITY_CONSTANTS.length);
-
-        for (int row = 0; row < GRID_SIZE; row++) {
-            for (int col = 0; col < GRID_SIZE; col++) {
-                if (this.worldState[entity][row][col] == OCCUPIED_LOCATION) {
-                    CoOrdinate percept = new CoOrdinate();
-                    percept.row = row;
-                    percept.col = col;
-                    entityXY.add(percept);
-                }
-            }
-        }
-        entityXY.trimToSize();
-        return entityXY;
-    }*/
 
     @Override
     public int compare(TheWorld o1, TheWorld o2) {

@@ -1,19 +1,23 @@
-package au.id.richardburgmann.brains;
 /*
-   Copyright 2017 Richard Burgmann
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann.brains;
 
 import au.id.richardburgmann.Adventurer;
 import au.id.richardburgmann.CoOrdinate;
@@ -26,40 +30,40 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class QTableBrain extends Brain {
+public class QTableBrain implements Brain {
     private static final Logger logger = LoggerFactory.getLogger(QTableBrain.class);
+    private static QStateViewer qStateViewer = new QStateViewer();
     /**
      * This is the learned experience of the agent..
      */
     private ArrayList qState = new ArrayList(16);
     private ArrayList rAction = new ArrayList(16);
     private ArrayList qAction = new ArrayList(16);
-
     /**
      * Setting gamma to 0.5 means we give equal weight to past and recent
      * experience. 0 means only immeadiate rewards are considered while 0.9 means longer term rewards are considered.
      */
-    private double gamma = 0.99;
+    private double gamma = 0.9;
     private boolean adaptiveGamma = false;
     private double numberOfStepsToAdaptGamma = 50;
-    private double gammaStartingValue = 0.1;
-    private double gammaFinishingValue = 0.99;
+    private double gammaStartingValue = 0.99;
+    private double gammaFinishingValue = 0.9;
     private double gammaCurrentStep = 0;
-
     private double onceOffRewardForExploring = 5.0;
-
-    private static QStateViewer qStateViewer = new QStateViewer();
 
     public static void main(String[] args) {
         QTableBrain qTableBrain = new QTableBrain();
         qTableBrain.listR(new TheWorld());
     }
+
     public void setAdaptiveGamma(boolean OnOff) {
         adaptiveGamma = OnOff;
     }
-    public void resetGammaCurrentStep(){
+
+    public void resetGammaCurrentStep() {
         gammaCurrentStep = 0;
     }
+
     public void listR(TheWorld state) {
         logger.debug(String.valueOf(state.matrixR.length));
 
@@ -72,7 +76,7 @@ public class QTableBrain extends Brain {
 
     @Override
     public int think(TheWorld state) {
-        logger.debug("think("+state.getEntityLocation(TheWorld.ADVENTURER).toCSV()+") Using Q Matrix.");
+        logger.debug("think(" + state.getEntityLocation(TheWorld.ADVENTURER).toCSV() + ") Using Q Matrix.");
 
         CoOrdinate XY = state.getEntityLocation(TheWorld.ADVENTURER);
 
@@ -125,7 +129,7 @@ public class QTableBrain extends Brain {
             qMatrix = new double[TheWorld.GRID_SIZE];
 
             // Mark all illegal states as -1000 otherwise they will mess up with q calculations.
-            for (int i=0; i<state.GRID_SIZE; i++){
+            for (int i = 0; i < state.GRID_SIZE; i++) {
                 if (state.isThisMoveLegal(i, state.getEntityLocation(TheWorld.ADVENTURER))) {
                     rMatrix[i] = 0;
                     qMatrix[i] = onceOffRewardForExploring;
@@ -141,6 +145,7 @@ public class QTableBrain extends Brain {
         }
         // find next state based on state and the action.
         Adventurer tempAdventurer = new Adventurer();
+        tempAdventurer.setBrain(new QTableBrain());
         TheWorld futureState = tempAdventurer.act(gridState, action);
         // Have we seen this future state before?
         if (qState.contains(futureState)) {
@@ -149,7 +154,7 @@ public class QTableBrain extends Brain {
         // Get the max q value of all possible actions from here.
 
         double maxFutureReward = -1000;
-        for (int i=0; i<TheWorld.GRID_SIZE; i++) {
+        for (int i = 0; i < TheWorld.GRID_SIZE; i++) {
 
             if (futureStateActions[i] > maxFutureReward) {
                 maxFutureReward = futureStateActions[i];
@@ -159,6 +164,7 @@ public class QTableBrain extends Brain {
         rMatrix = (double[]) rAction.get(qState.indexOf(gridState));
         qMatrix = (double[]) qAction.get(qState.indexOf(gridState));
         qMatrix[action] = rMatrix[action] + (gamma * maxFutureReward);
+
         qAction.set(qState.indexOf(state), qMatrix);
 
         brainDump();
@@ -180,25 +186,22 @@ public class QTableBrain extends Brain {
             brainDump.add(brainCell);
         }
         Collections.sort(brainDump);
-        if (brainDump == null || qStateViewer == null) {
-            logger.debug("BRAIN DUMP (Q Matrix)");
-            logger.debug("=====================");
-            logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
-            for (Object n: brainDump) {
-                BrainCell brainCell = (BrainCell) n;
-                logger.debug("(" + brainCell.cell.row + "," + brainCell.cell.col + ")" +
-                        " [" +
-                        String.format( "%1$07.3f", brainCell.weights[0] ) + "," +
-                        String.format( "%1$07.3f", brainCell.weights[1] ) + "," +
-                        String.format( "%1$07.3f", brainCell.weights[2] ) + "," +
-                        String.format( "%1$07.3f", brainCell.weights[3] ) + "]");
-            }
-        } else {
-            qStateViewer.setBrainState(brainDump);
-        }
 
-        System.gc();
+        logger.debug("BRAIN DUMP (Q Matrix)");
+        logger.debug("=====================");
+        logger.debug("Adventurer(Row,Col) [Left, Right, Up, Down]");
+        for (Object n : brainDump) {
+            BrainCell brainCell = (BrainCell) n;
+            logger.debug("(" + brainCell.cell.row + "," + brainCell.cell.col + ")" +
+                    " [" +
+                    String.format("%1$07.3f", brainCell.weights[0]) + "," +
+                    String.format("%1$07.3f", brainCell.weights[1]) + "," +
+                    String.format("%1$07.3f", brainCell.weights[2]) + "," +
+                    String.format("%1$07.3f", brainCell.weights[3]) + "]");
+        }
+        qStateViewer.setBrainState(brainDump);
     }
+
     public class BrainCell implements Comparable<BrainCell>, Comparator<BrainCell> {
         public CoOrdinate cell;
         public double[] weights;
@@ -207,23 +210,26 @@ public class QTableBrain extends Brain {
             cell = where;
             weights = actionWeights;
         }
+
         public String toString() {
             StringBuffer stringBuffer = new StringBuffer();
             stringBuffer.append("(" + cell.row + "," + cell.col + ")");
             stringBuffer.append(" [");
-            for(double d: weights ) {
-                stringBuffer.append(String.format( "%1$07.3f", d ));
+            for (double d : weights) {
+                stringBuffer.append(String.format("%1$07.3f", d));
                 stringBuffer.append(",");
             }
             stringBuffer.trimToSize();
-            return stringBuffer.replace(stringBuffer.length()-1,stringBuffer.length(),"]" ).toString();
+            return stringBuffer.replace(stringBuffer.length() - 1, stringBuffer.length(), "]").toString();
         }
+
         public int compare(BrainCell b1, BrainCell b2) {
-            return ((b1.cell.row - b2.cell.row) * TheWorld.GRID_SIZE ) +  (b1.cell.col - b2.cell.col);
+            return ((b1.cell.row - b2.cell.row) * TheWorld.GRID_SIZE) + (b1.cell.col - b2.cell.col);
 
         }
+
         public int compareTo(BrainCell b) {
-            return ((this.cell.row - b.cell.row) * TheWorld.GRID_SIZE ) + (this.cell.col - b.cell.col);
+            return ((this.cell.row - b.cell.row) * TheWorld.GRID_SIZE) + (this.cell.col - b.cell.col);
 
         }
     }

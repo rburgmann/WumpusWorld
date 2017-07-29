@@ -1,19 +1,23 @@
-package au.id.richardburgmann.gui;
 /*
-   Copyright 2017 Richard Burgmann
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann.gui;
 
 import au.id.richardburgmann.WWSimulator;
 import org.slf4j.Logger;
@@ -27,6 +31,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.Properties;
 
 public class MainWindow extends JFrame {
@@ -37,6 +42,7 @@ public class MainWindow extends JFrame {
     private int defaultHeight = 1200;
     private int defaultMargin = 20;
     private WWSimulator simulator;
+    private GridPanel myPanel;
 
 
     public MainWindow() {
@@ -52,12 +58,13 @@ public class MainWindow extends JFrame {
         logger.debug("Test");
         MainWindow myWindow = new MainWindow();
         myWindow.initMainWindow();
-        GridPanel myPanel = new GridPanel();
-        myWindow.add(myPanel);
+        myWindow.myPanel = new GridPanel();
+        myWindow.add(myWindow.myPanel);
         myWindow.setVisible(true);
     }
 
     public void initMainWindow() {
+
         setMinimumSize(minSize);
         setSize(defaultWidth, defaultHeight);
         setTitle("Wumpus World Simulator");
@@ -208,6 +215,22 @@ public class MainWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             logger.debug("openMenuItem ActionEvent " + e.getActionCommand().toString());
+            //Handle open button action.
+            JFileChooser fileChooser = new JFileChooser(WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION);
+            fileChooser.setDialogTitle("Select Configuration For Experiment");
+            fileChooser.setFont(myMenuFont);
+            fileChooser.setPreferredSize(new Dimension(1200, 1200));
+
+            int returnVal = fileChooser.showOpenDialog(MainWindow.this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                //This is where a real application would open the file.
+                logger.debug("Opening: " + file.getName() + ".");
+            } else {
+                logger.debug("Open command cancelled by user.");
+            }
+
 
         }
     }

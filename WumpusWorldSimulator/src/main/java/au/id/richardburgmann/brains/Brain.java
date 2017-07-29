@@ -1,31 +1,30 @@
-package au.id.richardburgmann.brains;
-/**
- * Created by Richard Burgmann on 21/06/2017.
- * Copyright Richard Burgmann (2017)
- * All Rights Reserved.
+/*
+ *
+ *    Copyright 2017 Richard Burgmann
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ *
+ *
  */
+
+package au.id.richardburgmann.brains;
 
 import au.id.richardburgmann.CoOrdinate;
 import au.id.richardburgmann.TheWorld;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class Brain {
-    private static final Logger logger = LoggerFactory.getLogger(Brain.class);
-    public int direction = 0;
-    public CoOrdinate lastXY = new CoOrdinate();
-    public CoOrdinate currXY = new CoOrdinate();
+public interface Brain {
 
-    public static void main(String[] args) {
-
-    }
-    public Brain(){
-        lastXY.row = -1;
-        lastXY.col = -1;
-    }
-    public CoOrdinate whereAmI(TheWorld state){
-
-
+    default CoOrdinate whereAmI(TheWorld state) {
         CoOrdinate xy = new CoOrdinate();
 
         for (int r = 0; r < state.GRID_SIZE; r++) {
@@ -37,19 +36,12 @@ public class Brain {
                 }
             }
         }
-        logger.debug("Where Am I? ("+xy.toCSV()+")");
         return xy;
+    }
 
-    }
-    public int think(TheWorld state) {
-        logger.debug("think() Getting a legal random move for now.");
-        int action = state.getALegalRandomMove(state.getEntityLocation(TheWorld.ADVENTURER));
-        return action;
-    }
-    public TheWorld learn(TheWorld currState, int action, int reward) {
-            return currState;
-    }
-    public void brainDump(){
-        logger.debug("BRAIN DUMP");
-    }
+    int think(TheWorld state);
+
+    TheWorld learn(TheWorld state, int action, int reward);
+
+    void brainDump();
 }
