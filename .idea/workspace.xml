@@ -7,27 +7,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/Adventurer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/LogExperiment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/TheWorld.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/WWSimulator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/brains/Brain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/brains/QTableBrain$BrainCell.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/brains/QTableBrain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/brains/RandomChoice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/GridPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/GuiEventListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$closeMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$editMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$exitMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$openMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$runMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$saveAsMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow$saveMenuItemListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/MainWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/QPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/QStateViewer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/gui/Sprite.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/Adventurer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/CoOrdinate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/LogExperiment.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/TheWorld.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/WWSimulator.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/Brain.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.BrainCell.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/RandomChoice.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/Brain.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.BrainCell.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/RandomChoice.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/package-frame.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/package-summary.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/package-tree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/package-use.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/Adventurer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/CoOrdinate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/LogExperiment.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/TheWorld.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/WWSimulator.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GridPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GuiEventListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.closeMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.editMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.exitMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.openMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.runMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveAsMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QStateViewer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/Sprite.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GridPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GuiEventListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.closeMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.editMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.exitMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.openMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.runMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveAsMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveMenuItemListener.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QStateViewer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/Sprite.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/package-frame.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/package-summary.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/package-tree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/package-use.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/package-frame.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/package-summary.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/package-tree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/package-use.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/allclasses-frame.html" afterPath="$PROJECT_DIR$/docs/allclasses-frame.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/allclasses-noframe.html" afterPath="$PROJECT_DIR$/docs/allclasses-noframe.html" />
@@ -57,7 +92,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-frame.html" afterPath="$PROJECT_DIR$/docs/overview-frame.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-summary.html" afterPath="$PROJECT_DIR$/docs/overview-summary.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-tree.html" afterPath="$PROJECT_DIR$/docs/overview-tree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/package-list" afterPath="$PROJECT_DIR$/docs/package-list" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/serialized-form.html" afterPath="$PROJECT_DIR$/docs/serialized-form.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -217,6 +251,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +292,7 @@
               <item name="au" type="462c0819:PsiDirectoryNode" />
               <item name="id" type="462c0819:PsiDirectoryNode" />
               <item name="richardburgmann" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="wws" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
@@ -315,7 +350,6 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -695,7 +729,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="" />
-      <changelist id="" name="New changelist" comment="" />
       <created>1499865672397</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -752,7 +785,8 @@
       <workItem from="1501404498960" duration="50000" />
       <workItem from="1501404618683" duration="140000" />
       <workItem from="1501408627047" duration="401000" />
-      <workItem from="1501409596850" duration="764000" />
+      <workItem from="1501409596850" duration="1378000" />
+      <workItem from="1501411415116" duration="921000" />
     </task>
     <task id="LOCAL-00001" summary="Testing of automated copyright notice">
       <created>1501283068183</created>
@@ -803,11 +837,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501410162398</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Removed unused directories.">
+      <created>1501410370733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1501410370733</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103631000" />
+    <option name="totallyTimeSpent" value="105166000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -823,15 +864,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988435" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48533008" sideWeight="0.5024155" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988268" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32680538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.998776" sideWeight="0.49758455" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32680538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.998776" sideWeight="0.49758455" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4278813" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4340925" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26639062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -839,6 +879,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35058662" sideWeight="0.50729924" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3977968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1165,7 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
