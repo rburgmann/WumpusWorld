@@ -17,12 +17,12 @@
  *
  */
 
-package au.id.richardburgmann.gui;
+package au.id.richardburgmann.wws.gui;
 
 
-import au.id.richardburgmann.TheWorld;
-import au.id.richardburgmann.WWSimulator;
-import au.id.richardburgmann.brains.QTableBrain;
+import au.id.richardburgmann.wws.TheWorld;
+import au.id.richardburgmann.wws.WWSimulator;
+import au.id.richardburgmann.wws.brains.QTableBrain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

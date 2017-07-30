@@ -17,11 +17,11 @@
  *
  */
 
-package au.id.richardburgmann;
+package au.id.richardburgmann.wws;
 
-import au.id.richardburgmann.gui.GridPanel;
-import au.id.richardburgmann.gui.MainWindow;
-import au.id.richardburgmann.gui.Sprite;
+import au.id.richardburgmann.wws.gui.GridPanel;
+import au.id.richardburgmann.wws.gui.MainWindow;
+import au.id.richardburgmann.wws.gui.Sprite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

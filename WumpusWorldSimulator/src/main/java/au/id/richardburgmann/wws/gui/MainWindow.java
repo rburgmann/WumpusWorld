@@ -17,9 +17,9 @@
  *
  */
 
-package au.id.richardburgmann.gui;
+package au.id.richardburgmann.wws.gui;
 
-import au.id.richardburgmann.WWSimulator;
+import au.id.richardburgmann.wws.WWSimulator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

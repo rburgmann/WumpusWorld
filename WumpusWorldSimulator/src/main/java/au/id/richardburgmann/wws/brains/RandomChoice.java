@@ -17,9 +17,9 @@
  *
  */
 
-package au.id.richardburgmann.brains;
+package au.id.richardburgmann.wws.brains;
 
-import au.id.richardburgmann.TheWorld;
+import au.id.richardburgmann.wws.TheWorld;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -17,10 +17,10 @@
  *
  */
 
-package au.id.richardburgmann.brains;
+package au.id.richardburgmann.wws.brains;
 
-import au.id.richardburgmann.CoOrdinate;
-import au.id.richardburgmann.TheWorld;
+import au.id.richardburgmann.wws.CoOrdinate;
+import au.id.richardburgmann.wws.TheWorld;
 
 public interface Brain {
 

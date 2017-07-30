@@ -17,7 +17,7 @@
  *
  */
 
-package au.id.richardburgmann;
+package au.id.richardburgmann.wws;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

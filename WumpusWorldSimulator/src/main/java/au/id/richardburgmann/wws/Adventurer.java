@@ -17,10 +17,10 @@
  *
  */
 
-package au.id.richardburgmann;
+package au.id.richardburgmann.wws;
 
-import au.id.richardburgmann.brains.Brain;
-import au.id.richardburgmann.brains.RandomChoice;
+import au.id.richardburgmann.wws.brains.Brain;
+import au.id.richardburgmann.wws.brains.RandomChoice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
