@@ -6,84 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list id="107142de-13b3-4448-8c1c-8f5137ffdd92" name="New changelist" comment="New changelist" />
     <list default="true" id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/Adventurer.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/CoOrdinate.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/CoOrdinate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/LogExperiment.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/LogExperiment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/TheWorld.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/Brain.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/QTableBrain.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/RandomChoice.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/RandomChoice.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/GridPanel.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/GridPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/GuiEventListener.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/GuiEventListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/MainWindow.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/MainWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QPanel.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QStateViewer.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QStateViewer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/Sprite.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/Sprite.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/au/id/richardburgmann/CoOrdinate.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator.jar" afterPath="$PROJECT_DIR$/WumpusWorldSimulator.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/Adventurer.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/Adventurer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/CoOrdinate.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/CoOrdinate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/LogExperiment.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/LogExperiment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/TheWorld.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/TheWorld.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/WWSimulator.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/WWSimulator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/Brain.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/Brain.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.BrainCell.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.BrainCell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/QTableBrain.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/RandomChoice.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/RandomChoice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/Brain.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/Brain.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.BrainCell.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.BrainCell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/QTableBrain.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/RandomChoice.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/brains/class-use/RandomChoice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/Adventurer.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/Adventurer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/CoOrdinate.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/CoOrdinate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/LogExperiment.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/LogExperiment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/TheWorld.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/TheWorld.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/WWSimulator.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/class-use/WWSimulator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GridPanel.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GridPanel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GuiEventListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/GuiEventListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.closeMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.closeMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.editMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.editMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.exitMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.exitMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.openMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.openMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.runMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.runMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveAsMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveAsMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/MainWindow.saveMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QPanel.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QPanel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QStateViewer.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/QStateViewer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/Sprite.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/Sprite.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GridPanel.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GridPanel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GuiEventListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/GuiEventListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.closeMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.closeMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.editMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.editMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.exitMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.exitMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.openMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.openMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.runMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.runMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveAsMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveAsMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveMenuItemListener.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/MainWindow.saveMenuItemListener.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QPanel.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QPanel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QStateViewer.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/QStateViewer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/Sprite.html" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/gui/class-use/Sprite.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/constant-values.html" afterPath="$PROJECT_DIR$/docs/constant-values.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-1.html" afterPath="$PROJECT_DIR$/docs/index-files/index-1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-10.html" afterPath="$PROJECT_DIR$/docs/index-files/index-10.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-15.html" afterPath="$PROJECT_DIR$/docs/index-files/index-15.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-16.html" afterPath="$PROJECT_DIR$/docs/index-files/index-16.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-19.html" afterPath="$PROJECT_DIR$/docs/index-files/index-19.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-2.html" afterPath="$PROJECT_DIR$/docs/index-files/index-2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-20.html" afterPath="$PROJECT_DIR$/docs/index-files/index-20.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-22.html" afterPath="$PROJECT_DIR$/docs/index-files/index-22.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-3.html" afterPath="$PROJECT_DIR$/docs/index-files/index-3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-7.html" afterPath="$PROJECT_DIR$/docs/index-files/index-7.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-8.html" afterPath="$PROJECT_DIR$/docs/index-files/index-8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-files/index-9.html" afterPath="$PROJECT_DIR$/docs/index-files/index-9.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/serialized-form.html" afterPath="$PROJECT_DIR$/docs/serialized-form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/default.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/default.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/wwsimulator.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/wwsimulator.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/WumpusWorldSimulator/target/" />
@@ -98,7 +27,38 @@
     <favorites_list name="WumpusWorld" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Brain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QTableBrain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WWSimulator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -251,7 +211,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="richardburgmann" type="462c0819:PsiDirectoryNode" />
+              <item name="wws" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
@@ -654,7 +614,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="" />
-      <changelist id="107142de-13b3-4448-8c1c-8f5137ffdd92" name="New changelist" comment="" />
+      <changelist id="" name="New changelist" comment="" />
       <created>1499865672397</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -711,7 +671,7 @@
       <workItem from="1501404498960" duration="50000" />
       <workItem from="1501404618683" duration="140000" />
       <workItem from="1501408627047" duration="401000" />
-      <workItem from="1501409596850" duration="300000" />
+      <workItem from="1501409596850" duration="532000" />
     </task>
     <task id="LOCAL-00001" summary="Testing of automated copyright notice">
       <created>1501283068183</created>
@@ -748,11 +708,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501408950610</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Changed package names.">
+      <created>1501409921481</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1501409921481</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103167000" />
+    <option name="totallyTimeSpent" value="103399000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -772,10 +739,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48533008" sideWeight="0.5024155" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988268" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32680538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32680538" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4278813" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4278813" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26639062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -855,7 +822,8 @@
     <MESSAGE value="Testing of automated copyright notice" />
     <MESSAGE value="Fixed the colour update to the QStateViewer. There appears to be a defect in the &#10;comparison function of doubles where all the values are negative. I implemented a &#10;simple rescaling operation and it all displays perfectly." />
     <MESSAGE value="Rebuilt docs directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rebuilt docs directory" />
+    <MESSAGE value="Changed package names." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed package names." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -913,15 +881,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_SenseOfAdventure1_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/LogExperiment.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/QTableBrain.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/TheWorld.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/CoOrdinate.java" />
@@ -1117,6 +1076,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
           <folding />
         </state>
       </provider>
