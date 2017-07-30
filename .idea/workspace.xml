@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="" />
+    <list default="true" id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_runFromPropertiesFile_Data.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <list id="107142de-13b3-4448-8c1c-8f5137ffdd92" name="New changelist" comment="New changelist" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/WumpusWorldSimulator/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +28,7 @@
       <file leaf-file-name="WWSimulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
+            <state relative-caret-position="16">
               <caret line="305" column="24" lean-forward="false" selection-start-line="305" selection-start-column="24" selection-end-line="305" selection-end-column="24" />
               <folding>
                 <element signature="e#0#14196#0" expanded="true" />
@@ -146,7 +150,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,45 +157,11 @@
               <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
               <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
-              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
-              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
-              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
-              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
-              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="richardburgmann" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -573,6 +542,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="" />
+      <changelist id="107142de-13b3-4448-8c1c-8f5137ffdd92" name="New changelist" comment="" />
       <created>1499865672397</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -623,6 +593,9 @@
       <workItem from="1501397258000" duration="114000" />
       <workItem from="1501397394505" duration="4277000" />
       <workItem from="1501402316818" duration="194000" />
+      <workItem from="1501402809631" duration="127000" />
+      <workItem from="1501403892558" duration="230000" />
+      <workItem from="1501404160785" duration="87000" />
     </task>
     <task id="LOCAL-00001" summary="Testing of automated copyright notice">
       <created>1501283068183</created>
@@ -649,7 +622,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101832000" />
+    <option name="totallyTimeSpent" value="102276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -671,7 +644,7 @@
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32802936" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3926846" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4037267" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26639062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1070,7 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="34" column="51" lean-forward="false" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,10 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="76" column="45" lean-forward="false" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
-          <folding>
-            <element signature="e#2318#2319#0" expanded="false" />
-            <element signature="e#2370#2371#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1130,7 +1098,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
+        <state relative-caret-position="16">
           <caret line="305" column="24" lean-forward="false" selection-start-line="305" selection-start-column="24" selection-end-line="305" selection-end-column="24" />
           <folding>
             <element signature="e#0#14196#0" expanded="true" />
