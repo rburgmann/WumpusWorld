@@ -45,9 +45,9 @@ import java.util.Properties;
  */
 public class WWSimulator implements WindowListener {
     private static final Logger logger = LoggerFactory.getLogger(WWSimulator.class);
-    private static Properties defaultProps = new Properties();
-    private static Properties applicationProps;
-    private static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
+    public static Properties defaultProps = new Properties();
+    public static Properties applicationProps;
+    public static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
     public static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
     private static LogExperiment experimentalData;
     /**
@@ -77,19 +77,19 @@ public class WWSimulator implements WindowListener {
         wwSimulator = new WWSimulator();
         wwSimulator.startup();
 
-        int batchSize = 0;
+        int runSimulatorANumberOfTimes = 0;
         if (args.length > 0) {
-            batchSize = Integer.parseInt(args[0]);
-            wwSimulator.runSimulations(batchSize);
+            runSimulatorANumberOfTimes = Integer.parseInt(args[0]);
+            wwSimulator.runSimulations(runSimulatorANumberOfTimes);
         } else {
             wwSimulator.initSimulator();
         }
     }
 
-    public void runSimulations(int numberOfTimes) {
-        logger.info("Run simulation "+ numberOfTimes + " time(s)." );
+    public void runSimulations(int runSimulatorANumberOfTimes) {
+        logger.info("Run simulation " + runSimulatorANumberOfTimes + " time(s).");
 
-        for (int l = 0; l < numberOfTimes; l++) {
+        for (int l = 0; l < runSimulatorANumberOfTimes; l++) {
 
             wwSimulator.initSimulator();
             wwSimulator.run();
@@ -162,9 +162,6 @@ public class WWSimulator implements WindowListener {
         experimentalData = new LogExperiment(applicationProps);
     }
 
-    /**
-     * Load default properties from local file into properties object.
-     */
 
     private void createMainWindow() {
         // In case there are any old windows left from previous iteration.
@@ -198,15 +195,9 @@ public class WWSimulator implements WindowListener {
         adventurerFinalState.append(adventurerXY.toCSV() + ",");
         adventurerFinalState.append(goldXY.toCSV() + ",");
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         int reward = -1;
         timeSteps = 0;
-        adventurer.setHealth(75);
+        adventurer.setHealth(100);
         boolean runSim = true;
         while (runSim) {
 
@@ -235,7 +226,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("*** What a foul Stench ! ***");
                 logger.info("****************************");
                 logger.info(" ");
-                wait(500);
+                wait(250);
                 reward = reward - 1;
             }
             if (agentXY.collision(breezesXY)) {
@@ -244,7 +235,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("***  I feel a BREEZE !   ***");
                 logger.info("****************************");
                 logger.info(" ");
-                wait(500);
+                wait(250);
                 reward = reward - 1;
             }
             if (agentXY.collision(pitXY)) {
@@ -253,7 +244,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("***  Ahhhh falling !  ***");
                 logger.info("*************************");
                 reward = reward - 100;
-                wait(3000);
+                wait(500);
                 this.adventurerFinalState.append("PIT,");
                 runSim = false;
             }
@@ -265,7 +256,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward - 100;
-                wait(3000);
+                wait(500);
                 this.adventurerFinalState.append("WUMPUS,");
                 runSim = false;
             }
@@ -277,7 +268,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward + 101;
-                wait(3000);
+                wait(500);
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
             }
@@ -287,7 +278,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("***  I'm Starving !   ***");
                 logger.info("*************************");
                 logger.info(" ");
-                wait(3000);
+                wait(250);
                 this.adventurerFinalState.append("STARVATION,");
                 reward = reward - 100;
                 runSim = false;
@@ -300,7 +291,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward - 10;
-                wait(1000);
+                wait(10);
                 gameState = prevGameState; //move them back to whence they came.
             }
             adventurer.setHealth(adventurer.getHealth() + reward);
@@ -312,13 +303,12 @@ public class WWSimulator implements WindowListener {
             if (!runSim) {
                 logger.info("Final score " + this.adventurer.getHealth());
             } else {
-                wait(100);
+                wait(125);
             }
         }
         adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
         adventurerFinalState.append(",");
         adventurerFinalState.append(timeSteps);
-        wait(1000);
         System.gc();
     }
 

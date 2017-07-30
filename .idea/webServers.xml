@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9c5422f2-9324-49bd-a6fa-faccb0aec4a8" name="WumpusWorldSim" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\Users\Richa\Google Drive\Projects\WumpusWorld\WumpusWorldSimulator" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

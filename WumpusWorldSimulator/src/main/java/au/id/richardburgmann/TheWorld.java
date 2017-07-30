@@ -21,6 +21,7 @@ package au.id.richardburgmann;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Properties;
@@ -834,7 +835,6 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
     public int getRandom() {
         if (random == null) {
             random = new Random();
-            //random.setSeed(RANDOM_SEED);
         }
         int newRandomNumber = random.nextInt(GRID_SIZE);
 
@@ -890,8 +890,8 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
 
     public int getCountVisited() {
         int count = 0;
-        for (int r = 0; r < this.GRID_SIZE; r++) {
-            for (int c = 0; c < this.GRID_SIZE; c++) {
+        for (int r = 0; r < GRID_SIZE; r++) {
+            for (int c = 0; c < GRID_SIZE; c++) {
                 if (this.worldState[VISITED][r][c] == OCCUPIED_LOCATION) {
                     count = count + 1;
                 }
@@ -931,18 +931,9 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         if (getClass() != o.getClass())
             return false;
         TheWorld pstate = (TheWorld) o;
-        boolean result = false;
-        // Is the Adventurer in th same place?
+        // Is the Adventurer in the same place?
         CoOrdinate thisAdv = this.getEntityLocation(ADVENTURER);
         CoOrdinate otherAdv = pstate.getEntityLocation(ADVENTURER);
-        if ((thisAdv.row == otherAdv.row) && (thisAdv.col == otherAdv.col)) {
-            // Keep looking.
-            result = true; // So far.
-        } else {
-            return false;
-        }
-        return result;
+        return (thisAdv.row == otherAdv.row) && (thisAdv.col == otherAdv.col);
     }
-
-
 }

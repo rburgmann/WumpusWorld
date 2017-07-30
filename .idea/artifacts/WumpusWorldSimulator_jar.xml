@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="WumpusWorldSimulator:jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="WumpusWorldSimulator.jar">
+      <element id="module-output" name="WumpusWorldSimulator" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../libraries/slf4j-simple-1.7.22.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

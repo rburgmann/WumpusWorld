@@ -21,6 +21,7 @@ package au.id.richardburgmann.gui;
 
 
 import au.id.richardburgmann.TheWorld;
+import au.id.richardburgmann.WWSimulator;
 import au.id.richardburgmann.brains.QTableBrain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +60,17 @@ public class QStateViewer {
     private void createWindow() {
         myWindow = new JFrame();
         myWindow.createBufferStrategy(1);
-        myWindow.setSize(1200, 1200);
+        int defaultHeight = 1200;
+        int defaultWidth = 1200;
+        try {
+            defaultHeight = Integer.parseInt(WWSimulator.applicationProps.getProperty("defaultHeight"));
+            defaultWidth = Integer.parseInt(WWSimulator.applicationProps.getProperty("defaultWidth"));
+        } catch (Exception e) {
+            logger.debug("Error parsing default width and height from properties object.");
+            logger.debug(e.getMessage());
+        }
+
+        myWindow.setSize(defaultWidth, defaultHeight);
         myWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         myWindow.setLayout(gridLayout);
         myWindow.setFont(myFont);

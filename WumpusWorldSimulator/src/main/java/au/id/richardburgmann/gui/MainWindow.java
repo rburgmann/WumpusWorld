@@ -66,12 +66,16 @@ public class MainWindow extends JFrame {
     public void initMainWindow() {
 
         setMinimumSize(minSize);
-        setSize(defaultWidth, defaultHeight);
+        resetWindowSize();
         setTitle("Wumpus World Simulator");
         setJMenuBar(createMyMenus());
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addComponentListener(new GuiEventListener());
 
+    }
+
+    private void resetWindowSize() {
+        setSize(defaultWidth, defaultHeight);
     }
 
     private JMenuBar createMyMenus() {
@@ -120,7 +124,7 @@ public class MainWindow extends JFrame {
         JMenu runMenu = new JMenu("Run");
         runMenu.setMnemonic(KeyEvent.VK_R);
         runMenu.setFont(myMenuFont);
-        runMenu.addMenuListener((MenuListener) new runMenuItemListener());
+        runMenu.addMenuListener(new runMenuItemListener());
 
         myMenuBar.add(fileMenu);
         myMenuBar.add(runMenu);
@@ -181,7 +185,7 @@ public class MainWindow extends JFrame {
          */
         try {
             temp = Integer.parseInt(applicationProps.getProperty("defaultMargin"));
-            if (temp > 0) ;
+            if (temp > 0) defaultMargin = temp;
         } catch (Exception e) {
             logger.warn("No defaultMargin defined in either properties file.");
             logger.warn(e.getMessage());
@@ -196,7 +200,6 @@ public class MainWindow extends JFrame {
             logger.warn(e.getMessage());
         }
 
-        defaultWidth = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
         try {
             temp = 0; // reset temp as a precaution.
             temp = Integer.parseInt(applicationProps.getProperty("defaultWidth"));
@@ -205,6 +208,7 @@ public class MainWindow extends JFrame {
             logger.warn("No defaultWidth defined in either properties file.");
             logger.warn(e.getMessage());
         }
+        resetWindowSize();
     }
 
     /*
