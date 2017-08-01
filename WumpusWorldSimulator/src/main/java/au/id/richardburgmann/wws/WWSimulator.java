@@ -50,6 +50,7 @@ public class WWSimulator implements WindowListener {
     public static String DEFAULT_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\default.Properties";
     public static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
     private static LogExperiment experimentalData;
+    private static int runSimulatorANumberOfTimes = 0;
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
@@ -73,27 +74,42 @@ public class WWSimulator implements WindowListener {
     Sprite wallsSprite;
 
     public static void main(String[] args) {
+       //TODO Accept run time parameter file to run experiments on.
+
 
         wwSimulator = new WWSimulator();
         wwSimulator.startup();
 
-        int runSimulatorANumberOfTimes = 0;
+        if (args.length > 0) parseRuntimeArguments(args);
+        
+        wwSimulator.runSimulations(runSimulatorANumberOfTimes);
+    }
+    private static void parseRuntimeArguments(String[] args) {
+        logger.debug("There are " + args.length + " runtime arguments.");
+
         if (args.length > 0) {
-            runSimulatorANumberOfTimes = Integer.parseInt(args[0]);
-            wwSimulator.runSimulations(runSimulatorANumberOfTimes);
-        } else {
-            wwSimulator.initSimulator();
+            // Looking for a number and a string, any order will do.
+            for (int i=0; i<args.length; i++) {
+                logger.debug("arg["+i+"] is "+args[i]);
+                try {
+                    runSimulatorANumberOfTimes = Integer.parseInt(args[i]);
+                } catch (Exception e) {
+                    //Probably not an integer but the properties file name.
+                    APPLICATION_PROPERTIES_FILE_LOCATION = args[i].toString().trim().toLowerCase();
+                }
+            }
         }
     }
 
     public void runSimulations(int runSimulatorANumberOfTimes) {
         logger.info("Run simulation " + runSimulatorANumberOfTimes + " time(s).");
 
-        for (int l = 0; l < runSimulatorANumberOfTimes; l++) {
+        wwSimulator.initSimulator();
 
-            wwSimulator.initSimulator();
+        for (int l = 0; l < runSimulatorANumberOfTimes; l++) {
             wwSimulator.run();
             wwSimulator.logRunResults();
+            wwSimulator.initSimulator();
         }
     }
 
