@@ -22,6 +22,7 @@ package au.id.richardburgmann.wws;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Properties;
@@ -33,7 +34,7 @@ import java.util.Random;
  * for further details.</p>
  */
 
-public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
+public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld>, Serializable {
     /**
      * Constant, usage is worldState[WUMPUS][4][4]
      * There can only be one Wumpus in the world at a time.
@@ -359,42 +360,6 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
         }
         return temp;
     }
-
-    /**
-     * This method is used to load a previously defined world state from disk.
-     *
-     * @param filename Name of the file containing the world state you wish to load from disk.
-     * @return 0 Ok 1 Failed.
-     */
-    public int loadWorldState(String filename) {
-        // Define the return value as failed unless we are certain it worked.
-        int returnValue = FAILED;
-
-        // TODO
-
-        returnValue = OK;
-
-        return returnValue;
-    }
-
-    /**
-     * Write the current world state to disk.
-     *
-     * @param filename Name of the file to persist the worlds state.
-     * @return 0 Ok 1 Failed.
-     */
-    public int saveWorldState(String filename) {
-        // Define the return value as failed unless we are certain it worked.
-        int returnValue = FAILED;
-
-        // TODO
-
-        returnValue = OK;
-
-        return returnValue;
-
-    }
-
     /**
      * Has the Adventurer been initialized to start in a random location or the fixed
      * starting position?
@@ -642,34 +607,24 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
                 this.ADVENTURER_PLACEMENT == RANDOM_START) {
             switch (this.ADVENTURER_PLACEMENT) {
                 case FIXED_START:
-                    //logger.debug("Set Adventurer to " + ADVENTURER_X + "," + ADVENTURER_Y);
                     this.worldState[ADVENTURER][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
                     this.worldState[VISITED][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
-                    //logger.debug("Set Visted at " + ADVENTURER_X + "," + ADVENTURER_Y + " to " + OCCUPIED_LOCATION);
                     break;
                 case RANDOM_START: {
-                    int startLoc = getRandom();
-                    int edgeLoc = getRandom();
-                    if (startLoc == 0) {
-                        // Adventurer will start somewhere on the left column.
-                        this.setADVENTURER_X(edgeLoc);
-                        this.setADVENTURER_Y(0);
-                    } else if (startLoc == 1) {
-                        // Adventurer will start somewhere on the top row.
-                        this.setADVENTURER_X(0);
-                        this.setADVENTURER_Y(edgeLoc);
-                    } else if (startLoc == 2) {
-                        // Adventurer will start somewhere on the back column.
-                        this.setADVENTURER_X(3);
-                        this.setADVENTURER_Y(edgeLoc);
-                    } else {
-                        // Adventurer will start somewhere on the bottom row.
-                        this.setADVENTURER_X(edgeLoc);
-                        this.setADVENTURER_Y(3);
+                    boolean found = false;
+                    while (!found) {
+                        CoOrdinate emptyLocation = this.getARandomEmptyLocation();
+                        if (emptyLocation.col == 0 ||emptyLocation.col == 3 ||
+                            emptyLocation.row == 0 ||emptyLocation.row == 3  ) {
+                                found = true;
+                                this.setADVENTURER_X(emptyLocation.row);
+                                this.setADVENTURER_Y(emptyLocation.col);
+
+                            }
+                        }
                     }
                     this.worldState[ADVENTURER][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
                     this.worldState[VISITED][ADVENTURER_X][ADVENTURER_Y] = OCCUPIED_LOCATION;
-                }
                 break;
             }
         } else {
@@ -704,59 +659,13 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
                 this.worldState[entity][fixedX][fixedY] = OCCUPIED_LOCATION;
                 break;
             case RANDOM_START: {
-                int startX = getRandom();
-                int startY = getRandom();
-                boolean scanFlag = true;
-                boolean foundEmptyCell = true;
-                int attempts = 0;
-                while (scanFlag) {
+                CoOrdinate randomLocation = this.getARandomEmptyLocation();
 
-                    for (int e = 0; e < this.worldState.length; e++) {
-                        if (this.worldState[e][startX][startY] == OCCUPIED_LOCATION) {
-                            foundEmptyCell = false;
-                        }
-                    }
-                    if (foundEmptyCell == true) {
-                        scanFlag = false;
-                    } else {
-
-                        if (attempts < 16) {
-                            logger.info(entity + " Attempt " + attempts + ", try again.");
-                            // get new positions to try.
-                            foundEmptyCell = true; // Reset flag for next attempt.
-                            startX = getRandom();
-                            startY = getRandom();
-                            attempts++;
-                        } else {
-                            // search sequentially now.
-                            logger.info("Giving up and now searching sequentially.");
-                            for (int sx = 0; sx < GRID_SIZE; sx++) {
-                                for (int sy = 0; sy < GRID_SIZE; sy++) {
-                                    if (this.worldState[ADVENTURER][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[WUMPUS][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[STENCHES][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[PITS][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[BREEZES][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[GOLD][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[GLITTER][sx][sy] == EMPTY_LOCATION &&
-                                            this.worldState[WALLS][sx][sy] == EMPTY_LOCATION) {
-                                        startX = sx;
-                                        startY = sy;
-                                        scanFlag = false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
                 logger.info(ENTITY_CONSTANTS[entity] + " will be placed in the random location of "
-                        + startX + "," + startY);
-                this.worldState[entity][startX][startY] = OCCUPIED_LOCATION;
-
+                        + randomLocation.row + "," + randomLocation.col);
+                this.worldState[entity][randomLocation.row][randomLocation.col] = OCCUPIED_LOCATION;
             }
-
         }
-
         if (entity == WUMPUS) this.waftSensations(WUMPUS, STENCHES);
         if (entity == PITS) this.waftSensations(PITS, BREEZES);
         if (entity == GOLD) this.waftSensations(GOLD, GLITTER);
@@ -840,7 +749,32 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
 
         return newRandomNumber;
     }
+    /**
+     * Find an empty location from the available list of empty locations at random.
+     */
+    public CoOrdinate getARandomEmptyLocation() {
+        ArrayList<CoOrdinate> emptyLocations = new ArrayList<CoOrdinate>(16);
 
+        for (int sx = 0; sx < GRID_SIZE; sx++) {
+            for (int sy = 0; sy < GRID_SIZE; sy++) {
+                if (this.worldState[ADVENTURER][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[WUMPUS][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[STENCHES][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[PITS][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[BREEZES][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[GOLD][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[GLITTER][sx][sy] == EMPTY_LOCATION &&
+                        this.worldState[WALLS][sx][sy] == EMPTY_LOCATION) {
+                    CoOrdinate emptyCell = new CoOrdinate(sx, sy);
+                    emptyLocations.add(emptyCell);
+                }
+            }
+        }
+        emptyLocations.trimToSize();
+        this.getRandom();
+        int ix = (int) (random.nextFloat() * emptyLocations.size());
+        return emptyLocations.get(ix );
+    }
     /**
      * Random legal move generator. Uses matrixR to only return valid actions
      * from the current state. Means you want go off grid, not that there is
@@ -853,12 +787,6 @@ public class TheWorld implements Comparator<TheWorld>, Comparable<TheWorld> {
 
         int legalMove = -1;
         int[] availableLegalMoves = this.getAllLegalMovesFromHere(fromHereXY);
-      /*  logger.debug("Available moves are " +
-                availableLegalMoves[0] + "," +
-                availableLegalMoves[1] + "," +
-                availableLegalMoves[2] + "," +
-                availableLegalMoves[3] + "."
-        );*/
 
         while (legalMove < 0) {
             int candidateMove = getRandom();

@@ -7,68 +7,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ebfb3a8-b1eb-4ab1-a509-b11e26bc630a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/Adventurer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/CoOrdinate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/LogExperiment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/TheWorld.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/WWSimulator.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/Brain.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/QTableBrain.BrainCell.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/QTableBrain.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/RandomChoice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/class-use/Brain.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/class-use/QTableBrain.BrainCell.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/class-use/QTableBrain.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/class-use/RandomChoice.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/brains/package-use.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/class-use/Adventurer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/class-use/CoOrdinate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/class-use/LogExperiment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/class-use/TheWorld.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/class-use/WWSimulator.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/GridPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/GuiEventListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.closeMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.editMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.exitMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.openMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.runMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.saveAsMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/MainWindow.saveMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/QPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/QStateViewer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/Sprite.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/GridPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/GuiEventListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.closeMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.editMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.exitMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.openMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.runMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.saveAsMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/MainWindow.saveMenuItemListener.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/QPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/QStateViewer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/class-use/Sprite.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/gui/package-use.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/au/id/richardburgmann/wws/package-use.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWS.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.bkp.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/test/au/id/richardburgmann/wws/brains/QTableBrainTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spreadsheets/TimeSpent.xlsx" afterPath="$PROJECT_DIR$/Spreadsheets/TimeSpent.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator.jar" afterPath="$PROJECT_DIR$/WumpusWorldSimulator.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/WumpusWorldSimulator.iml" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/WumpusWorldSimulator.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Param.txt" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Param.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_runFromPropertiesFile_Data.csv" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_runFromPropertiesFile_Data.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/CoOrdinate.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/CoOrdinate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/LogExperiment.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/LogExperiment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/RandomChoice.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/RandomChoice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QStateViewer.java" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QStateViewer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/simplelogger.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/simplelogger.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/default.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/default.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/simplelogger.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/simplelogger.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/wwsimulator.properties" afterPath="$PROJECT_DIR$/WumpusWorldSimulator/target/classes/wwsimulator.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/WumpusWorldSimulator/target/" />
@@ -84,34 +47,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Brain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QTableBrain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WWSimulator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WWSimulator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
-              <caret line="83" column="8" lean-forward="false" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+            <state relative-caret-position="3152">
+              <caret line="302" column="33" lean-forward="false" selection-start-line="302" selection-start-column="33" selection-end-line="302" selection-end-column="33" />
               <folding>
-                <element signature="e#13445#13446#0" expanded="true" />
-                <element signature="e#13505#13506#0" expanded="true" />
+                <element signature="method#parseRuntimeArguments#0;class#WWSimulator#0" expanded="false" />
+                <element signature="method#shutdown#0;class#WWSimulator#0" expanded="false" />
+                <element signature="method#updateMainWindow#0;class#WWSimulator#0" expanded="false" />
+                <element signature="method#loadProperties#0;class#WWSimulator#0" expanded="false" />
+                <element signature="method#createMainWindow#0;class#WWSimulator#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Adventurer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding>
+                <element signature="method#setHealth#1;class#Adventurer#0" expanded="false" />
+                <element signature="method#act#0;class#Adventurer#0" expanded="false" />
+                <element signature="method#learn#0;class#Adventurer#0" expanded="false" />
+                <element signature="method#moveLeft#0;class#Adventurer#0" expanded="false" />
+                <element signature="method#moveRight#0;class#Adventurer#0" expanded="false" />
+                <element signature="method#moveUp#0;class#Adventurer#0" expanded="false" />
+                <element signature="method#moveDown#0;class#Adventurer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testProperties.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1328">
+              <caret line="83" column="34" lean-forward="false" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QTableBrain.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="51" column="30" lean-forward="false" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+              <folding>
+                <element signature="method#listR#0;class#QTableBrain#0" expanded="false" />
+                <element signature="method#think#0;class#QTableBrain#0" expanded="false" />
+                <element signature="class#BrainCell#0;class#QTableBrain#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -123,6 +111,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
         <option value="JUnit4 Test Class" />
       </list>
     </option>
@@ -130,6 +119,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>location</find>
+      <find>TheWorld</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,7 +144,6 @@
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Data.csv" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QPanel.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/hardPath.properties" />
-        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/pom.xml" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/test/java/au/id/richardburgmann/brains/BrainTest.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/test/au/id/richardburgmann/brains/BrainTest.java" />
@@ -164,12 +153,26 @@
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/RandomChoice.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/QTableBrain.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/TheWorld.java" />
-        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QStateViewer.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/MainWindow.java" />
         <option value="$PROJECT_DIR$/out/artifacts/WumpusWorldSimulator_jar/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWS.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/LogExperiment.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/simplelogger.properties" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QStateViewer.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/test/au/id/richardburgmann/wws/brains/QTableBrainTest.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/RandomChoice.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/CoOrdinate.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTBWithSenseOfWonder.java" />
         <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.properties" />
+        <option value="$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java" />
       </list>
     </option>
   </component>
@@ -216,6 +219,22 @@
     <option name="width" value="3014" />
     <option name="height" value="1946" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -231,9 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,31 +262,124 @@
               <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
               <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wws" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wws" type="462c0819:PsiDirectoryNode" />
+              <item name="brains" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WumpusWorld" type="462c0819:PsiDirectoryNode" />
+              <item name="WumpusWorldSimulator" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="richardburgmann" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="slf4j-simple-1.7.22" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="slf4j-simple-1.7.22" type="70bed36:NamedLibraryElementNode" />
+              <item name="slf4j-simple-1.7.22.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WumpusWorld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="slf4j-simple-1.7.22" type="70bed36:NamedLibraryElementNode" />
+              <item name="slf4j-simple-1.7.22.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.09425071" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
-    <property name="settings.editor.selected.configurable" value="copyright" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WumpusWorldSimulator/src/resources" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="au.id.richardburgmann.wws.brains" />
       <recent name="au.id.richardburgmann.brains" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Richa\Google Drive\Projects\WumpusWorld" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="au.id.richardburgmann.wws.brains" />
       <recent name="au.id.richardburgmann.brains" />
       <recent name="au.id.richardburgmann.gui" />
     </key>
@@ -293,26 +402,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.WWSimulator 2 args">
-    <configuration name="All in WumpusWorldSimulator" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
+  <component name="RunManager" selected="Application.WWSimulator testdeck">
     <configuration name="QPanel" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.gui.QPanel" />
       <option name="VM_PARAMETERS" value="" />
@@ -339,6 +429,19 @@
       <module name="WumpusWorldSimulator" />
       <envs />
     </configuration>
+    <configuration name="QTableBrain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.brains.QTableBrain" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="WumpusWorldSimulator" />
+      <envs />
+    </configuration>
     <configuration name="WWSimulator 1 " type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.WWSimulator" />
       <option name="VM_PARAMETERS" value="" />
@@ -352,10 +455,10 @@
       <module name="WumpusWorldSimulator" />
       <envs />
     </configuration>
-    <configuration name="WWSimulator 2 args" type="Application" factoryName="Application">
+    <configuration name="WWSimulator 15" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.WWSimulator" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="1  .\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties" />
+      <option name="PROGRAM_PARAMETERS" value="15" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -365,10 +468,10 @@
       <module name="WumpusWorldSimulator" />
       <envs />
     </configuration>
-    <configuration name="WWSimulator 25" type="Application" factoryName="Application">
+    <configuration name="WWSimulator 2 args reverse order" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.WWSimulator" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="25" />
+      <option name="PROGRAM_PARAMETERS" value=" .\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties 1" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -403,6 +506,51 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="WumpusWorldSimulator" />
       <envs />
+    </configuration>
+    <configuration name="WWSimulator filename only arg" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.WWSimulator" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value=" .\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="WumpusWorldSimulator" />
+      <envs />
+    </configuration>
+    <configuration name="WWSimulator testdeck" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="au.id.richardburgmann.wws.WWSimulator" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="50 .\\WumpusWorldSimulator\\src\\resources\\testProperties.properties" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="WumpusWorldSimulator" />
+      <envs />
+    </configuration>
+    <configuration name="Whole project" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -623,16 +771,24 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="8">
+    <list size="11">
       <item index="0" class="java.lang.String" itemvalue="Application.WWSimulator 1 " />
-      <item index="1" class="java.lang.String" itemvalue="Application.WWSimulator 2 args" />
-      <item index="2" class="java.lang.String" itemvalue="Application.WWSimulator No Args" />
-      <item index="3" class="java.lang.String" itemvalue="Application.WWSimulator 25" />
-      <item index="4" class="java.lang.String" itemvalue="Application.QPanel" />
-      <item index="5" class="java.lang.String" itemvalue="Application.QStateViewer" />
-      <item index="6" class="java.lang.String" itemvalue="Application.WWSimulator 5" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.All in WumpusWorldSimulator" />
+      <item index="1" class="java.lang.String" itemvalue="Application.WWSimulator testdeck" />
+      <item index="2" class="java.lang.String" itemvalue="Application.WWSimulator filename only arg" />
+      <item index="3" class="java.lang.String" itemvalue="Application.WWSimulator 2 args reverse order" />
+      <item index="4" class="java.lang.String" itemvalue="Application.WWSimulator No Args" />
+      <item index="5" class="java.lang.String" itemvalue="Application.WWSimulator 15" />
+      <item index="6" class="java.lang.String" itemvalue="Application.QPanel" />
+      <item index="7" class="java.lang.String" itemvalue="Application.QStateViewer" />
+      <item index="8" class="java.lang.String" itemvalue="Application.WWSimulator 5" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.Whole project" />
+      <item index="10" class="java.lang.String" itemvalue="Application.QTableBrain" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.QTableBrain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -703,7 +859,29 @@
       <workItem from="1501411415116" duration="2090000" />
       <workItem from="1501620695612" duration="39000" />
       <workItem from="1501620838835" duration="221000" />
-      <workItem from="1501628072917" duration="1565000" />
+      <workItem from="1501628072917" duration="2065000" />
+      <workItem from="1501643261573" duration="1331000" />
+      <workItem from="1501658721974" duration="1489000" />
+      <workItem from="1501879875107" duration="767000" />
+      <workItem from="1501880819677" duration="254000" />
+      <workItem from="1501971188885" duration="926000" />
+      <workItem from="1501973108795" duration="952000" />
+      <workItem from="1501975510932" duration="1869000" />
+      <workItem from="1501981781898" duration="2941000" />
+      <workItem from="1501984843373" duration="4729000" />
+      <workItem from="1501989618647" duration="3209000" />
+      <workItem from="1501993636450" duration="2001000" />
+      <workItem from="1501995688347" duration="802000" />
+      <workItem from="1502050800013" duration="3620000" />
+      <workItem from="1502054467734" duration="74000" />
+      <workItem from="1502058006109" duration="1615000" />
+      <workItem from="1502091201733" duration="867000" />
+      <workItem from="1502106513092" duration="1122000" />
+      <workItem from="1502139136246" duration="273000" />
+      <workItem from="1502144617641" duration="885000" />
+      <workItem from="1502193407951" duration="3781000" />
+      <workItem from="1502197342055" duration="1000000" />
+      <workItem from="1502226020927" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="Testing of automated copyright notice">
       <created>1501283068183</created>
@@ -768,11 +946,50 @@
       <option name="project" value="LOCAL" />
       <updated>1501412342600</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add support to get properties file from the command line when WWS is &#10;launched. This means we can create a series of simulations using&#10;different property file and run them from the command line rather than&#10;from the IDE or mmanually changing the files each timee.">
+      <created>1501629843937</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1501629843937</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Whole_project - 2017.08.06 at 15h 05m 39s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 06m 26s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 07m 17s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 08m 41s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 10m 11s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 10m 22s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 10m 36s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 12m 31s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.06 at 15h 13m 25s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Whole_project - 2017.08.07 at 06h 25m 28s.xml">
+      <configuration name="Whole project" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108160000" />
+    <option name="totallyTimeSpent" value="143190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -785,57 +1002,57 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1507" height="973" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48533008" sideWeight="0.5024155" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988268" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32640588" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.998776" sideWeight="0.49758455" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.452726" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5541753" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26639062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26984128" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35058662" sideWeight="0.50729924" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3977968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34761322" sideWeight="0.49758455" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3977968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985258" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48533008" sideWeight="0.5024155" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988268" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.91523343" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32640588" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34761322" sideWeight="0.49758455" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26452282" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51552796" sideWeight="0.49270073" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985258" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26984128" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39987716" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35058662" sideWeight="0.50729924" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3977968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -878,7 +1095,8 @@
     <MESSAGE value="Rebuilt docs directory" />
     <MESSAGE value="Changed package names." />
     <MESSAGE value="Removed unused directories." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused directories." />
+    <MESSAGE value="Add support to get properties file from the command line when WWS is &#10;launched. This means we can create a series of simulations using&#10;different property file and run them from the command line rather than&#10;from the IDE or mmanually changing the files each timee." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add support to get properties file from the command line when WWS is &#10;launched. This means we can create a series of simulations using&#10;different property file and run them from the command line rather than&#10;from the IDE or mmanually changing the files each timee." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -930,110 +1148,74 @@
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java</url>
+          <line>117</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java</url>
+          <line>69</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java</url>
+          <line>755</line>
+          <properties />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java</url>
+          <line>772</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/CoOrdinate.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_menubar_Param.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_menubar_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QWindow.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/Sprite.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_SenseOfAdventure2_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_devtest_Param.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_devtest_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/LogExperiment.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_QRuleV2.Gamma.p9.Param.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_SenseOfAdventure1_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_run_SenseOfAdventure1_Param.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/awt/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-716">
-          <caret line="1754" column="29" lean-forward="false" selection-start-line="1754" selection-start-column="29" selection-end-line="1754" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/util/Formatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="2525" column="0" lean-forward="false" selection-start-line="2525" selection-start-column="0" selection-end-line="2525" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="428" column="0" lean-forward="false" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="972" column="0" lean-forward="false" selection-start-line="972" selection-start-column="0" selection-end-line="972" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QPanel.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Data.csv" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/experiment1.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/simplelogger.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1053,31 +1235,10 @@
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/test/au/id/richardburgmann/brains/BrainTest.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/LeftPathBrain.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/RandomChoice.java" />
-    <entry file="jar://$PROJECT_DIR$/../libraries/slf4j-simple-1.7.22.jar!/org/slf4j/impl/SimpleLogger.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4608">
-          <caret line="326" column="0" lean-forward="false" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/TheWorld.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/Adventurer.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/GridPanel.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/QStateViewer.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/javax/swing/LayoutComparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
@@ -1096,7 +1257,50 @@
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/brains/Brain.java" />
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/gui/MainWindow.java" />
     <entry file="file://$PROJECT_DIR$/out/artifacts/WumpusWorldSimulator_jar/META-INF/MANIFEST.MF" />
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java" />
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Param.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_runFromPropertiesFile_Data.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1177">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="441" column="0" lean-forward="false" selection-start-line="441" selection-start-column="0" selection-end-line="441" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorld.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1110,68 +1314,194 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/LogExperiment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="47" column="20" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../libraries/slf4j-simple-1.7.22.jar!/org/slf4j/impl/SimpleLogger.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/gui/QStateViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1440">
+          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
+        <state relative-caret-position="64">
           <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/WWSimulator.java" />
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/META-INF/MANIFEST.MF">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/statements/RunBefores.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.bkp.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/model/FrameworkMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/simplelogger.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5-sources.jar!/org/slf4j/LoggerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="280" column="0" lean-forward="false" selection-start-line="280" selection-start-column="0" selection-end-line="280" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/test/au/id/richardburgmann/wws/brains/QTableBrainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="75" column="49" lean-forward="true" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/Brain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        <state relative-caret-position="192">
+          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/RandomChoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6227">
+          <caret line="76" column="6" lean-forward="false" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/CoOrdinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1055#1056#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="775" column="39" lean-forward="true" selection-start-line="775" selection-start-column="39" selection-end-line="775" selection-end-column="39" />
+          <folding>
+            <element signature="e#26544#26556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/default.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="78" column="61" lean-forward="false" selection-start-line="78" selection-start-column="61" selection-end-line="78" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/wwsimulator.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTBWithSenseOfWonder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="187" column="46" lean-forward="false" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/Adventurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="method#setHealth#1;class#Adventurer#0" expanded="false" />
+            <element signature="method#act#0;class#Adventurer#0" expanded="false" />
+            <element signature="method#learn#0;class#Adventurer#0" expanded="false" />
+            <element signature="method#moveLeft#0;class#Adventurer#0" expanded="false" />
+            <element signature="method#moveRight#0;class#Adventurer#0" expanded="false" />
+            <element signature="method#moveUp#0;class#Adventurer#0" expanded="false" />
+            <element signature="method#moveDown#0;class#Adventurer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3152">
+          <caret line="302" column="33" lean-forward="false" selection-start-line="302" selection-start-column="33" selection-end-line="302" selection-end-column="33" />
+          <folding>
+            <element signature="method#parseRuntimeArguments#0;class#WWSimulator#0" expanded="false" />
+            <element signature="method#shutdown#0;class#WWSimulator#0" expanded="false" />
+            <element signature="method#updateMainWindow#0;class#WWSimulator#0" expanded="false" />
+            <element signature="method#loadProperties#0;class#WWSimulator#0" expanded="false" />
+            <element signature="method#createMainWindow#0;class#WWSimulator#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/resources/testProperties.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1328">
+          <caret line="83" column="34" lean-forward="false" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/brains/QTableBrain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/TheWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="389" column="11" lean-forward="false" selection-start-line="389" selection-start-column="11" selection-end-line="389" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_dev_run_Param.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/out/logs/WWS_general_runFromPropertiesFile_Data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1177">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WumpusWorldSimulator/src/main/java/au/id/richardburgmann/wws/WWSimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="83" column="8" lean-forward="false" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        <state relative-caret-position="336">
+          <caret line="51" column="30" lean-forward="false" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
           <folding>
-            <element signature="e#13445#13446#0" expanded="true" />
-            <element signature="e#13505#13506#0" expanded="true" />
+            <element signature="method#listR#0;class#QTableBrain#0" expanded="false" />
+            <element signature="method#think#0;class#QTableBrain#0" expanded="false" />
+            <element signature="class#BrainCell#0;class#QTableBrain#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1183,10 +1513,10 @@
         <settings>
           <artifact-editor>
             <show-content>
+              <type id="artifact" />
+              <type id="javaee-facet-resources" />
               <type id="library" />
               <type id="jpa-descriptors" />
-              <type id="javaee-facet-resources" />
-              <type id="artifact" />
             </show-content>
           </artifact-editor>
           <last-edited>WumpusWorldSimulator:jar</last-edited>
@@ -1249,12 +1579,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>WumpusWorld</last-edited>
+          <last-edited>WumpusWorldSimulator</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.27764705" />
-                <option value="0.6" />
+                <option value="0.09425071" />
               </list>
             </option>
           </splitter-proportions>

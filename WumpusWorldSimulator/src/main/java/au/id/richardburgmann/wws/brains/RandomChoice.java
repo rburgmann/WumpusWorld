@@ -38,6 +38,16 @@ public class RandomChoice implements Brain {
     }
 
     @Override
+    public void persistBrain() {
+        // Do nothing as this brain has no persistance.
+    }
+
+    @Override
+    public Brain loadBrain() {
+        return new RandomChoice();
+    }
+
+    @Override
     public void brainDump() {
     }
 }

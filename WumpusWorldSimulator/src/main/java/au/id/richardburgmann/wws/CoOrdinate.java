@@ -31,6 +31,13 @@ public class CoOrdinate implements Comparator<CoOrdinate>, Comparable<CoOrdinate
     public int row = 0;
     public int col = 0;
 
+    public CoOrdinate() {
+        super();
+    }
+    public CoOrdinate(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
     public String toCSV() {
         String s = new String(row + "," + col);

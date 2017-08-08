@@ -17,20 +17,18 @@
  *
  */
 
-package au.id.richardburgmann.wws.brains;
+package au.id.richardburgmann.wws;
 
-import au.id.richardburgmann.wws.TheWorld;
-
-public interface Brain {
-
-    int think(TheWorld state);
-
-    TheWorld learn(TheWorld state, int action, int reward);
-
-    void persistBrain();
-
-    Brain loadBrain();
-
-    void brainDump();
+public enum WWS { YES, NO,
+    FIXED, RANDOM,
+    // Entities of the world.
+    ADVENTURER, WUMPUS, PIT, BREEZE, STENCH, GOLD,
+    // Property keys
+    SET_ADVENTURERS_BRAIN, SET_ADVENTURERS_HEALTH,
+    LOAD_TRAINED_BRAIN,
+    DIR_LOCATION_OF_BRAIN_Q_VALUES,
+    LOAD_BRAIN_Q_VALUES_FROM,
+    PERSIST_TRAINED_BRAIN_AFTER_RUN,
+    SAVE_BRAIN_Q_VALUES_TO
 
 }

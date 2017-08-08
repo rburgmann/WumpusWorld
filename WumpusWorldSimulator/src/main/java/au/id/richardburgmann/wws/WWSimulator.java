@@ -51,10 +51,12 @@ public class WWSimulator implements WindowListener {
     public static String APPLICATION_PROPERTIES_FILE_LOCATION = ".\\WumpusWorldSimulator\\src\\resources\\wwsimulator.properties";
     private static LogExperiment experimentalData;
     private static int runSimulatorANumberOfTimes = 0;
+    private static boolean resetGameState = true;
     /**
      * gameState holds the state of the game. Events update it and it is used by the render engine.
      */
     private TheWorld gameState;
+    private TheWorld initialisedGameStateForRun;
     private static WWSimulator wwSimulator;
 
     private TheWorld prevGameState;
@@ -74,14 +76,11 @@ public class WWSimulator implements WindowListener {
     Sprite wallsSprite;
 
     public static void main(String[] args) {
-       //TODO Accept run time parameter file to run experiments on.
 
+        if (args.length > 0) parseRuntimeArguments(args);
 
         wwSimulator = new WWSimulator();
         wwSimulator.startup();
-
-        if (args.length > 0) parseRuntimeArguments(args);
-        
         wwSimulator.runSimulations(runSimulatorANumberOfTimes);
     }
     private static void parseRuntimeArguments(String[] args) {
@@ -113,7 +112,7 @@ public class WWSimulator implements WindowListener {
         }
     }
 
-    private void startup() {
+    public void startup() {
         loadProperties();
         createExperimentLog();
         adventurer = new Adventurer(applicationProps);
@@ -121,7 +120,10 @@ public class WWSimulator implements WindowListener {
 
     public void shutdown() {
         logger.info("Shutdown.");
-        saveProperties();
+        // Turned of saving of properties as I have a nice formatted template and
+        // don't want it over ridden with ugly. Also there is are no runtime changes to properties possible yet.
+        //
+
         logRunProperties();
         mainWindow.dispose();
         System.exit(0);
@@ -193,7 +195,15 @@ public class WWSimulator implements WindowListener {
     }
 
     private void initGameState() {
-        gameState = new TheWorld(applicationProps);
+        if (initialisedGameStateForRun == null) {
+            initialisedGameStateForRun = new TheWorld(applicationProps);
+        }
+        if (resetGameState) {
+            initialisedGameStateForRun = new TheWorld(applicationProps);
+            resetGameState = false;
+        }
+        gameState = initialisedGameStateForRun;
+
     }
 
     private void run() {
@@ -284,6 +294,7 @@ public class WWSimulator implements WindowListener {
                 logger.info("*************************");
                 logger.info(" ");
                 reward = reward + 101;
+                resetGameState = true;
                 wait(500);
                 this.adventurerFinalState.append("GOLD,");
                 runSim = false;
@@ -306,9 +317,10 @@ public class WWSimulator implements WindowListener {
                 logger.info("***   Ouch a wall  !  ***");
                 logger.info("*************************");
                 logger.info(" ");
-                reward = reward - 10;
-                wait(10);
-                gameState = prevGameState; //move them back to whence they came.
+                reward = reward - 100;
+                wait(500);
+                gameState.setADVENTURER_X(prevGameState.getADVENTURER_X());
+                gameState.setADVENTURER_Y(prevGameState.getADVENTURER_Y());
             }
             adventurer.setHealth(adventurer.getHealth() + reward);
 
@@ -322,9 +334,12 @@ public class WWSimulator implements WindowListener {
                 wait(125);
             }
         }
+        adventurer.persistBrain();
+
         adventurerFinalState.append(Integer.toString(this.adventurer.getHealth()));
         adventurerFinalState.append(",");
         adventurerFinalState.append(timeSteps);
+
         System.gc();
     }
 

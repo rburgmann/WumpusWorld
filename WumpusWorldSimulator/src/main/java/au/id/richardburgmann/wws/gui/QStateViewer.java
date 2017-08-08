@@ -47,13 +47,13 @@ public class QStateViewer {
     private GridLayout gridLayout = new GridLayout(4, 4, 1, 1);
 
     public QStateViewer() {
-        logger.debug("QStateViewer Constructor.");
+        logger.trace("QStateViewer Constructor.");
         createWindow();
         initPanes();
     }
 
     public static void main(String[] args) {
-        logger.debug("Test QPanel");
+        logger.trace("Test QPanel");
         QStateViewer viewer = new QStateViewer();
     }
 
@@ -108,7 +108,7 @@ public class QStateViewer {
     }
 
     public void updateView() {
-        logger.debug("updateView");
+        logger.trace("updateView");
 
         for (int i = 0; i < brainState.size(); i++) {
             // Get the specific q value weights and x,y location.

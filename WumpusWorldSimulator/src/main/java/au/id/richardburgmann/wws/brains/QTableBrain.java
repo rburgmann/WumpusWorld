@@ -19,20 +19,26 @@
 
 package au.id.richardburgmann.wws.brains;
 
-import au.id.richardburgmann.wws.Adventurer;
-import au.id.richardburgmann.wws.CoOrdinate;
-import au.id.richardburgmann.wws.TheWorld;
+import au.id.richardburgmann.wws.*;
 import au.id.richardburgmann.wws.gui.QStateViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Properties;
 
-public class QTableBrain implements Brain {
+import static au.id.richardburgmann.wws.WWS.DIR_LOCATION_OF_BRAIN_Q_VALUES;
+import static au.id.richardburgmann.wws.WWS.LOAD_BRAIN_Q_VALUES_FROM;
+import static au.id.richardburgmann.wws.WWS.SAVE_BRAIN_Q_VALUES_TO;
+
+public class QTableBrain implements Brain, Serializable {
     private static final Logger logger = LoggerFactory.getLogger(QTableBrain.class);
     private static QStateViewer qStateViewer = new QStateViewer();
+    private static Properties applicationProps = new Properties();
+
     /**
      * This is the learned experience of the agent..
      */
@@ -41,19 +47,73 @@ public class QTableBrain implements Brain {
     private ArrayList qAction = new ArrayList(16);
     /**
      * Setting gamma to 0.5 means we give equal weight to past and recent
-     * experience. 0 means only immeadiate rewards are considered while 0.9 means longer term rewards are considered.
+     * experience. 0 means only immediate rewards are considered while 0.9 means longer term rewards are considered.
      */
-    private double gamma = 0.9;
+    private double gamma = 0.5;
     private boolean adaptiveGamma = false;
     private double numberOfStepsToAdaptGamma = 50;
     private double gammaStartingValue = 0.99;
     private double gammaFinishingValue = 0.9;
     private double gammaCurrentStep = 0;
     private double onceOffRewardForExploring = 5.0;
+    private double rSaturationLimit = 100.00;
+
+    public QTableBrain() {
+        super();
+    }
 
     public static void main(String[] args) {
+        WWSimulator wwSimulator;
+        wwSimulator = new WWSimulator();
+        WWSimulator.APPLICATION_PROPERTIES_FILE_LOCATION =
+                ".\\\\WumpusWorldSimulator\\\\src\\\\resources\\\\testProperties.properties";
+        wwSimulator.startup();
         QTableBrain qTableBrain = new QTableBrain();
         qTableBrain.listR(new TheWorld());
+        qTableBrain.persistBrain();
+    }
+
+    public void persistBrain() {
+
+        try {
+            String dir = WWSimulator.applicationProps.getProperty(DIR_LOCATION_OF_BRAIN_Q_VALUES.toString());
+            File dfile = new File(dir);
+            String file = WWSimulator.applicationProps.getProperty(SAVE_BRAIN_Q_VALUES_TO.toString());
+            String myMind = new String(dfile.getCanonicalPath() + "\\" + file);
+            FileOutputStream fileOutputStream = new FileOutputStream(myMind, false);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this);
+            objectOutputStream.close();
+        } catch (Exception e) {
+            logger.debug("Unable to persist brain state.");
+            logger.error(e.getMessage());
+            System.exit(1);
+        }
+    }
+
+    public QTableBrain loadBrain() {
+        QTableBrain returnValue;
+        returnValue = new QTableBrain();
+
+        try {
+            String dir = WWSimulator.applicationProps.getProperty(DIR_LOCATION_OF_BRAIN_Q_VALUES.toString());
+            File dfile = new File(dir);
+            String file = WWSimulator.applicationProps.getProperty(LOAD_BRAIN_Q_VALUES_FROM.toString());
+            String myMind = new String(dfile.getCanonicalPath() + "\\" + file);
+
+            FileInputStream fileInputStream = new FileInputStream(myMind);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            returnValue = (QTableBrain) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (Exception e) {
+            logger.debug("Unable to load brain state.");
+            logger.error(e.getMessage());
+            //System.exit(1);
+        }
+        return returnValue;
+    }
+    public int getBrainSize() {
+        return this.qState.size();
     }
 
     public void setAdaptiveGamma(boolean OnOff) {
@@ -164,6 +224,12 @@ public class QTableBrain implements Brain {
         rMatrix = (double[]) rAction.get(qState.indexOf(gridState));
         qMatrix = (double[]) qAction.get(qState.indexOf(gridState));
         qMatrix[action] = rMatrix[action] + (gamma * maxFutureReward);
+        /*
+         * Not a part of the formal algorithm but I found the reward values grow unbounded
+         * now that it persists brain state and loads learned experiences. So I check if qMatrix exceeds
+         * a saturation limit and if so limit it to the saturation limit.
+         */
+        if (qMatrix[action] > rSaturationLimit ) qMatrix[action] = rSaturationLimit;
 
         qAction.set(qState.indexOf(state), qMatrix);
 

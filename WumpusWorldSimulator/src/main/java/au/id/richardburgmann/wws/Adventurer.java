@@ -20,14 +20,19 @@
 package au.id.richardburgmann.wws;
 
 import au.id.richardburgmann.wws.brains.Brain;
+import au.id.richardburgmann.wws.brains.QTableBrain;
 import au.id.richardburgmann.wws.brains.RandomChoice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
+import static au.id.richardburgmann.wws.WWS.LOAD_TRAINED_BRAIN;
+import static au.id.richardburgmann.wws.WWS.YES;
+
 public class Adventurer {
     private static final Logger logger = LoggerFactory.getLogger(Adventurer.class);
+    private static Properties applicationProps = new Properties();
     public Brain brain = new RandomChoice();
     private int health = 1;
     private int maxHealth = 1;
@@ -43,7 +48,6 @@ public class Adventurer {
     public Adventurer(Properties applicationProperties) {
         Brain brain = extractBrainFromProperties(applicationProperties);
         setBrain(brain);
-
     }
 
     private Brain extractBrainFromProperties(Properties properties) {
@@ -62,7 +66,16 @@ public class Adventurer {
             e.printStackTrace();
         }
         if (brain == null) brain = new RandomChoice();
+
+        if (properties.getProperty(LOAD_TRAINED_BRAIN.toString()).equalsIgnoreCase(YES.toString()) &&
+                brain.getClass().getName().equalsIgnoreCase("au.id.richardburgmann.wws.brains.QTableBrain")) {
+            QTableBrain temp = new QTableBrain();
+            brain = temp.loadBrain();
+        }
         return brain;
+    }
+    public void persistBrain() {
+        brain.persistBrain();
     }
 
     public void setBrain(Brain brain) {
@@ -134,7 +147,6 @@ public class Adventurer {
         int      newReward = reward;
 
         return this.brain.learn(newState, newAction, newReward);
-
     }
 
     private int moveLeft(int X_Loc) {
